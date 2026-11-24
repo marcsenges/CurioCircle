@@ -10,17 +10,17 @@ const CCCommunity=(()=>{
  it:['Valuta questa domanda (facoltativo)','Mi piace','Non mi piace','Rimuovi valutazione','Suggerisci una domanda','La tua proposta di domanda','Invia proposta','Vengono inviati solo l’ID della domanda, la valutazione, la lingua, la versione dell’app e una chiave casuale per ogni domanda. Nessun nome o risposta dei giocatori.','Solo per suggerire domande. Non inserire dati personali. Le proposte vengono esaminate prima della pubblicazione.','Salvato; verrà inviato quando tornerà la connessione.','Grazie!','Non ancora disponibile.','Invio non riuscito. Riprova.','Proposta già ricevuta.','Valutazione rimossa.','Modifica valutazione','Da 12 a 240 caratteri.','Riprova gli invii in sospeso']
  };
  const extra={
- de:['Ausstehende Sendungen verwerfen','Ungesendete Bewertungen und Vorschläge verwerfen? Bereits gesendete Bewertungen kannst du einzeln zurücknehmen.','Feedback ist freiwillig. Cloudflare verarbeitet technische Verbindungsdaten. Die Datenbank liegt in der EU. Bewertungen lassen sich mit dem lokalen Schlüssel ändern oder zurücknehmen.','Feedback verwalten','Feedback aktivieren','Übertragung läuft …','Vorschlag nur online senden','Keine ausstehenden Sendungen.'],
- en:['Discard pending submissions','Discard unsent ratings and suggestions? You can withdraw ratings already sent individually.','Feedback is optional. Cloudflare processes technical connection data. The database is in the EU. Ratings can be changed or withdrawn with the locally stored key.','Manage feedback','Enable feedback','Sending…','Send suggestion online only','No pending submissions.'],
- es:['Descartar envíos pendientes','¿Descartar valoraciones y propuestas sin enviar? Puedes retirar las valoraciones enviadas de forma individual.','Las valoraciones son voluntarias. Cloudflare trata datos técnicos de conexión. La base de datos está en la UE. Puedes cambiar o retirar una valoración con la clave guardada en tu dispositivo.','Gestionar valoraciones','Activar valoraciones','Enviando…','Enviar propuestas solo con conexión','No hay envíos pendientes.'],
- fr:['Annuler les envois en attente','Annuler les avis et propositions non envoyés ? Tu peux retirer individuellement les avis déjà transmis.','Les avis sont facultatifs. Cloudflare traite des données techniques de connexion. La base de données est dans l’UE. La clé conservée sur ton appareil permet de modifier ou retirer tes avis.','Gérer les avis','Activer les avis','Envoi en cours…','Envoyer les propositions uniquement en ligne','Aucun envoi en attente.'],
- pt:['Descartar envios pendentes','Descartar avaliações e sugestões não enviadas? Você pode retirar as avaliações já enviadas individualmente.','O feedback é opcional. A Cloudflare processa dados técnicos de conexão. O banco de dados fica na UE. Você pode alterar ou retirar avaliações com a chave armazenada no aparelho.','Gerenciar feedback','Ativar feedback','Enviando…','Enviar sugestões somente online','Nenhum envio pendente.'],
- it:['Annulla gli invii in sospeso','Annullare valutazioni e proposte non inviate? Puoi ritirare singolarmente le valutazioni già inviate.','Il feedback è facoltativo. Cloudflare tratta dati tecnici di connessione. Il database è nell’UE. Puoi modificare o ritirare le valutazioni con la chiave salvata sul dispositivo.','Gestisci feedback','Attiva feedback','Invio in corso…','Invia proposte solo online','Nessun invio in sospeso.']
+ de:['Ausstehende Sendungen verwerfen','Noch nie übertragene Bewertungen verwerfen? Bereits versuchte Übertragungen bleiben erhalten und können einzeln zurückgenommen werden.','Feedback ist freiwillig. Cloudflare verarbeitet technische Verbindungsdaten. Die Datenbank liegt in der EU. Bewertungen lassen sich mit dem lokalen Schlüssel ändern oder zurücknehmen.','Feedback verwalten','Feedback aktivieren','Übertragung läuft …','Vorschlag nur online senden','Keine ausstehenden Sendungen.'],
+ en:['Discard pending submissions','Discard ratings that have never been sent? Ratings with attempted transmissions remain available for individual withdrawal.','Feedback is optional. Cloudflare processes technical connection data. The database is in the EU. Ratings can be changed or withdrawn with the locally stored key.','Manage feedback','Enable feedback','Sending…','Send suggestion online only','No pending submissions.'],
+ es:['Descartar envíos pendientes','¿Descartar valoraciones que aún no se han intentado enviar? Las que ya se han intentado enviar se pueden retirar de forma individual.','Las valoraciones son voluntarias. Cloudflare trata datos técnicos de conexión. La base de datos está en la UE. Puedes cambiar o retirar una valoración con la clave guardada en tu dispositivo.','Gestionar valoraciones','Activar valoraciones','Enviando…','Enviar propuestas solo con conexión','No hay envíos pendientes.'],
+ fr:['Annuler les envois en attente','Annuler les avis dont l’envoi n’a jamais été tenté ? Les autres restent disponibles et peuvent être retirés individuellement.','Les avis sont facultatifs. Cloudflare traite des données techniques de connexion. La base de données est dans l’UE. La clé conservée sur ton appareil permet de modifier ou retirer tes avis.','Gérer les avis','Activer les avis','Envoi en cours…','Envoyer les propositions uniquement en ligne','Aucun envoi en attente.'],
+ pt:['Descartar envios pendentes','Descartar avaliações cujo envio ainda não foi tentado? As demais podem ser retiradas individualmente.','O feedback é opcional. A Cloudflare processa dados técnicos de conexão. O banco de dados fica na UE. Você pode alterar ou retirar avaliações com a chave armazenada no aparelho.','Gerenciar feedback','Ativar feedback','Enviando…','Enviar sugestões somente online','Nenhum envio pendente.'],
+ it:['Annulla gli invii in sospeso','Annullare le valutazioni per cui non è ancora stato tentato l’invio? Le altre possono essere ritirate singolarmente.','Il feedback è facoltativo. Cloudflare tratta dati tecnici di connessione. Il database è nell’UE. Puoi modificare o ritirare le valutazioni con la chiave salvata sul dispositivo.','Gestisci feedback','Attiva feedback','Invio in corso…','Invia proposte solo online','Nessun invio in sospeso.']
  };
  let endpoint='',ready=false,busy=false,lang='en',version='',question=null,root=null,formRoot=null,notice=null,formNotice=null,formSection=null,area=null,draft='',statusIndex=null,formStatusIndex=null,retryRequested=false,configured=false;
  let data={votes:{},enabled:false};
  const validRecord=(r)=>r&&typeof r.receipt==='string'&&/^[a-f0-9]{64}$/.test(r.receipt)&&Number.isSafeInteger(r.revision)&&r.revision>=1&&[-1,1,null].includes(r.vote)&&Object.hasOwn(texts,r.language)&&typeof r.app_version==='string';
- try{const x=JSON.parse(localStorage.getItem(STORE));if(x&&x.votes&&typeof x.votes==='object'){data.enabled=x.enabled===true;for(const [id,r] of Object.entries(x.votes))if(/^\d+$/.test(id)&&Number(id)<100000&&validRecord(r))data.votes[id]={...r,pending:r.pending===true}}}catch{}
+ try{const x=JSON.parse(localStorage.getItem(STORE));if(x&&x.votes&&typeof x.votes==='object'){data.enabled=x.enabled===true;for(const [id,r] of Object.entries(x.votes))if(/^\d+$/.test(id)&&Number(id)<100000&&validRecord(r))data.votes[id]={...r,pending:r.pending===true,attempted:r.attempted!==false}}}catch{}
  const tr=()=>texts[lang]||texts.en;
  const ex=()=>extra[lang]||extra.en;
  const persist=()=>{try{localStorage.setItem(STORE,JSON.stringify(data));return true}catch{return false}};
@@ -77,6 +77,7 @@ const CCCommunity=(()=>{
   try{
    for(const id of Object.keys(data.votes)){
     const r=data.votes[id];if(!r?.pending)continue;
+    if(!r.attempted){r.attempted=true;if(!persist()){r.attempted=false;if(Number(id)===question)say(12);break}}
     const payload={question_id:Number(id),receipt:r.receipt,revision:r.revision,vote:r.vote,language:r.language,app_version:r.app_version};
     try{
      const response=await send('/v1/vote',payload);
@@ -91,16 +92,16 @@ const CCCommunity=(()=>{
  function setVote(v){
   if(!ready||!Number.isInteger(question)||question<0||question>=100000)return;
   const old=data.votes[question];if(old?.vote===v){if(old.pending)flush();return}
-  const next={receipt:old?.receipt||receipt(),revision:(old?.revision||0)+1,vote:v,language:lang,app_version:version,pending:true,confirmed:old?.confirmed||null};
+  const next={receipt:old?.receipt||receipt(),revision:(old?.revision||0)+1,vote:v,language:lang,app_version:version,pending:true,attempted:false,confirmed:old?.confirmed||null};
   data.votes[question]=next;if(!persist()){if(old)data.votes[question]=old;else delete data.votes[question];say(12);return}
   statusIndex=9;render();flush()
  }
  function discardPending(){
   if(busy){say(12,true);return}
-  if(!Object.values(data.votes).some(r=>r.pending)){if(formNotice)formNotice.textContent=ex()[7];return}
+  if(!Object.values(data.votes).some(r=>r.pending&&!r.attempted)){if(formNotice)formNotice.textContent=ex()[7];return}
   if(!confirm(ex()[1]))return;
   const old=data.votes;const next={};
-  for(const [id,r] of Object.entries(old)){if(!r.pending)next[id]=r;else if(r.confirmed)next[id]={...r,...r.confirmed,pending:false,revision:r.revision}}
+  for(const [id,r] of Object.entries(old)){if(!r.pending||r.attempted)next[id]=r;else if(r.confirmed)next[id]={...r,...r.confirmed,pending:false,revision:r.revision}}
   data.votes=next;if(!persist()){data.votes=old;say(12,true);return}statusIndex=null;render()
  }
  let suggestionAttempt=null;
@@ -121,5 +122,5 @@ const CCCommunity=(()=>{
   window.addEventListener('online',async()=>{if(data.enabled){ready=await check();render();if(ready)flush()}});
   render();if(ready)flush();return ready
  }
- return {init,render(id,language,appVersion){if(question!==id){statusIndex=null}question=id??null;lang=texts[language]?language:'en';version=appVersion;render()},retry:flush,summary(){const rows=Object.values(data.votes).map(r=>r.confirmed).filter(r=>r&&r.vote!==null);return {rated:rows.length,positive:rows.filter(r=>r.vote===1).length,negative:rows.filter(r=>r.vote===-1).length,pending:Object.values(data.votes).filter(r=>r.pending).length}}};
+ return {init,render(id,language,appVersion){const nextId=id??null,nextLang=texts[language]?language:'en';const changed=question!==nextId||lang!==nextLang||version!==appVersion;if(question!==nextId)statusIndex=null;question=nextId;lang=nextLang;version=appVersion;if(changed)render()},retry:flush,summary(){const rows=Object.values(data.votes).map(r=>r.confirmed).filter(r=>r&&r.vote!==null);return {rated:rows.length,positive:rows.filter(r=>r.vote===1).length,negative:rows.filter(r=>r.vote===-1).length,pending:Object.values(data.votes).filter(r=>r.pending).length}}};
 })();

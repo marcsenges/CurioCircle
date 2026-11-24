@@ -1,4 +1,4 @@
-name: CurioCircle backend setup (feedback disabled)
+name: CurioCircle backend beta setup and live tests
 on:
   workflow_dispatch:
   push:
@@ -22,12 +22,18 @@ jobs:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
       - name: Validate catalogue and Worker
         run: |
           node scripts/check-catalogue.mjs
           node --check backend/worker.mjs
           node backend/worker.test.mjs
-      - name: Create schema, seed question metadata and deploy closed Worker
+          node --experimental-sqlite backend/worker.integration.test.mjs
+          node --check backend/community-client.js
+      - name: Verify closed deployment, then enable and test beta
         env:
+          COMMUNITY_BETA: 'true'
           CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: python3 backend/deploy.py

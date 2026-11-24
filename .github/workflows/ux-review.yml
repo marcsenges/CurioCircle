@@ -3,7 +3,7 @@ on:
   pull_request:
     branches: [main]
   push:
-    branches: [diversity-0971]
+    branches: [local-reset-dialogs-0972]
 permissions:
   contents: read
 jobs:

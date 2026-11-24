@@ -21,6 +21,7 @@ const CCCommunity=(()=>{
  };
  let endpoint='',ready=false,busy=false,lang='en',version='',question=null,root=null,formRoot=null,notice=null,formNotice=null,formSection=null,area=null,draft='',statusIndex=null,formStatusIndex=null,retryRequested=false,configured=false;
  let data={votes:{},enabled:false};
+ let confirmAction=async()=>false;
  const validRecord=(r)=>r&&typeof r.receipt==='string'&&/^[a-f0-9]{64}$/.test(r.receipt)&&Number.isSafeInteger(r.revision)&&r.revision>=1&&[-1,1,null].includes(r.vote)&&Object.hasOwn(texts,r.language)&&typeof r.app_version==='string';
  try{const x=JSON.parse(localStorage.getItem(STORE));if(x&&x.votes&&typeof x.votes==='object'){data.enabled=x.enabled===true;for(const [id,r] of Object.entries(x.votes))if(/^\d+$/.test(id)&&Number(id)<100000&&validRecord(r))data.votes[id]={...r,pending:r.pending===true,attempted:r.attempted!==false}}}catch{}
  const tr=()=>texts[lang]||texts.en;
@@ -117,10 +118,11 @@ const CCCommunity=(()=>{
   data.votes[question]=next;if(!persist()){if(old)data.votes[question]=old;else delete data.votes[question];say(12);return}
   statusIndex=9;render();flush()
  }
- function discardPending(){
+ async function discardPending(){
   if(busy){say(12,true);return}
   if(!Object.values(data.votes).some(r=>r.pending&&!r.attempted)){if(formNotice)formNotice.textContent=ex()[7];return}
-  if(!confirm(ex()[1]))return;
+  if(!await confirmAction(ex()[1],ex()[0]))return;
+  if(busy){say(12,true);return}
   const old=data.votes;const next={};
   for(const [id,r] of Object.entries(old)){if(!r.pending||r.attempted)next[id]=r;else if(r.confirmed)next[id]={...r,...r.confirmed,pending:false,revision:r.revision}}
   data.votes=next;if(!persist()){data.votes=old;say(12,true);return}statusIndex=null;render()
@@ -137,7 +139,7 @@ const CCCommunity=(()=>{
  }
  async function init(opts){
   if(!opts.endpoint||!/^https:\/\/curiocircle-api\.[a-z0-9-]+\.workers\.dev$/.test(opts.endpoint))return false;
-  endpoint=opts.endpoint;root=opts.ratingRoot;formRoot=opts.suggestionRoot;configured=opts.enabled===true;
+  endpoint=opts.endpoint;root=opts.ratingRoot;formRoot=opts.suggestionRoot;configured=opts.enabled===true;confirmAction=typeof opts.confirmAction==='function'?opts.confirmAction:async()=>false;
   if(!configured)return false;
   render();
   if(data.enabled)ready=await check();

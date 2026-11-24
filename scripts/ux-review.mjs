@@ -33,8 +33,9 @@ for(const lang of ['en','de','es','fr','pt','it']){
 await page.setViewportSize({width:375,height:812});await page.locator('#lang').selectOption('es');
 await page.locator('.cc-thumb').first().click();await page.waitForFunction(()=>document.querySelector('.cc-thumb')?.getAttribute('aria-pressed')==='true');
 await page.waitForTimeout(200);assert.equal(sent.filter(x=>x.path==='/v1/vote').length,1);
-await page.locator('.cc-thumb').last().click();await page.waitForTimeout(200);assert.equal(sent.filter(x=>x.path==='/v1/vote').at(-1).payload.vote,-1);
-await page.locator('.cc-thumb').last().click();await page.waitForTimeout(200);assert.equal(sent.filter(x=>x.path==='/v1/vote').at(-1).payload.vote,null);
+await page.waitForFunction(()=>CCCommunity.summary().positive===1&&CCCommunity.summary().pending===0);
+await page.locator('.cc-thumb').last().click();await page.waitForFunction(()=>CCCommunity.summary().negative===1&&CCCommunity.summary().pending===0);assert.equal(sent.filter(x=>x.path==='/v1/vote').at(-1).payload.vote,-1);
+await page.locator('.cc-thumb').last().click();await page.waitForFunction(()=>CCCommunity.summary().rated===0&&CCCommunity.summary().pending===0);assert.equal(sent.filter(x=>x.path==='/v1/vote').at(-1).payload.vote,null);
 await page.locator('#communitySettings > details > summary').click();
 const proposal=page.locator('#communitySettings textarea');await proposal.fill('¿Qué invento te gustaría crear?');
 assert.equal(await page.locator('.cc-pending-actions').isVisible(),false);
@@ -67,6 +68,46 @@ await page.locator('#allCategories').check();
 await page.locator('#applyCategories').click();
 assert.deepEqual(await page.evaluate(()=>selectedCategories()),[0,1,2,3,4,5,6,7]);
 assert.equal(await page.evaluate(()=>deck.length),305);
+// Confirmed ratings survive a complete local game reset, including reload.
+await page.locator('.cc-thumb').first().click();
+await page.waitForFunction(()=>CCCommunity.summary().positive>=1&&CCCommunity.summary().pending===0);
+await page.evaluate(()=>{state.players=['Test A','Test B'];state.fav=[0,1];state.counts={0:2};state.custom=[{id:100000,en:'Test local question',es:'Pregunta de prueba'}];state.mode='rotate';state.turn=1;save();render()});
+await page.locator('#extrasTitle').click();
+await page.locator('#dataTitle').click();
+for(const lang of ['en','de','es','fr','pt','it']){
+ await page.locator('#lang').selectOption(lang);
+ await page.locator('#resetData').click();
+ assert.equal(await page.locator('#appDialog').isVisible(),true);
+ assert.equal(await page.locator('#dialogTitle').textContent(),await page.evaluate(()=>dialogText[state.lang][0]));
+ await page.locator('#dialogCancel').click();
+ await page.waitForFunction(()=>!document.querySelector('#appDialog').open);
+ assert.equal(await page.evaluate(()=>state.players.length),2);
+}
+await page.locator('#lang').selectOption('es');
+const oldCommunity=await page.evaluate(()=>localStorage.getItem('curiocircle-community-v1'));
+const sentBeforeReset=sent.length;
+await page.locator('#resetData').click();await page.locator('#dialogOK').click();
+await page.waitForFunction(()=>state.players.length===0&&state.custom.length===0);
+assert.equal(await page.evaluate(()=>localStorage.getItem('curiocircle-community-v1')),oldCommunity);
+assert.equal(sent.length,sentBeforeReset);
+assert.deepEqual(await page.evaluate(()=>({players:state.players,custom:state.custom,fav:state.fav,counts:state.counts,mode:state.mode,pos})),{players:[],custom:[],fav:[],counts:{},mode:'free',pos:0});
+assert.equal(await page.locator('#players').inputValue(),'');
+await page.reload();await page.locator('.cc-thumb').first().waitFor({state:'visible'});
+assert.equal(await page.evaluate(()=>localStorage.getItem('curiocircle-community-v1')),oldCommunity);
+assert.equal(await page.evaluate(()=>state.players.length),0);
+// Import cancellation and confirmed import preserve community data.
+await page.locator('#settingsJump').click();await page.locator('#extrasTitle').click();await page.locator('#dataTitle').click();
+const backup={format:1,state:{lang:'es',fav:[2],counts:{2:1},players:['Uno','Dos'],mode:'free',custom:[]}};
+await page.locator('#importFile').setInputFiles({name:'test.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(backup))});
+await page.locator('#dialogCancel').click();await page.waitForFunction(()=>!document.querySelector('#appDialog').open&&dialogResolver===null&&document.querySelector('#importFile').value==='');assert.equal(await page.evaluate(()=>state.fav.length),0);
+await page.locator('#importFile').setInputFiles({name:'test.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(backup))});
+await page.locator('#dialogOK').click();await page.waitForFunction(()=>state.fav.includes(2));
+assert.equal(await page.evaluate(()=>localStorage.getItem('curiocircle-community-v1')),oldCommunity);
+// Clipboard failure uses a selectable text box in the app, not window.prompt.
+await page.evaluate(()=>{Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:async()=>{throw Error('clipboard unavailable')}}});Object.defineProperty(navigator,'share',{configurable:true,value:undefined})});
+await page.locator('#shareJump').click();
+await page.locator('#copyLink').click();assert.equal(await page.locator('#appDialog').isVisible(),true);assert.ok((await page.locator('#dialogCopy').inputValue()).includes('https://'));await page.locator('#dialogCancel').click();await page.waitForFunction(()=>dialogResolver===null);
+await page.locator('#shareQuestion').click();assert.equal(await page.locator('#appDialog').isVisible(),true);assert.ok((await page.locator('#dialogCopy').inputValue()).includes('https://'));await page.locator('#dialogCancel').click();
 assert.deepEqual(dialogs,[]);assert.deepEqual(errors,[]);
 console.log('OK: six languages, four viewport widths, thumbs and withdrawal, proposal, favourite removal, feedback sending, no dialogs or page errors');
 await context.close();

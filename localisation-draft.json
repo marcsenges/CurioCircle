@@ -1,0 +1,604 @@
+{
+  "questions": [
+    {
+      "id": 0,
+      "fr": "Quel est l'achat le plus absurde que tu aies fait ?",
+      "pt": "Qual foi a compra mais absurda que você já fez?",
+      "it": "Qual è l'acquisto più assurdo che tu abbia mai fatto?"
+    },
+    {
+      "id": 1,
+      "fr": "Qu'est-ce que tu voulais faire comme métier quand tu étais enfant ?",
+      "pt": "O que você queria ser quando era criança?",
+      "it": "Che lavoro volevi fare da bambino?"
+    },
+    {
+      "id": 2,
+      "fr": "Dans quel truc sans importance es-tu étonnamment nul ?",
+      "pt": "Que coisa simples você faz surpreendentemente mal?",
+      "it": "In quale attività da poco sei sorprendentemente negato?"
+    },
+    {
+      "id": 3,
+      "fr": "Sur quelle musique ferais-tu ton entrée en scène ?",
+      "pt": "Qual música tocaria na sua entrada triunfal?",
+      "it": "Con quale canzone faresti il tuo ingresso trionfale?"
+    },
+    {
+      "id": 4,
+      "fr": "Quel plat pourrais-tu manger toutes les semaines sans te lasser ?",
+      "pt": "Que prato você comeria toda semana sem enjoar?",
+      "it": "Quale piatto mangeresti ogni settimana senza stancarti?"
+    },
+    {
+      "id": 5,
+      "fr": "Quelle odeur te replonge directement dans ton enfance ?",
+      "pt": "Que cheiro te transporta na hora para a infância?",
+      "it": "Quale odore ti riporta subito all'infanzia?"
+    },
+    {
+      "id": 6,
+      "fr": "Quel est ton talent le plus inutile ?",
+      "pt": "Qual é o seu talento mais inútil?",
+      "it": "Qual è il tuo talento più inutile?"
+    },
+    {
+      "id": 7,
+      "fr": "De quelle tâche ménagère te passerais-tu volontiers pour toujours ?",
+      "pt": "Qual tarefa doméstica você adoraria nunca mais fazer?",
+      "it": "Quale faccenda domestica non vorresti mai più fare?"
+    },
+    {
+      "id": 8,
+      "fr": "Quel nom donnerais-tu à ton propre bar ?",
+      "pt": "Que nome você daria ao seu próprio bar?",
+      "it": "Come chiameresti il tuo bar?"
+    },
+    {
+      "id": 9,
+      "fr": "Quelle mode as-tu suivie à l'époque et regrettes-tu aujourd'hui ?",
+      "pt": "Que moda você já seguiu e hoje se arrepende?",
+      "it": "Quale moda hai seguito in passato e oggi rimpiangi di aver seguito?"
+    },
+    {
+      "id": 10,
+      "fr": "Quel est ton moment préféré de la journée ?",
+      "pt": "Qual é a sua hora preferida do dia?",
+      "it": "Qual è il tuo momento preferito della giornata?"
+    },
+    {
+      "id": 11,
+      "fr": "Dans quel lieu imaginaire passerais-tu volontiers un week-end ?",
+      "pt": "Em que lugar fictício você passaria um fim de semana?",
+      "it": "In quale luogo immaginario passeresti un fine settimana?"
+    },
+    {
+      "id": 12,
+      "fr": "Qu'est-ce que tu emportes toujours en voyage sans presque jamais t'en servir ?",
+      "pt": "O que você sempre leva na mala, mas quase nunca usa?",
+      "it": "Cosa metti sempre in valigia ma usi raramente?"
+    },
+    {
+      "id": 13,
+      "fr": "Quel bruit trouves-tu étrangement agréable ?",
+      "pt": "Que som você acha estranhamente agradável?",
+      "it": "Quale rumore trovi stranamente piacevole?"
+    },
+    {
+      "id": 14,
+      "fr": "Quel était ton goûter préféré à la récré ?",
+      "pt": "Qual era seu lanche favorito na hora do recreio?",
+      "it": "Qual era la tua merenda preferita a scuola?"
+    },
+    {
+      "id": 15,
+      "fr": "Quel objet du quotidien aimerais-tu repenser ?",
+      "pt": "Que objeto do dia a dia você gostaria de reinventar?",
+      "it": "Quale oggetto di uso quotidiano riprogetteresti?"
+    },
+    {
+      "id": 16,
+      "fr": "Quelle chanson choisis-tu toujours au karaoké ?",
+      "pt": "Qual é sua música de estimação no karaokê?",
+      "it": "Qual è il tuo cavallo di battaglia al karaoke?"
+    },
+    {
+      "id": 17,
+      "fr": "Quel animal ferait le colocataire le plus drôle ?",
+      "pt": "Qual animal seria o companheiro de apartamento mais engraçado?",
+      "it": "Quale animale sarebbe il coinquilino più buffo?"
+    },
+    {
+      "id": 18,
+      "fr": "À quel petit luxe aurais-tu du mal à renoncer ?",
+      "pt": "De que pequeno luxo você não gostaria de abrir mão?",
+      "it": "A quale piccolo lusso faresti fatica a rinunciare?"
+    },
+    {
+      "id": 19,
+      "fr": "Quel mélange d'aliments improbable trouves-tu vraiment bon ?",
+      "pt": "Que combinação estranha de alimentos você realmente gosta de comer?",
+      "it": "Quale abbinamento di cibi insolito ti piace davvero?"
+    },
+    {
+      "id": 20,
+      "fr": "Quels trois objets mettrais-tu dans une capsule temporelle ?",
+      "pt": "Que três coisas você colocaria numa cápsula do tempo?",
+      "it": "Quali tre cose metteresti in una capsula del tempo?"
+    },
+    {
+      "id": 21,
+      "fr": "Qu'y aurait-il dans ton sandwich signature ?",
+      "pt": "O que teria no seu sanduíche especial?",
+      "it": "Cosa ci sarebbe nel tuo panino della casa?"
+    },
+    {
+      "id": 22,
+      "fr": "Quel mot a une sonorité que tu aimes particulièrement ?",
+      "pt": "Que palavra você acha especialmente bonita de ouvir?",
+      "it": "Quale parola ti piace particolarmente per il suo suono?"
+    },
+    {
+      "id": 23,
+      "fr": "Quel a été ton premier boulot rémunéré ?",
+      "pt": "Qual foi seu primeiro trabalho remunerado?",
+      "it": "Qual è stato il tuo primo lavoro retribuito?"
+    },
+    {
+      "id": 24,
+      "fr": "Dans quel magasin pourrais-tu flâner pendant des heures ?",
+      "pt": "Em que tipo de loja você passaria horas olhando as coisas?",
+      "it": "In quale negozio potresti curiosare per ore?"
+    },
+    {
+      "id": 25,
+      "fr": "Quel nom donnerais-tu à un bateau ?",
+      "pt": "Que nome você daria a um barco?",
+      "it": "Che nome daresti a una barca?"
+    },
+    {
+      "id": 26,
+      "fr": "Quel film as-tu vu le plus de fois ?",
+      "pt": "Qual filme você mais vezes assistiu?",
+      "it": "Qual è il film che hai visto più volte?"
+    },
+    {
+      "id": 27,
+      "fr": "Qu'est-ce que tu préfères le dimanche ?",
+      "pt": "Do que você mais gosta nos domingos?",
+      "it": "Cosa ti piace di più della domenica?"
+    },
+    {
+      "id": 28,
+      "fr": "Quelle invention mérite d'être davantage appréciée ?",
+      "pt": "Que invenção merece mais reconhecimento?",
+      "it": "Quale invenzione meriterebbe più riconoscimento?"
+    },
+    {
+      "id": 29,
+      "fr": "Quelle mascotte choisirais-tu pour notre groupe ?",
+      "pt": "Que mascote você escolheria para este grupo?",
+      "it": "Quale mascotte sceglieresti per questo gruppo?"
+    },
+    {
+      "id": 30,
+      "fr": "À quel jeu jouais-tu sans arrêt quand tu étais enfant ?",
+      "pt": "Que brincadeira você não cansava de brincar na infância?",
+      "it": "A quale gioco giocavi in continuazione da bambino?"
+    },
+    {
+      "id": 31,
+      "fr": "Qu'est-ce qu'il y a de meilleur à manger après minuit ?",
+      "pt": "Qual é a melhor coisa para comer depois da meia-noite?",
+      "it": "Qual è la cosa più buona da mangiare dopo mezzanotte?"
+    },
+    {
+      "id": 32,
+      "fr": "Quelle célébrité inviterais-tu à un barbecue ?",
+      "pt": "Que famoso você convidaria para um churrasco?",
+      "it": "Quale personaggio famoso inviteresti a una grigliata?"
+    },
+    {
+      "id": 33,
+      "fr": "Quelle est ton excuse préférée pour rester chez toi ?",
+      "pt": "Qual é sua desculpa favorita para ficar em casa?",
+      "it": "Qual è la tua scusa preferita per restare a casa?"
+    },
+    {
+      "id": 34,
+      "fr": "Quelle matière enseignerais-tu à l'école ?",
+      "pt": "Que matéria você daria na escola?",
+      "it": "Quale materia insegneresti a scuola?"
+    },
+    {
+      "id": 35,
+      "fr": "Quel est le malentendu le plus drôle que tu aies vécu ?",
+      "pt": "Qual foi o mal-entendido mais engraçado que você já viveu?",
+      "it": "Qual è stato il tuo malinteso più divertente?"
+    },
+    {
+      "id": 36,
+      "fr": "Quelle ville aimerais-tu explorer sans plan ?",
+      "pt": "Que cidade você exploraria sem mapa?",
+      "it": "Quale città esploreresti senza una mappa?"
+    },
+    {
+      "id": 37,
+      "fr": "Que proposerais-tu dans ton food truck ?",
+      "pt": "O que você venderia no seu food truck?",
+      "it": "Cosa serviresti nel tuo food truck?"
+    },
+    {
+      "id": 38,
+      "fr": "Quel objet de la maison passes-tu ton temps à chercher ?",
+      "pt": "Que objeto de casa você vive perdendo?",
+      "it": "Quale oggetto di casa perdi in continuazione?"
+    },
+    {
+      "id": 39,
+      "fr": "Qu'est-ce que tu préfères faire quand il pleut ?",
+      "pt": "O que você mais gosta de fazer em dias de chuva?",
+      "it": "Cosa ti piace fare quando piove?"
+    },
+    {
+      "id": 40,
+      "fr": "Quel sport serait le plus drôle à pratiquer déguisé ?",
+      "pt": "Qual esporte seria mais engraçado se todo mundo estivesse fantasiado?",
+      "it": "Quale sport sarebbe più divertente praticare in costume?"
+    },
+    {
+      "id": 41,
+      "fr": "Quel compliment sur ta cuisine te ferait le plus plaisir ?",
+      "pt": "Que elogio à sua comida deixaria você mais feliz?",
+      "it": "Quale complimento sulla tua cucina ti farebbe più piacere?"
+    },
+    {
+      "id": 42,
+      "fr": "Quel jouet de ton enfance rachèterais-tu volontiers ?",
+      "pt": "Que brinquedo da infância você compraria de novo?",
+      "it": "Quale giocattolo della tua infanzia ricompreresti volentieri?"
+    },
+    {
+      "id": 43,
+      "fr": "Qu'est-ce que tu préfères dans les voyages en train ?",
+      "pt": "Do que você mais gosta em viajar de trem?",
+      "it": "Cosa ti piace di più dei viaggi in treno?"
+    },
+    {
+      "id": 44,
+      "fr": "Quelle règle farfelue instaurerais-tu pour une journée ?",
+      "pt": "Que regra maluca você criaria por um dia?",
+      "it": "Quale regola assurda introdurresti per un giorno?"
+    },
+    {
+      "id": 45,
+      "fr": "Qu'est-ce qui serait indispensable dans le jardin de tes rêves ?",
+      "pt": "O que não poderia faltar no jardim dos seus sonhos?",
+      "it": "Cosa non potrebbe mancare nel giardino dei tuoi sogni?"
+    },
+    {
+      "id": 46,
+      "fr": "Quel en-cas disparaît le plus vite quand tu es dans les parages ?",
+      "pt": "Qual petisco acaba rapidinho quando você está por perto?",
+      "it": "Quale snack sparisce più in fretta quando ci sei tu?"
+    },
+    {
+      "id": 47,
+      "fr": "Quelle est la plus belle surprise que tu aies trouvée dans une poche ?",
+      "pt": "Qual foi a melhor surpresa que você encontrou num bolso?",
+      "it": "Qual è la sorpresa più bella che hai trovato in una tasca?"
+    },
+    {
+      "id": 48,
+      "fr": "De quel instrument aimerais-tu savoir bien jouer ?",
+      "pt": "Que instrumento você gostaria de tocar bem?",
+      "it": "Quale strumento vorresti saper suonare bene?"
+    },
+    {
+      "id": 49,
+      "fr": "Comment s'appellerait un festival organisé par toi ?",
+      "pt": "Como se chamaria um festival organizado por você?",
+      "it": "Come si chiamerebbe un festival organizzato da te?"
+    },
+    {
+      "id": 50,
+      "fr": "Quelle corvée du quotidien aimes-tu secrètement faire ?",
+      "pt": "Que tarefa do dia a dia você gosta de fazer, mas não costuma admitir?",
+      "it": "Quale incombenza quotidiana ti piace segretamente svolgere?"
+    },
+    {
+      "id": 51,
+      "fr": "À quoi ressemble ton petit-déjeuner idéal en vacances ?",
+      "pt": "Como seria seu café da manhã ideal nas férias?",
+      "it": "Com'è la tua colazione ideale in vacanza?"
+    },
+    {
+      "id": 52,
+      "fr": "Quelle décennie a produit la meilleure musique selon toi ?",
+      "pt": "Qual década teve as melhores músicas?",
+      "it": "Quale decennio ha avuto la musica migliore?"
+    },
+    {
+      "id": 53,
+      "fr": "Qu'écrirais-tu sur une plaque d'immatriculation personnalisée ?",
+      "pt": "O que você colocaria numa placa de carro personalizada?",
+      "it": "Cosa scriveresti su una targa personalizzata?"
+    },
+    {
+      "id": 54,
+      "fr": "Quel savoir-faire aimerais-tu acquérir en un week-end ?",
+      "pt": "Que habilidade você gostaria de aprender em um fim de semana?",
+      "it": "Quale abilità vorresti imparare in un fine settimana?"
+    },
+    {
+      "id": 55,
+      "fr": "Qu'est-ce que tu commandes le plus volontiers dans un café ?",
+      "pt": "O que você mais gosta de pedir numa cafeteria?",
+      "it": "Cosa ti piace ordinare al bar?"
+    },
+    {
+      "id": 56,
+      "fr": "Quel animal aimerais-tu observer dans son milieu naturel ?",
+      "pt": "Que animal você gostaria de observar na natureza?",
+      "it": "Quale animale vorresti osservare in libertà?"
+    },
+    {
+      "id": 57,
+      "fr": "Quel serait le titre de ton autobiographie ?",
+      "pt": "Qual seria o título da sua autobiografia?",
+      "it": "Come si intitolerebbe la tua autobiografia?"
+    },
+    {
+      "id": 58,
+      "fr": "Quel plat est encore meilleur le lendemain ?",
+      "pt": "Que comida fica ainda mais gostosa no dia seguinte?",
+      "it": "Quale piatto è ancora più buono il giorno dopo?"
+    },
+    {
+      "id": 59,
+      "fr": "Comment préfères-tu occuper une heure de libre ?",
+      "pt": "Como você gosta de aproveitar uma horinha livre?",
+      "it": "Come preferisci trascorrere un'ora libera?"
+    },
+    {
+      "id": 60,
+      "fr": "Quel musée créerais-tu si l'argent n'était pas un problème ?",
+      "pt": "Que museu você criaria se dinheiro não fosse problema?",
+      "it": "Quale museo apriresti se i soldi non fossero un problema?"
+    },
+    {
+      "id": 61,
+      "fr": "Quel repas de vacances t'a particulièrement marqué ?",
+      "pt": "Qual refeição de uma viagem ficou mais na sua memória?",
+      "it": "Quale pasto in vacanza ti è rimasto più impresso?"
+    },
+    {
+      "id": 62,
+      "fr": "Quel personnage fictif ferait un guide touristique catastrophique ?",
+      "pt": "Que personagem fictício seria um péssimo guia turístico?",
+      "it": "Quale personaggio immaginario sarebbe una pessima guida turistica?"
+    },
+    {
+      "id": 63,
+      "fr": "Qu'est-ce que tu remarques en premier dans une chambre d'hôtel ?",
+      "pt": "Qual é a primeira coisa que você repara num quarto de hotel?",
+      "it": "Qual è la prima cosa che noti in una camera d'albergo?"
+    },
+    {
+      "id": 64,
+      "fr": "Quel fruit aimerais-tu cultiver chez toi ?",
+      "pt": "Que fruta você gostaria de plantar em casa?",
+      "it": "Quale frutto ti piacerebbe coltivare a casa?"
+    },
+    {
+      "id": 65,
+      "fr": "À quoi ressemblerait ton coin de pique-nique idéal ?",
+      "pt": "Como seria o lugar perfeito para um piquenique?",
+      "it": "Come sarebbe il tuo posto ideale per un picnic?"
+    },
+    {
+      "id": 66,
+      "fr": "Quelle ancienne technologie te manque un peu ?",
+      "pt": "De que tecnologia antiga você sente um pouco de saudade?",
+      "it": "Quale vecchia tecnologia ti manca un po'?"
+    },
+    {
+      "id": 67,
+      "fr": "Quel est le meilleur nom d'animal de compagnie que tu aies entendu ?",
+      "pt": "Qual foi o melhor nome de pet que você já ouviu?",
+      "it": "Qual è il nome più bello che hai sentito dare a un animale domestico?"
+    },
+    {
+      "id": 68,
+      "fr": "Quel loisir paraît plus facile qu'il ne l'est vraiment ?",
+      "pt": "Que hobby parece mais fácil do que realmente é?",
+      "it": "Quale hobby sembra più facile di quanto sia davvero?"
+    },
+    {
+      "id": 69,
+      "fr": "Que ferais-tu si tu apprenais que tu as toute ta journée de demain de libre ?",
+      "pt": "O que você faria se ganhasse uma folga surpresa amanhã?",
+      "it": "Cosa faresti se domani avessi un giorno libero a sorpresa?"
+    },
+    {
+      "id": 70,
+      "fr": "Quel plat présenterais-tu à un concours de cuisine ?",
+      "pt": "Que prato você prepararia para um concurso de culinária?",
+      "it": "Con quale piatto parteciperesti a una gara di cucina?"
+    },
+    {
+      "id": 71,
+      "fr": "Quelle est la scène la plus drôle que tu aies vue dans les transports en commun ?",
+      "pt": "Qual foi a cena mais engraçada que você já viu no transporte público?",
+      "it": "Qual è la scena più divertente a cui hai assistito sui mezzi pubblici?"
+    },
+    {
+      "id": 72,
+      "fr": "Quel endroit est particulièrement beau la nuit ?",
+      "pt": "Que lugar fica especialmente bonito à noite?",
+      "it": "Quale luogo è particolarmente bello di notte?"
+    },
+    {
+      "id": 73,
+      "fr": "Que collectionnerais-tu si tu avais toute la place du monde ?",
+      "pt": "O que você colecionaria se tivesse espaço de sobra?",
+      "it": "Cosa collezioneresti se avessi spazio illimitato?"
+    },
+    {
+      "id": 74,
+      "fr": "Quelle expression utilises-tu un peu trop souvent ?",
+      "pt": "Que expressão você usa mais do que deveria?",
+      "it": "Quale modo di dire usi troppo spesso?"
+    },
+    {
+      "id": 75,
+      "fr": "Qu'est-ce que tu préfères dans les soirées d'été ?",
+      "pt": "Do que você mais gosta nas noites de verão?",
+      "it": "Cosa ti piace di più delle serate estive?"
+    },
+    {
+      "id": 76,
+      "fr": "Quel dessin animé mériterait de revenir à l'écran ?",
+      "pt": "Que desenho animado merecia voltar?",
+      "it": "Quale cartone animato meriterebbe di tornare in TV?"
+    },
+    {
+      "id": 77,
+      "fr": "Quel serait ton parfum de glace signature ?",
+      "pt": "Que sabor de sorvete você inventaria para chamar de seu?",
+      "it": "Quale gusto di gelato inventeresti?"
+    },
+    {
+      "id": 78,
+      "fr": "Quel petit désagrément t'énerve bien plus qu'il ne devrait ?",
+      "pt": "Que pequeno inconveniente te irrita mais do que deveria?",
+      "it": "Quale piccolo inconveniente ti irrita più del dovuto?"
+    },
+    {
+      "id": 79,
+      "fr": "Quelle est la meilleure chose qu'un ami t'ait apprise ?",
+      "pt": "Qual foi a melhor coisa que você aprendeu com um amigo?",
+      "it": "Qual è la cosa più utile o bella che hai imparato da un amico?"
+    },
+    {
+      "id": 80,
+      "fr": "Quel bâtiment rêverais-tu de découvrir de l'intérieur ?",
+      "pt": "Que prédio você adoraria conhecer por dentro?",
+      "it": "Quale edificio vorresti vedere dall'interno?"
+    },
+    {
+      "id": 81,
+      "fr": "Que porterais-tu à une soirée sans aucun dress code ?",
+      "pt": "Que roupa você usaria numa festa sem nenhum código de vestimenta?",
+      "it": "Come ti vestiresti per una festa senza alcun dress code?"
+    },
+    {
+      "id": 82,
+      "fr": "À quel jeu de société devient-on ton adversaire redoutable ?",
+      "pt": "Que jogo de tabuleiro desperta seu lado competitivo?",
+      "it": "Quale gioco da tavolo tira fuori il tuo lato competitivo?"
+    },
+    {
+      "id": 83,
+      "fr": "Qu'est-ce que tu aimes dénicher sur un marché ?",
+      "pt": "O que você mais gosta de encontrar numa feira?",
+      "it": "Cosa ti piace scovare al mercato?"
+    },
+    {
+      "id": 84,
+      "fr": "Quel objet du quotidien laisserait perplexe quelqu'un d'il y a 200 ans ?",
+      "pt": "Que objeto cotidiano deixaria alguém de 200 anos atrás completamente confuso?",
+      "it": "Quale oggetto di uso quotidiano confonderebbe una persona vissuta 200 anni fa?"
+    },
+    {
+      "id": 85,
+      "fr": "Comment préfères-tu fêter une bonne nouvelle ?",
+      "pt": "Como você mais gosta de comemorar uma boa notícia?",
+      "it": "Come preferisci festeggiare una bella notizia?"
+    },
+    {
+      "id": 86,
+      "fr": "Quel endroit conseillerais-tu à quelqu'un qui découvre ta région ?",
+      "pt": "Que lugar você recomendaria a quem visita sua região pela primeira vez?",
+      "it": "Quale posto consiglieresti a chi visita la tua zona per la prima volta?"
+    },
+    {
+      "id": 87,
+      "fr": "Que vendrait ton distributeur automatique personnel ?",
+      "pt": "O que você venderia na sua própria máquina de venda automática?",
+      "it": "Cosa metteresti in un distributore automatico tutto tuo?"
+    },
+    {
+      "id": 88,
+      "fr": "Quelle petite habitude te donne l'impression de prendre un coup de vieux ?",
+      "pt": "Que hábito inofensivo faz você se sentir velho?",
+      "it": "Quale abitudine innocua ti fa sentire un po' vecchio?"
+    },
+    {
+      "id": 89,
+      "fr": "Qu'est-ce que tu préfères quand tu reçois du monde ?",
+      "pt": "Do que você mais gosta quando recebe visitas?",
+      "it": "Cosa ti piace di più quando hai ospiti?"
+    },
+    {
+      "id": 90,
+      "fr": "À quelle époque historique irais-tu juste pour déjeuner ?",
+      "pt": "Que época histórica você visitaria só para almoçar?",
+      "it": "In quale epoca storica andresti soltanto per pranzo?"
+    },
+    {
+      "id": 91,
+      "fr": "Quel serait le thème de ta soirée quiz idéale ?",
+      "pt": "Qual seria o tema da sua noite de perguntas e respostas ideal?",
+      "it": "Quale sarebbe il tema della tua serata quiz ideale?"
+    },
+    {
+      "id": 92,
+      "fr": "Quel conseil t'a simplifié la vie au quotidien ?",
+      "pt": "Que conselho facilitou seu dia a dia?",
+      "it": "Quale consiglio ti ha semplificato la vita di tutti i giorni?"
+    },
+    {
+      "id": 93,
+      "fr": "Qu'est-ce que tu préfères photographier ?",
+      "pt": "O que você mais gosta de fotografar?",
+      "it": "Cosa ti piace fotografare di più?"
+    },
+    {
+      "id": 94,
+      "fr": "Quel métier essaierais-tu le temps d'un après-midi ?",
+      "pt": "Que profissão você experimentaria por uma tarde?",
+      "it": "Quale mestiere proveresti per un solo pomeriggio?"
+    },
+    {
+      "id": 95,
+      "fr": "Qu'apporterais-tu à un dîner improvisé entre amis ?",
+      "pt": "O que você levaria para um jantar improvisado com amigos?",
+      "it": "Cosa porteresti a una cena improvvisata tra amici?"
+    },
+    {
+      "id": 96,
+      "fr": "Quel gadget imaginaire aimerais-tu posséder ?",
+      "pt": "Que aparelho fictício você gostaria de ter?",
+      "it": "Quale gadget immaginario vorresti avere?"
+    },
+    {
+      "id": 97,
+      "fr": "Quelle petite chose te met immédiatement de bonne humeur ?",
+      "pt": "Que pequena coisa melhora seu humor na hora?",
+      "it": "Quale piccola cosa ti mette subito di buonumore?"
+    },
+    {
+      "id": 98,
+      "fr": "Dans quel concours insolite aurais-tu une chance de gagner ?",
+      "pt": "Em que competição inusitada você teria chance de ganhar?",
+      "it": "In quale gara insolita avresti qualche possibilità di vincere?"
+    },
+    {
+      "id": 99,
+      "fr": "Quelle nouvelle tradition lancerais-tu avec tes amis ?",
+      "pt": "Que tradição nova você criaria com seus amigos?",
+      "it": "Quale nuova tradizione inaugureresti con i tuoi amici?"
+    }
+  ]
+}

@@ -31,3 +31,10 @@ Only marcsenges/CurioCircle using the marcsenges personal GitHub account. Never 
 - Localized Android/iOS home-screen installation guidance and offline availability after successful initial caching; no registration or mandatory installation.
 - German, British English and Spain Spanish throughout; accessible controls and large touch targets. Never include local favourites, counts, names or session data in shared URLs.
 - Test clipboard fallback, WhatsApp link encoding, native share availability, QR decoding and return to the unchanged game.
+
+### Localised installation and sharing promises (v0.3)
+- Keep CurioCircle free, ad-free and usable without registration. All sharing controls, invitations, installation instructions and feedback must be localised in de-DE, en-GB and es-ES.
+- en-GB: Install CurioCircle. Free. No account needed. No ads. Play offline. Share with friends.
+- de-DE: CurioCircle installieren. Kostenlos. Ohne Anmeldung. Keine Werbung. Offline spielen. Mit Freunden teilen.
+- es-ES: Instala CurioCircle. Gratis. Sin registro. Sin publicidad. Juega sin conexión. Comparte con tus amigos.
+- Show offline promise with initial online setup guidance; retain brand name in all languages.

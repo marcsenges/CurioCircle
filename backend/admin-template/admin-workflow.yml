@@ -1,0 +1,30 @@
+name: CurioCircle private administration
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [admin-request.json]
+permissions:
+  contents: read
+concurrency:
+  group: private-admin
+  cancel-in-progress: false
+jobs:
+  report:
+    if: ${{ github.repository == 'marcsenges/CurioCircle-Admin' && github.event.repository.private == true && github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Generate private dashboard and CSV exports
+        env:
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: python3 admin.py
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: curiocircle-private-report
+          path: private-report/
+          retention-days: 1
+          if-no-files-found: error

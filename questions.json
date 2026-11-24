@@ -1,5 +1,5 @@
 {
-  "version": 4,
+  "version": 5,
   "published": "2026-11-24",
   "questions": [
     {
@@ -1901,6 +1901,276 @@
       "fr": "Qu'aimerais-tu faire plus souvent à plusieurs plutôt que tout seul ?",
       "pt": "O que você gostaria de fazer mais vezes em companhia em vez de fazer sozinho?",
       "it": "Cosa vorresti fare più spesso in compagnia anziché da solo?"
+    },
+    {
+      "id": 200,
+      "category": 2,
+      "de": "Wenn du dir eine einzige Superkraft aussuchen könntest, welche wäre es?",
+      "en": "If you could have just one superpower, what would it be?",
+      "es": "Si pudieras elegir un único superpoder, ¿cuál sería?",
+      "fr": "Si tu pouvais choisir un seul super-pouvoir, lequel choisirais-tu ?",
+      "pt": "Se você pudesse escolher um único superpoder, qual seria?",
+      "it": "Se potessi scegliere un solo superpotere, quale sarebbe?"
+    },
+    {
+      "id": 201,
+      "category": 4,
+      "de": "Wenn du für eine Stunde in die Vergangenheit reisen könntest, wann und wo würdest du landen?",
+      "en": "If you could travel back in time for one hour, when and where would you go?",
+      "es": "Si pudieras viajar al pasado durante una hora, ¿a qué época y lugar irías?",
+      "fr": "Si tu pouvais remonter le temps pendant une heure, à quelle époque et à quel endroit irais-tu ?",
+      "pt": "Se você pudesse viajar ao passado por uma hora, para que época e lugar iria?",
+      "it": "Se potessi tornare indietro nel tempo per un'ora, in quale epoca e luogo andresti?"
+    },
+    {
+      "id": 202,
+      "category": 2,
+      "de": "Welchen Beruf hättest du im Mittelalter am liebsten ausgeübt?",
+      "en": "What job would you most like to have had in the Middle Ages?",
+      "es": "¿A qué te habría gustado dedicarte en la Edad Media?",
+      "fr": "Quel métier aurais-tu aimé exercer au Moyen Âge ?",
+      "pt": "Que profissão você mais gostaria de ter exercido na Idade Média?",
+      "it": "Quale mestiere ti sarebbe piaciuto fare nel Medioevo?"
+    },
+    {
+      "id": 203,
+      "category": 2,
+      "de": "Wenn du mit einer Tierart sprechen könntest, welche würdest du wählen?",
+      "en": "If you could talk to one species of animal, which would you choose?",
+      "es": "Si pudieras hablar con una especie animal, ¿cuál elegirías?",
+      "fr": "Si tu pouvais parler avec une seule espèce animale, laquelle choisirais-tu ?",
+      "pt": "Se você pudesse conversar com uma espécie de animal, qual escolheria?",
+      "it": "Se potessi parlare con una sola specie animale, quale sceglieresti?"
+    },
+    {
+      "id": 204,
+      "category": 2,
+      "de": "Wenn du für 24 Stunden unsichtbar wärst, was würdest du tun?",
+      "en": "If you were invisible for 24 hours, what would you do?",
+      "es": "Si fueras invisible durante 24 horas, ¿qué harías?",
+      "fr": "Si tu étais invisible pendant 24 heures, que ferais-tu ?",
+      "pt": "Se você ficasse invisível por 24 horas, o que faria?",
+      "it": "Se fossi invisibile per 24 ore, cosa faresti?"
+    },
+    {
+      "id": 205,
+      "category": 2,
+      "de": "Wenn du mit einer historischen Persönlichkeit zu Abend essen könntest, wer wäre es?",
+      "en": "If you could have dinner with any historical figure, who would you choose?",
+      "es": "Si pudieras cenar con cualquier personaje histórico, ¿a quién elegirías?",
+      "fr": "Si tu pouvais dîner avec un personnage historique, qui choisirais-tu ?",
+      "pt": "Se você pudesse jantar com uma personalidade histórica, quem escolheria?",
+      "it": "Se potessi cenare con un personaggio storico, chi sceglieresti?"
+    },
+    {
+      "id": 206,
+      "category": 2,
+      "de": "In welcher Filmwelt würdest du gerne eine Woche verbringen?",
+      "en": "Which film universe would you love to spend a week in?",
+      "es": "¿En el mundo de qué película te gustaría pasar una semana?",
+      "fr": "Dans l'univers de quel film aimerais-tu passer une semaine ?",
+      "pt": "Em que universo de filme você gostaria de passar uma semana?",
+      "it": "Nel mondo di quale film ti piacerebbe trascorrere una settimana?"
+    },
+    {
+      "id": 207,
+      "category": 5,
+      "de": "Welche Erfindung ist so perfekt, dass sie nicht mehr verbessert werden muss?",
+      "en": "Which invention got it so right that it needs no further improvement?",
+      "es": "¿Qué invento es tan perfecto que no necesita ninguna mejora?",
+      "fr": "Quelle invention est tellement bien conçue qu'elle n'a plus besoin d'être améliorée ?",
+      "pt": "Que invenção é tão perfeita que não precisa de nenhuma melhoria?",
+      "it": "Quale invenzione è così perfetta da non aver più bisogno di miglioramenti?"
+    },
+    {
+      "id": 208,
+      "category": 5,
+      "de": "Welche moderne Erfindung hat das Leben eher komplizierter als einfacher gemacht?",
+      "en": "Which modern invention has made life more complicated rather than easier?",
+      "es": "¿Qué invento moderno nos ha complicado la vida en vez de facilitárnosla?",
+      "fr": "Quelle invention moderne nous a compliqué la vie plutôt que de la simplifier ?",
+      "pt": "Que invenção moderna complicou mais a vida do que facilitou?",
+      "it": "Quale invenzione moderna ci ha complicato la vita invece di semplificarla?"
+    },
+    {
+      "id": 209,
+      "category": 2,
+      "de": "Was wird in 100 Jahren an unserem heutigen Alltag vermutlich völlig absurd wirken?",
+      "en": "What part of our everyday lives will probably seem completely absurd in 100 years' time?",
+      "es": "¿Qué aspecto de nuestra vida cotidiana parecerá totalmente absurdo dentro de 100 años?",
+      "fr": "Quel aspect de notre quotidien paraîtra probablement complètement absurde dans 100 ans ?",
+      "pt": "Que coisa do nosso dia a dia provavelmente vai parecer absurda daqui a 100 anos?",
+      "it": "Quale aspetto della nostra vita quotidiana sembrerà probabilmente assurdo tra 100 anni?"
+    },
+    {
+      "id": 210,
+      "category": 3,
+      "de": "Welches Produkt hat deiner Meinung nach völlig unnötige Funktionen?",
+      "en": "Which product has features you think are completely unnecessary?",
+      "es": "¿Qué producto tiene funciones que te parecen totalmente innecesarias?",
+      "fr": "Quel produit a, selon toi, des fonctionnalités totalement inutiles ?",
+      "pt": "Que produto tem funções que você acha totalmente desnecessárias?",
+      "it": "Quale prodotto ha funzioni che secondo te sono del tutto inutili?"
+    },
+    {
+      "id": 211,
+      "category": 5,
+      "de": "Was konnten die Menschen früher besser als heute?",
+      "en": "What do you think people used to do better than they do today?",
+      "es": "¿Qué crees que se le daba mejor a la gente antes que ahora?",
+      "fr": "Dans quel domaine les gens se débrouillaient-ils mieux autrefois qu'aujourd'hui ?",
+      "pt": "Em que as pessoas de antigamente se saíam melhor do que as de hoje?",
+      "it": "In cosa pensi che le persone di un tempo fossero più brave di quelle di oggi?"
+    },
+    {
+      "id": 212,
+      "category": 5,
+      "de": "Was sollte es deiner Meinung nach längst geben, weil die Idee eigentlich so naheliegend ist?",
+      "en": "What should exist by now because the idea seems so obvious?",
+      "es": "¿Qué debería existir ya porque la idea te parece de lo más evidente?",
+      "fr": "Qu'est-ce qui devrait déjà exister, tellement l'idée paraît évidente ?",
+      "pt": "O que já deveria existir de tão óbvia que é a ideia?",
+      "it": "Cosa dovrebbe già esistere, tanto è ovvia l'idea?"
+    },
+    {
+      "id": 213,
+      "category": 0,
+      "de": "Welche alltägliche Sache wäre schwer zu erklären, wenn sie noch niemand erfunden hätte?",
+      "en": "Which everyday thing would be hard to explain if nobody had invented it yet?",
+      "es": "¿Qué cosa cotidiana sería difícil de explicar si nadie la hubiera inventado todavía?",
+      "fr": "Quel objet du quotidien serait difficile à expliquer si personne ne l'avait encore inventé ?",
+      "pt": "Que coisa do dia a dia seria difícil de explicar se ninguém a tivesse inventado ainda?",
+      "it": "Quale oggetto di uso quotidiano sarebbe difficile da spiegare se nessuno lo avesse ancora inventato?"
+    },
+    {
+      "id": 214,
+      "category": 5,
+      "de": "Über welches Thema könntest du spontan einen zehnminütigen Vortrag halten?",
+      "en": "What could you give a ten-minute talk about without any preparation?",
+      "es": "¿Sobre qué tema podrías hablar diez minutos sin prepararte nada?",
+      "fr": "Sur quel sujet pourrais-tu parler dix minutes sans aucune préparation ?",
+      "pt": "Sobre que assunto você conseguiria falar por dez minutos sem se preparar?",
+      "it": "Su quale argomento riusciresti a parlare per dieci minuti senza prepararti?"
+    },
+    {
+      "id": 215,
+      "category": 0,
+      "de": "Welchen Gegenstand aus der heutigen Zeit würdest du einem mittelalterlichen König schenken?",
+      "en": "What modern-day object would you give to a medieval king?",
+      "es": "¿Qué objeto de hoy en día le regalarías a un rey medieval?",
+      "fr": "Quel objet de notre époque offrirais-tu à un roi du Moyen Âge ?",
+      "pt": "Que objeto dos dias de hoje você daria de presente a um rei medieval?",
+      "it": "Quale oggetto dei giorni nostri regaleresti a un re medievale?"
+    },
+    {
+      "id": 216,
+      "category": 5,
+      "de": "Bei welchem Thema hast du eine ganz andere Meinung als die meisten Menschen?",
+      "en": "What do you have a very different opinion on from most people?",
+      "es": "¿Sobre qué tema tienes una opinión muy distinta a la de la mayoría?",
+      "fr": "Sur quel sujet as-tu un avis très différent de celui de la plupart des gens ?",
+      "pt": "Sobre que assunto sua opinião é bem diferente da maioria?",
+      "it": "Su quale argomento la pensi in modo molto diverso dalla maggior parte delle persone?"
+    },
+    {
+      "id": 217,
+      "category": 1,
+      "de": "Was würdest du gerne noch einmal zum allerersten Mal erleben?",
+      "en": "What would you love to experience for the very first time again?",
+      "es": "¿Qué te gustaría volver a vivir como si fuera la primera vez?",
+      "fr": "Qu'aimerais-tu revivre comme si c'était la toute première fois ?",
+      "pt": "O que você gostaria de viver de novo como se fosse a primeira vez?",
+      "it": "Cosa ti piacerebbe vivere di nuovo come se fosse la prima volta?"
+    },
+    {
+      "id": 218,
+      "category": 0,
+      "de": "Bei welcher Fernsehsendung würdest du gerne einmal als Kandidat mitmachen?",
+      "en": "Which TV show would you love to be a contestant on?",
+      "es": "¿En qué programa de televisión te gustaría participar como concursante?",
+      "fr": "À quelle émission de télé aimerais-tu participer en tant que candidat ?",
+      "pt": "De que programa de TV você gostaria de participar como concorrente?",
+      "it": "A quale programma televisivo ti piacerebbe partecipare come concorrente?"
+    },
+    {
+      "id": 219,
+      "category": 2,
+      "de": "Welche völlig harmlose Sache würdest du verbieten, wenn du für einen Tag die Welt regieren könntest?",
+      "en": "What perfectly harmless thing would you ban if you ruled the world for a day?",
+      "es": "¿Qué cosa totalmente inofensiva prohibirías si gobernaras el mundo durante un día?",
+      "fr": "Quelle chose tout à fait inoffensive interdirais-tu si tu dirigeais le monde pendant une journée ?",
+      "pt": "Que coisa totalmente inofensiva você proibiria se governasse o mundo por um dia?",
+      "it": "Quale cosa del tutto innocua vieteresti se governassi il mondo per un giorno?"
+    },
+    {
+      "id": 220,
+      "category": 4,
+      "de": "Welche Fähigkeit würdest du gerne als Nächstes erlernen, obwohl du bisher keinerlei Erfahrung damit hast?",
+      "en": "What new skill would you like to learn next, even though you've never tried it before?",
+      "es": "¿Qué habilidad te gustaría aprender ahora, aunque nunca hayas probado nada parecido?",
+      "fr": "Quelle nouvelle compétence aimerais-tu acquérir, même si tu n'as encore aucune expérience dans ce domaine ?",
+      "pt": "Que habilidade você gostaria de aprender agora, mesmo sem nunca ter tido contato com ela?",
+      "it": "Quale nuova abilità ti piacerebbe imparare, anche se non hai mai avuto esperienza in quel campo?"
+    },
+    {
+      "id": 221,
+      "category": 4,
+      "de": "Wann hast du zuletzt etwas zum allerersten Mal gemacht, und was war es?",
+      "en": "When did you last do something for the very first time, and what was it?",
+      "es": "¿Cuándo fue la última vez que hiciste algo por primera vez y qué fue?",
+      "fr": "Quand as-tu fait quelque chose pour la toute première fois, et de quoi s'agissait-il ?",
+      "pt": "Quando foi a última vez que você fez algo pela primeira vez, e o que foi?",
+      "it": "Quand'è stata l'ultima volta che hai fatto qualcosa per la prima volta, e di cosa si trattava?"
+    },
+    {
+      "id": 222,
+      "category": 4,
+      "de": "Was würdest du gerne einmal ausprobieren, wozu du bisher einfach noch nicht gekommen bist?",
+      "en": "What would you love to try but have never quite got round to?",
+      "es": "¿Qué te gustaría probar y hasta ahora nunca has encontrado el momento?",
+      "fr": "Qu'aimerais-tu essayer un jour sans jamais en avoir vraiment trouvé l'occasion ?",
+      "pt": "O que você gostaria de experimentar, mas nunca conseguiu arrumar tempo para fazer?",
+      "it": "Cosa ti piacerebbe provare, ma finora non hai mai trovato il tempo di farlo?"
+    },
+    {
+      "id": 223,
+      "category": 1,
+      "de": "Was hast du erst im Erwachsenenalter für dich entdeckt?",
+      "en": "What did you only discover you enjoyed as an adult?",
+      "es": "¿Qué descubriste que te gustaba ya de mayor?",
+      "fr": "Qu'as-tu découvert que tu aimais seulement à l'âge adulte ?",
+      "pt": "O que você só descobriu que gostava depois de adulto?",
+      "it": "Cosa hai scoperto che ti piace solo in età adulta?"
+    },
+    {
+      "id": 224,
+      "category": 2,
+      "de": "Was würdest du gerne auf Anhieb perfekt können, ohne es erst lernen zu müssen?",
+      "en": "What would you love to be instantly brilliant at without having to learn it first?",
+      "es": "¿Qué te gustaría saber hacer perfectamente de golpe, sin tener que aprenderlo?",
+      "fr": "Qu'aimerais-tu savoir faire parfaitement du jour au lendemain, sans avoir à l'apprendre ?",
+      "pt": "O que você adoraria saber fazer perfeitamente de uma hora para outra, sem precisar aprender?",
+      "it": "Cosa vorresti saper fare benissimo da subito, senza dover prima imparare?"
+    },
+    {
+      "id": 225,
+      "category": 1,
+      "de": "Welche Erfahrung hat dich positiv überrascht, obwohl du vorher skeptisch warst?",
+      "en": "What experience pleasantly surprised you despite your initial doubts?",
+      "es": "¿Qué experiencia te sorprendió para bien, aunque al principio tenías tus dudas?",
+      "fr": "Quelle expérience t'a agréablement surpris alors que tu avais des doutes au départ ?",
+      "pt": "Que experiência surpreendeu você positivamente, apesar das dúvidas que tinha antes?",
+      "it": "Quale esperienza ti ha sorpreso in positivo, nonostante i dubbi iniziali?"
+    },
+    {
+      "id": 226,
+      "category": 1,
+      "de": "Was hat dir auf Anhieb Spaß gemacht, obwohl du dachtest, es wäre nichts für dich?",
+      "en": "What did you enjoy straight away even though you thought it wouldn't be your thing?",
+      "es": "¿Qué te encantó desde el primer momento, aunque pensabas que no era lo tuyo?",
+      "fr": "Qu'est-ce qui t'a plu dès le début alors que tu pensais que ce n'était pas pour toi ?",
+      "pt": "O que você adorou logo de cara, mesmo achando que não era a sua praia?",
+      "it": "Cosa ti è piaciuto fin da subito, anche se pensavi che non facesse per te?"
     }
   ]
 }

@@ -97,25 +97,44 @@ if not isinstance(sub,str) or not re.fullmatch(r"[a-z0-9-]+",sub):
     raise SystemExit("Worker uploaded; account workers.dev subdomain not confirmed")
 print("OK: account workers.dev subdomain confirmed",flush=True)
 api(script+"/subdomain","POST",{"enabled":True,"previews_enabled":False})
+route=api(script+"/subdomain")
+if route.get("enabled") is not True: raise SystemExit("Worker route not enabled")
+print("OK: Worker route enabled",flush=True)
 url="https://"+NAME+"."+sub+".workers.dev"
 print("Worker URL: "+url,flush=True)
 def get(path,origin=None,post=None):
-    headers={"Accept":"application/json"}
+    # Cloudflare's workers.dev Browser Integrity Check can reject Python's default UA.
+    # Use an explicit browser-compatible HTTP test header on our own endpoint.
+    headers={"Accept":"application/json","User-Agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"}
     if origin: headers["Origin"]=origin
     if post is not None: headers["Content-Type"]="application/json"
     req=urllib.request.Request(url+path,headers=headers,data=post)
     try:
-        with urllib.request.urlopen(req,timeout=15) as res:return res.status,json.load(res)
-    except urllib.error.HTTPError as e:return e.code,json.load(e)
-for _ in range(6):
+        with urllib.request.urlopen(req,timeout=10) as res:
+            status=res.status
+            raw=res.read(8192)
+    except urllib.error.HTTPError as e:
+        status=e.code
+        raw=e.read(8192)
+    try:
+        data=json.loads(raw)
+        if not isinstance(data,dict): data={}
+    except (ValueError,UnicodeError):
+        data={}
+        match=re.search(rb"\b(1010|1101|1102|1016|1003)\b",raw)
+        if match: data={"edge_error":match.group(1).decode()}
+    return status,data
+for attempt in range(12):
     try:
         status,health=get("/health")
+        print("Health attempt "+str(attempt+1)+": HTTP "+str(status)+" "+str({k:health[k] for k in ("ok","feedback_enabled","catalogue_count","error","edge_error") if k in health}),flush=True)
         if status==200 and health.get("ok") and health.get("catalogue_count")==len(rows) and health.get("feedback_enabled") is False: break
-    except Exception: pass
+    except Exception as e:
+        print("Health attempt "+str(attempt+1)+": "+type(e).__name__,flush=True)
     time.sleep(5)
-else: raise SystemExit("Worker uploaded but remote health check not yet successful")
-status,_=get("/admin/api/votes")
-assert status==401,"Unauthenticated admin must be denied"
-status,_=get("/v1/vote","https://marcsenges.github.io",b"{}")
-assert status==503,"Public writes must be disabled"
+else: raise SystemExit("Worker uploaded but remote health check not successful; see HTTP diagnostics above")
+status,denial=get("/admin/api/votes")
+assert status==401 and denial.get("error")=="unauthorized","Unauthenticated admin must be denied"
+status,gate=get("/v1/vote","https://marcsenges.github.io",b"{}")
+assert status==503 and gate.get("error")=="feedback_disabled","Public writes must be disabled"
 print("OK: live health, admin denial, feedback gate; no real votes collected",flush=True)

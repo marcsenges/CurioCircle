@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import worker from './worker.mjs';
+let accesses=0;
+const DB={prepare(sql){accesses++;return {first:async()=>({n:227})}}};
+const origin='https://marcsenges.github.io';
+const env={DB,FEEDBACK_ENABLED:'false'};
+const req=(path,opts={})=>new Request('https://example.workers.dev'+path,opts);
+let res=await worker.fetch(req('/health'),env);assert.equal(res.status,200);assert.equal((await res.json()).feedback_enabled,false);
+let before=accesses;
+res=await worker.fetch(req('/v1/vote',{method:'POST',headers:{Origin:origin,'Content-Type':'application/json'},body:'{}'}),env);assert.equal(res.status,503);assert.equal(accesses,before);
+res=await worker.fetch(req('/v1/vote',{method:'POST',headers:{Origin:'https://other.example'}}),env);assert.equal(res.status,403);
+res=await worker.fetch(req('/admin/api/votes'),env);assert.equal(res.status,401);assert.equal(accesses,before);
+res=await worker.fetch(req('/admin/api/votes',{headers:{Authorization:'Bearer wrong'}}),{...env,ADMIN_TOKEN:'x'.repeat(64)});assert.equal(res.status,401);
+res=await worker.fetch(req('/admin'),env);assert.equal(res.status,200);assert.match(res.headers.get('content-security-policy'),/frame-ancestors 'none'/);assert.match(await res.text(),/textContent/);
+res=await worker.fetch(req('/v1/vote',{method:'POST',headers:{Origin:origin,'Content-Type':'application/json'},body:JSON.stringify({question_id:0,receipt:'a'.repeat(64),revision:1,vote:1,language:'de',app_version:'0.9.6 (Beta)',name:'private'})}),{...env,FEEDBACK_ENABLED:'true'});assert.equal(res.status,400);assert.equal(accesses,before);
+console.log('OK: closed-by-default writes, origin checks, admin auth, privacy validation and health');

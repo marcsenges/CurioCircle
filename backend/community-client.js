@@ -57,7 +57,7 @@ const CCCommunity=(()=>{
    const hint=el('p',ux[lang][1]);hint.id='cc-suggestion-hint';hint.className='cc-community-note';area.setAttribute('aria-describedby',hint.id);
    const submit=btn(t[6],()=>suggest(area.value));submit.className='cc-submit';submit.disabled=busy;
    formSection.append(label,hint,submit);const privacy=el('details');privacy.className='cc-privacy';const privacyText=el('p',ux[lang][2]);privacyText.className='cc-community-note';privacy.append(el('summary',ux[lang][10]),privacyText);formSection.append(privacy);
-   if(Object.values(data.votes).some(r=>r.pending)){const pending=el('div');pending.className='cc-pending-actions';pending.append(btn(t[17],()=>flush()),btn(x[0],discardPending));formSection.append(pending)}
+   const pending=el('div');pending.className='cc-pending-actions';pending.hidden=!Object.values(data.votes).some(r=>r.pending);pending.append(btn(t[17],()=>flush()),btn(x[0],discardPending));formSection.append(pending);
    formNotice=el('p',formStatusIndex===null?'':t[formStatusIndex]);formNotice.setAttribute('role','status');formSection.append(formNotice);formRoot.append(formSection);
   }
  }
@@ -108,7 +108,7 @@ const CCCommunity=(()=>{
      }else retryRequested=true
     }catch{if(Number(id)===question)say(12);break}
    }
-  }finally{busy=false;if(retryRequested){retryRequested=false;void flush()}}
+  }finally{busy=false;const pending=formSection?.querySelector?.('.cc-pending-actions');if(pending)pending.hidden=!Object.values(data.votes).some(r=>r.pending);if(retryRequested){retryRequested=false;void flush()}}
  }
  function setVote(v){
   if(!ready||!Number.isInteger(question)||question<0||question>=100000)return;

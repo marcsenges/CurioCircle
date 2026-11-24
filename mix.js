@@ -25,5 +25,28 @@ function mixQuestions(ids,history=[],random=Math.random){
   }
   const p=pool.splice(chosen,1)[0];output.push(p.id);lastCat[p.cat]=at;lastFamily[p.family]=at;lastSeen.set(p.id,at);catCounts.set(p.cat,catCounts.get(p.cat)-1);
  }
- return output
+ return improveMix(output,recent,random)
+}
+
+function improveMix(deck,history,random){
+ const n=deck.length, prefix=history.slice(-10), cat=deck.map(categoryOf), fam=deck.map(id=>diversityFamilies[id]??-1);
+ const related=diversityRelated.map(ids=>new Set(ids));
+ function cost(a,b,d){if(a===b)return 50000;
+  let c=0;if(related[a]?.has(b)&&d<=10)c+=d<5?4000+(5-d)*1200:150+(11-d)*100;
+  if(categoryOf(a)===categoryOf(b)&&d<5)c+=d===1?20000:120*(5-d);
+  const f=diversityFamilies[a];if(f!==undefined&&f===diversityFamilies[b]&&d<4)c+=30*(4-d);return c;
+ }
+ function local(i,j){let v=0;for(const k of [i,j]){for(let t=Math.max(-prefix.length,k-10);t<=Math.min(n-1,k+10);t++){if(t===k||k===j&&t===i)continue;v+=cost(deck[k],t<0?prefix[prefix.length+t]:deck[t],Math.abs(t-k))}}return v}
+ // Revisit conflict locations in shuffled order; a swap is accepted only when it reduces total penalty.
+ for(let pass=0;pass<7;pass++){
+  const bad=[];for(let i=0;i<n;i++){let penalty=0;for(let t=Math.max(-prefix.length,i-10);t<i;t++)penalty+=cost(deck[i],t<0?prefix[prefix.length+t]:deck[t],i-t);if(penalty)bad.push(i)}
+  if(!bad.length)break;
+  for(let k=bad.length-1;k>0;k--){const j=Math.floor(random()*(k+1));[bad[k],bad[j]]=[bad[j],bad[k]]}
+  let changes=0;
+  for(const i of bad){let best=0,bestJ=-1;
+   const attempts=n<=65?n:Math.min(n,48),offset=Math.floor(random()*n);
+   for(let k=0;k<attempts;k++){const j=(offset+k*17)%n;if(i===j)continue;const before=local(i,j);[deck[i],deck[j]]=[deck[j],deck[i]];const gain=before-local(i,j);[deck[i],deck[j]]=[deck[j],deck[i]];if(gain>best){best=gain;bestJ=j}}
+   if(bestJ>=0){[deck[i],deck[bestJ]]=[deck[bestJ],deck[i]];changes++}
+  }if(!changes)break;
+ }return deck
 }

@@ -138,3 +138,34 @@ assert status==401 and denial.get("error")=="unauthorized","Unauthenticated admi
 status,gate=get("/v1/vote","https://marcsenges.github.io",b"{}")
 assert status==503 and gate.get("error")=="feedback_disabled","Public writes must be disabled"
 print("OK: live health, admin denial, feedback gate; no real votes collected",flush=True)
+
+# Test real D1 write/update/withdrawal and suggestion moderation with synthetic fixtures only.
+# Exact random fixture IDs guarantee cleanup cannot touch normal user rows.
+fixture=hashlib.sha256(("curiocircle-synthetic-vote:"+secrets.token_hex(32)).encode()).hexdigest()
+suggestion_fixture=hashlib.sha256(("curiocircle-synthetic-suggestion:"+secrets.token_hex(32)).encode()).hexdigest()
+text_fixture="Synthetic CurioCircle database test "+suggestion_fixture
+dedup=hashlib.sha256(text_fixture.encode()).hexdigest()
+day=time.strftime("%Y-%m-%d",time.gmtime())
+def scalar(statement,params=None):
+    return sql(statement,params)[0]["results"][0]
+try:
+    sql("INSERT INTO cc_vote(question_id,receipt_hash,revision,vote,language,app_version,updated_day) VALUES(?,?,?,?,?,?,?)",[0,fixture,1,1,"de","0.9.6 (Beta)",day])
+    assert scalar("SELECT vote,revision FROM cc_vote WHERE question_id=0 AND receipt_hash=?",[fixture])=={"vote":1,"revision":1}
+    sql("UPDATE cc_vote SET vote=-1,revision=2 WHERE question_id=0 AND receipt_hash=? AND revision<2",[fixture])
+    sql("UPDATE cc_vote SET vote=1,revision=1 WHERE question_id=0 AND receipt_hash=? AND revision<1",[fixture])
+    assert scalar("SELECT vote,revision FROM cc_vote WHERE question_id=0 AND receipt_hash=?",[fixture])=={"vote":-1,"revision":2}
+    sql("UPDATE cc_vote SET vote=NULL,revision=3 WHERE question_id=0 AND receipt_hash=?",[fixture])
+    assert scalar("SELECT vote,revision FROM cc_vote WHERE question_id=0 AND receipt_hash=?",[fixture])=={"vote":None,"revision":3}
+    sql("INSERT INTO cc_suggestion(receipt_hash,text,language,text_hash,submitted_day) VALUES(?,?,?,?,?)",[suggestion_fixture,text_fixture,"de",dedup,day])
+    assert scalar("SELECT status FROM cc_suggestion WHERE receipt_hash=?",[suggestion_fixture])["status"]=="pending"
+    sql("UPDATE cc_suggestion SET status='approved',reviewed_day=? WHERE receipt_hash=?",[day,suggestion_fixture])
+    assert scalar("SELECT status FROM cc_suggestion WHERE receipt_hash=?",[suggestion_fixture])["status"]=="approved"
+    sql("UPDATE cc_suggestion SET status='rejected',reviewed_day=? WHERE receipt_hash=?",[day,suggestion_fixture])
+    assert scalar("SELECT status FROM cc_suggestion WHERE receipt_hash=?",[suggestion_fixture])["status"]=="rejected"
+    print("OK: real D1 test writes, vote change/withdrawal, stale update protection and moderation",flush=True)
+finally:
+    sql("DELETE FROM cc_vote WHERE question_id=0 AND receipt_hash=?",[fixture])
+    sql("DELETE FROM cc_suggestion WHERE receipt_hash=?",[suggestion_fixture])
+    assert scalar("SELECT COUNT(*) AS n FROM cc_vote WHERE receipt_hash=?",[fixture])["n"]==0
+    assert scalar("SELECT COUNT(*) AS n FROM cc_suggestion WHERE receipt_hash=?",[suggestion_fixture])["n"]==0
+    print("OK: synthetic fixtures removed; public feedback remains disabled",flush=True)

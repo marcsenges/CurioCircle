@@ -33,8 +33,9 @@ for(const lang of ['en','de','es','fr','pt','it']){
 await page.setViewportSize({width:375,height:812});await page.locator('#lang').selectOption('es');
 await page.locator('.cc-thumb').first().click();await page.waitForFunction(()=>document.querySelector('.cc-thumb')?.getAttribute('aria-pressed')==='true');
 await page.waitForTimeout(200);assert.equal(sent.filter(x=>x.path==='/v1/vote').length,1);
-await page.locator('.cc-thumb').last().click();await page.waitForTimeout(200);assert.equal(sent.filter(x=>x.path==='/v1/vote').at(-1).payload.vote,-1);
-await page.locator('.cc-thumb').last().click();await page.waitForTimeout(200);assert.equal(sent.filter(x=>x.path==='/v1/vote').at(-1).payload.vote,null);
+await page.waitForFunction(()=>CCCommunity.summary().positive===1&&CCCommunity.summary().pending===0);
+await page.locator('.cc-thumb').last().click();await page.waitForFunction(()=>CCCommunity.summary().negative===1&&CCCommunity.summary().pending===0);assert.equal(sent.filter(x=>x.path==='/v1/vote').at(-1).payload.vote,-1);
+await page.locator('.cc-thumb').last().click();await page.waitForFunction(()=>CCCommunity.summary().rated===0&&CCCommunity.summary().pending===0);assert.equal(sent.filter(x=>x.path==='/v1/vote').at(-1).payload.vote,null);
 await page.locator('#communitySettings > details > summary').click();
 const proposal=page.locator('#communitySettings textarea');await proposal.fill('¿Qué invento te gustaría crear?');
 assert.equal(await page.locator('.cc-pending-actions').isVisible(),false);

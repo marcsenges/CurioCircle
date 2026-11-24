@@ -76,6 +76,8 @@ metadata={"main_module":"worker.mjs","compatibility_date":"2026-01-01","bindings
 script=base+"/workers/scripts/"+NAME
 def upload(enabled=False):
     metadata["bindings"][1]["text"]="true" if enabled else "false"
+    metadata["bindings"]=[b for b in metadata["bindings"] if b["name"]!="BETA_UNTIL"]
+    if enabled: metadata["bindings"].append({"type":"plain_text","name":"BETA_UNTIL","text":str(int(time.time())+14*86400)})
     boundary="cc-"+secrets.token_hex(20)
     parts=[]
     def part(name,ctype,data,filename=None):

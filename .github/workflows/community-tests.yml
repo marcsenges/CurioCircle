@@ -2,6 +2,8 @@ name: CurioCircle community beta tests
 on:
   push:
     branches: [beta-community]
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 permissions:
   contents: read

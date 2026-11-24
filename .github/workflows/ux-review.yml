@@ -3,7 +3,7 @@ on:
   pull_request:
     branches: [main]
   push:
-    branches: [catalogue-305]
+    branches: [diversity-0971]
 permissions:
   contents: read
 jobs:

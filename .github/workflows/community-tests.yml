@@ -1,0 +1,30 @@
+name: CurioCircle community beta tests
+on:
+  push:
+    branches: [beta-community]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+      - name: Catalogue and syntax
+        run: |
+          node scripts/check-catalogue.mjs
+          node --check backend/community-client.js
+          node --check backend/worker.mjs
+          python3 -m py_compile backend/admin-template/admin.py
+      - name: Test isolated API and database
+        run: |
+          node backend/worker.test.mjs
+          node --experimental-sqlite backend/worker.integration.test.mjs

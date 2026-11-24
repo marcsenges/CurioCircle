@@ -1,4 +1,4 @@
-"""Deploy only CurioCircle's verified EU D1 and disabled-by-default Worker."""
+"""Deploy verified EU D1; enable the invited beta test only after closed and live checks."""
 import hashlib, json, os, pathlib, re, secrets, sqlite3, time
 import urllib.request, urllib.error
 
@@ -73,17 +73,22 @@ if actual!=len(rows): raise SystemExit("Catalogue row count mismatch; no deletio
 print("OK: D1 schema and catalogue written, "+str(actual)+" questions; no feedback rows inserted",flush=True)
 # Preserve existing admin secret on future deploys. Always keep public feedback disabled.
 metadata={"main_module":"worker.mjs","compatibility_date":"2026-01-01","bindings":[{"type":"d1","name":"DB","id":db_id},{"type":"plain_text","name":"FEEDBACK_ENABLED","text":"false"}],"keep_bindings":["secret_text"],"observability":{"enabled":False},"logpush":False}
-boundary="cc-"+secrets.token_hex(20)
-parts=[]
-def part(name,ctype,data,filename=None):
-    disposition='Content-Disposition: form-data; name="'+name+'"'
-    if filename: disposition+='; filename="'+filename+'"'
-    parts.append(("--"+boundary+"\r\n"+disposition+"\r\nContent-Type: "+ctype+"\r\n\r\n").encode()+data+b"\r\n")
-part("metadata","application/json",json.dumps(metadata).encode())
-part("worker.mjs","application/javascript+module",(ROOT/"backend/worker.mjs").read_bytes(),"worker.mjs")
-payload=b"".join(parts)+("--"+boundary+"--\r\n").encode()
 script=base+"/workers/scripts/"+NAME
-api(script,"PUT",payload,"multipart/form-data; boundary="+boundary)
+def upload(enabled=False):
+    metadata["bindings"][1]["text"]="true" if enabled else "false"
+    metadata["bindings"]=[b for b in metadata["bindings"] if b["name"]!="BETA_UNTIL"]
+    if enabled: metadata["bindings"].append({"type":"plain_text","name":"BETA_UNTIL","text":str(int(time.time())+14*86400)})
+    boundary="cc-"+secrets.token_hex(20)
+    parts=[]
+    def part(name,ctype,data,filename=None):
+        disposition='Content-Disposition: form-data; name="'+name+'"'
+        if filename: disposition+='; filename="'+filename+'"'
+        parts.append(("--"+boundary+"\r\n"+disposition+"\r\nContent-Type: "+ctype+"\r\n\r\n").encode()+data+b"\r\n")
+    part("metadata","application/json",json.dumps(metadata).encode())
+    part("worker.mjs","application/javascript+module",(ROOT/"backend/worker.mjs").read_bytes(),"worker.mjs")
+    payload=b"".join(parts)+("--"+boundary+"--\r\n").encode()
+    api(script,"PUT",payload,"multipart/form-data; boundary="+boundary)
+upload(False)
 print("OK: Worker uploaded with public feedback disabled and observability off",flush=True)
 # Owner requested the free workers.dev setup; preserve any existing account subdomain.
 try:
@@ -169,3 +174,53 @@ finally:
     assert scalar("SELECT COUNT(*) AS n FROM cc_vote WHERE receipt_hash=?",[fixture])["n"]==0
     assert scalar("SELECT COUNT(*) AS n FROM cc_suggestion WHERE receipt_hash=?",[suggestion_fixture])["n"]==0
     print("OK: synthetic fixtures removed; public feedback remains disabled",flush=True)
+
+# Explicit opt-in beta deployment. Default remains closed; a failed live check closes it again.
+if os.environ.get("COMMUNITY_BETA")=="true":
+    vote_receipt=secrets.token_hex(32)
+    vote_hash=digest("vote:0:"+vote_receipt)
+    proposal_receipt=secrets.token_hex(32)
+    proposal_hash=digest("suggestion:"+proposal_receipt)
+    proposal={"receipt":proposal_receipt,"language":"de","text":"Synthetische CurioCircle Beta-Testfrage "+proposal_hash[:16]+"?"}
+    payload={"question_id":0,"receipt":vote_receipt,"revision":1,"vote":1,"language":"de","app_version":"0.9.6 (Beta)"}
+    def post(path,data):
+        return get(path,"https://marcsenges.github.io",json.dumps(data).encode())
+    passed=False
+    try:
+        upload(True)
+        for attempt in range(12):
+            try:
+                status,health=get("/health")
+                if status==200 and health.get("feedback_enabled") is True: break
+            except Exception: pass
+            time.sleep(5)
+        else: raise SystemExit("Enabled beta health not confirmed")
+        status,result=post("/v1/vote",payload)
+        assert status==200 and result.get("vote")==1,"Live vote creation failed"
+        status,result=post("/v1/vote",dict(payload,revision=2,vote=-1))
+        assert status==200 and result.get("vote")==-1,"Live vote change failed"
+        status,result=post("/v1/vote",payload)
+        assert status==200 and result.get("revision")==2 and result.get("vote")==-1,"Live stale retry failed"
+        status,result=post("/v1/vote",dict(payload,revision=3,vote=None))
+        assert status==200 and result.get("revision")==3 and result.get("vote") is None,"Live withdrawal failed"
+        status,result=post("/v1/suggestion",proposal)
+        assert status==200 and result.get("status")=="received","Live suggestion failed"
+        assert scalar("SELECT status FROM cc_suggestion WHERE receipt_hash=?",[proposal_hash])["status"]=="pending"
+        status,result=get("/admin/api/votes")
+        assert status==401,"Admin must stay private"
+        passed=True
+        print("OK: live API vote, change, stale retry, withdrawal, suggestion and admin denial",flush=True)
+    finally:
+        try:
+            sql("DELETE FROM cc_vote WHERE question_id=0 AND receipt_hash=?",[vote_hash])
+            sql("DELETE FROM cc_suggestion WHERE receipt_hash=?",[proposal_hash])
+            assert scalar("SELECT COUNT(*) AS n FROM cc_vote WHERE receipt_hash=?",[vote_hash])["n"]==0
+            assert scalar("SELECT COUNT(*) AS n FROM cc_suggestion WHERE receipt_hash=?",[proposal_hash])["n"]==0
+        except BaseException:
+            passed=False
+            raise
+        finally:
+            if not passed:
+                upload(False)
+                print("Beta disabled after unsuccessful verification",flush=True)
+    print("OK: beta active; all synthetic feedback rows removed",flush=True)

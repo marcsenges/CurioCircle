@@ -2,6 +2,7 @@ const ORIGIN = 'https://marcsenges.github.io';
 const LANG = new Set(['de','en','es','fr','pt','it']);
 const headers = {'Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer'};
 const today = () => new Date().toISOString().slice(0,10);
+const feedbackOpen=env=>env.FEEDBACK_ENABLED==='true'&&(!env.BETA_UNTIL||Number(env.BETA_UNTIL)>Date.now()/1000);
 const reply=(data,status=200,cors=false)=>new Response(JSON.stringify(data),{status,headers:{...headers,'Content-Type':'application/json; charset=utf-8',...(cors?{'Access-Control-Allow-Origin':ORIGIN,'Vary':'Origin'}:{})}});
 const fail=(code,status,cors=false)=>reply({ok:false,error:code},status,cors);
 const hex=bytes=>Array.from(new Uint8Array(bytes),x=>x.toString(16).padStart(2,'0')).join('');
@@ -74,7 +75,7 @@ async function handle(request,env){
  const url=new URL(request.url),path=url.pathname,method=request.method,origin=request.headers.get('Origin'),cors=origin===ORIGIN;
  if(path==='/health'&&method==='GET'){
   const row=await env.DB.prepare('SELECT COUNT(*) AS n FROM cc_question').first();
-  return reply({ok:true,feedback_enabled:env.FEEDBACK_ENABLED==='true',catalogue_count:row.n},200,cors);
+  return reply({ok:true,feedback_enabled:feedbackOpen(env),catalogue_count:row.n},200,cors);
  }
  if(path==='/admin'&&method==='GET'){
   const nonce=hex(crypto.getRandomValues(new Uint8Array(16)));
@@ -102,7 +103,7 @@ async function handle(request,env){
  if(!cors)return fail('forbidden',403);
  if(method==='OPTIONS')return new Response(null,{status:204,headers:{...headers,'Access-Control-Allow-Origin':ORIGIN,'Access-Control-Allow-Methods':'POST, OPTIONS','Access-Control-Allow-Headers':'Content-Type','Access-Control-Max-Age':'600','Vary':'Origin'}});
  if(method!=='POST')return fail('method',405,true);
- if(env.FEEDBACK_ENABLED!=='true')return fail('feedback_disabled',503,true);
+ if(!feedbackOpen(env))return fail('feedback_disabled',503,true);
  return path==='/v1/vote'?vote(request,env):suggest(request,env);
 }
 export default {async fetch(request,env){try{return await handle(request,env)}catch{return fail('temporarily_unavailable',503,request.headers.get('Origin')===ORIGIN)}}};

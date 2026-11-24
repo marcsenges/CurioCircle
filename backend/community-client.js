@@ -33,25 +33,25 @@ const CCCommunity=(()=>{
   if(!root||!formRoot)return;
   const t=tr(),x=ex(),r=data.votes[question],open=formSection?.open||false;
   if(area)draft=area.value;
-  root.hidden=!ready||!Number.isInteger(question)||question<0||question>=100000;
+  root.hidden=!configured||!Number.isInteger(question)||question<0||question>=100000;
   formRoot.hidden=!configured;
   root.replaceChildren();formRoot.replaceChildren();notice=null;formNotice=null;area=null;
   if(!root.hidden){
    root.append(el('p',t[0]));
    const actions=el('div');actions.className='cc-rating-actions';
    for(const [v,i,emoji] of [[1,1,'👍'],[-1,2,'👎']]){
-    const b=btn(emoji+' '+t[i],()=>setVote(v));b.setAttribute('aria-pressed',String(r?.vote===v));actions.append(b)
+    const b=btn(emoji,()=>rate(v));b.setAttribute('aria-label',t[i]);b.title=t[i];b.setAttribute('aria-pressed',String(r?.vote===v));actions.append(b)
    }
    if(r&&r.vote!==null)actions.append(btn(t[3],()=>setVote(null)));
-   root.append(actions);notice=el('p',r?.pending?t[9]:(statusIndex===null?'':t[statusIndex]));notice.setAttribute('role','status');root.append(notice);
+   root.append(actions);if(!ready){const disclosure=el('p',t[7]);disclosure.className='cc-rating-note';root.append(disclosure)}notice=el('p',r?.pending?t[9]:(statusIndex===null?'':t[statusIndex]));notice.setAttribute('role','status');root.append(notice);
   }
   if(!formRoot.hidden){
-   formSection=el('details');formSection.open=open;formSection.append(el('summary',ready?t[4]:x[3]));
+   formSection=el('details');formSection.open=open;formSection.append(el('summary',t[4]));
    const disclosure=el('p',t[7]+' '+x[2]+' '+betaPolicy[lang]);disclosure.className='cc-community-note';formSection.append(disclosure);
-   if(!ready){formSection.open=true;formSection.append(btn(x[4],enable));formNotice=el('p',formStatusIndex===null?'':t[formStatusIndex]);formNotice.setAttribute('role','status');formSection.append(formNotice);formRoot.append(formSection);return}
+   
    const label=el('label',t[5]);area=el('textarea');area.rows=3;area.maxLength=240;area.minLength=12;area.value=draft;label.append(area);
    const hint=el('p',t[8]+' '+x[6]+'.');hint.id='cc-suggestion-hint';hint.className='cc-community-note';area.setAttribute('aria-describedby',hint.id);
-   const submit=btn(t[6],()=>submitSuggestion(area.value));submit.disabled=busy;
+   const submit=btn(t[6],()=>suggest(area.value));submit.disabled=busy;
    formSection.append(label,hint,submit,btn(t[17],()=>flush()),btn(x[0],discardPending));
    formNotice=el('p',formStatusIndex===null?'':t[formStatusIndex]);formNotice.setAttribute('role','status');formSection.append(formNotice);formRoot.append(formSection);
   }
@@ -72,6 +72,18 @@ const CCCommunity=(()=>{
   ready=await check();
   if(ready){data.enabled=true;if(!persist()){ready=false;data.enabled=false}}
   formStatusIndex=ready?null:11;render();if(ready)flush();return ready
+ }
+ async function rate(v){
+  if(!configured)return;
+  const id=question,language=lang;
+  if(!ready){if(!confirm(tr()[7]+'\n\n'+betaPolicy[lang]))return;if(!await enable()){say(11);return}}
+  if(question===id&&lang===language)setVote(v)
+ }
+ async function suggest(text){
+  if(!configured)return;
+  draft=text;
+  if(!ready){if(!confirm(tr()[8]+'\n\n'+betaPolicy[lang]))return;if(!await enable()){say(11,true);return}}
+  await submitSuggestion(text)
  }
  async function flush(){
   if(!ready||!navigator.onLine)return;if(busy){retryRequested=true;return}busy=true;
@@ -119,6 +131,7 @@ const CCCommunity=(()=>{
   if(!opts.endpoint||!/^https:\/\/curiocircle-api\.[a-z0-9-]+\.workers\.dev$/.test(opts.endpoint))return false;
   endpoint=opts.endpoint;root=opts.ratingRoot;formRoot=opts.suggestionRoot;configured=opts.enabled===true;
   if(!configured)return false;
+  render();
   if(data.enabled)ready=await check();
   window.addEventListener('online',async()=>{if(data.enabled){ready=await check();render();if(ready)flush()}});
   render();if(ready)flush();return ready

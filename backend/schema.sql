@@ -34,3 +34,9 @@ CREATE TABLE IF NOT EXISTS cc_feedback (
   app_version TEXT NOT NULL CHECK(length(app_version)<=32),
   submitted_day TEXT NOT NULL
 );
+
+-- Extended category metadata preserves the original table and all foreign-key references.
+CREATE TABLE IF NOT EXISTS cc_question_category (
+  question_id INTEGER PRIMARY KEY REFERENCES cc_question(id),
+  category INTEGER NOT NULL CHECK(category BETWEEN 0 AND 7)
+);

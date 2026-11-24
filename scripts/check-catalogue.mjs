@@ -10,7 +10,7 @@ const assert=(ok,msg)=>{if(!ok)throw new Error(msg)};
 assert(split>=0,'Missing offline snapshot marker');
 assert(Number.isInteger(catalogue.version)&&catalogue.version>0,'Invalid catalogue version');
 assert(/^\d{4}-\d{2}-\d{2}$/.test(catalogue.published)&&Number.isFinite(Date.parse(catalogue.published+'T00:00:00Z')),'Invalid publication date');
-assert(Array.isArray(catalogue.questions)&&catalogue.questions.length>=227,'Catalogue must preserve existing questions');
+assert(Array.isArray(catalogue.questions)&&catalogue.questions.length>=305,'Catalogue must preserve existing questions');
 const previous=JSON.parse(loc.slice(split+marker.length).trim().replace(/;$/,''));
 assert(catalogue.version>=previous.version,'Catalogue version regressed');
 assert(catalogue.questions.length>=previous.questions.length,'Questions removed');
@@ -18,7 +18,7 @@ const groups=[[0,2,6,9,13,17,19,35,38,40,44,47,62,67,71,84,88,98],[1,5,14,23,30,
 for(const [i,q] of catalogue.questions.entries()){
  assert(q.id===i,'Invalid or non-sequential ID '+i);
  const cat=q.category??(i<100?groups.findIndex(g=>g.includes(i)):-1);
- assert(Number.isInteger(cat)&&cat>=0&&cat<6,'Invalid category '+i);
+ assert(Number.isInteger(cat)&&cat>=0&&cat<8,'Invalid category '+i);
  for(const k of langs)assert(typeof q[k]==='string'&&q[k].trim(),'Missing translation '+i+' '+k);
 }
 for(const k of langs){

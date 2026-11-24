@@ -3,7 +3,7 @@ on:
   pull_request:
     branches: [main]
   push:
-    branches: [ux-097-review]
+    branches: [catalogue-305]
 permissions:
   contents: read
 jobs:
@@ -20,6 +20,7 @@ jobs:
       - name: Validate catalogue, API and SQLite
         run: |
           node scripts/check-catalogue.mjs
+          node scripts/check-mix.mjs
           node --experimental-sqlite backend/worker.integration.test.mjs
           python3 -m py_compile backend/deploy.py
       - name: Install pinned browser test tooling

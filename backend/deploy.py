@@ -28,13 +28,15 @@ rows=[]
 for i,q in enumerate(catalogue["questions"]):
     assert q["id"]==i
     c=q.get("category",next((j for j,g in enumerate(groups) if i in g),-1))
-    assert isinstance(c,int) and 0<=c<=5
+    assert isinstance(c,int) and 0<=c<=7
     rows.append((i,c))
 schema=(ROOT/"backend/schema.sql").read_text()
 # Test schema and constraints against a disposable SQLite database before touching D1.
 with sqlite3.connect(":memory:") as test:
     test.executescript(schema)
-    test.executemany("INSERT INTO cc_question(id,category) VALUES(?,?)",rows)
+    test.executemany("INSERT INTO cc_question(id,category) VALUES(?,?)",[(i,min(cat,5)) for i,cat in rows])
+    test.executemany("INSERT INTO cc_question_category(question_id,category) VALUES(?,?)",rows)
+    assert test.execute("SELECT COUNT(*) FROM cc_question_category").fetchone()[0]==len(rows)
     assert test.execute("SELECT COUNT(*) FROM cc_question").fetchone()[0]==len(rows)
     test.execute("INSERT INTO cc_vote VALUES(?,?,?,?,?,?,?)",(0,"a"*64,1,1,"de","0.9.6 (Beta)","2026-11-24"))
     try: test.execute("INSERT INTO cc_vote VALUES(?,?,?,?,?,?,?)",(0,"b"*64,1,9,"de","0.9.6 (Beta)","2026-11-24"))
@@ -67,9 +69,12 @@ for line in schema.splitlines(keepends=True):
 if statement.strip(): raise SystemExit("Incomplete schema statement")
 for start in range(0,len(rows),40):
     batch=rows[start:start+40]
-    sql("INSERT INTO cc_question(id,category) VALUES "+",".join("(?,?)" for _ in batch)+" ON CONFLICT(id) DO UPDATE SET category=excluded.category",[x for row in batch for x in row])
+    sql("INSERT INTO cc_question(id,category) VALUES "+",".join("(?,?)" for _ in batch)+" ON CONFLICT(id) DO UPDATE SET category=excluded.category",[x for i,cat in batch for x in (i,min(cat,5))])
+    sql("INSERT INTO cc_question_category(question_id,category) VALUES "+",".join("(?,?)" for _ in batch)+" ON CONFLICT(question_id) DO UPDATE SET category=excluded.category",[x for row in batch for x in row])
 actual=sql("SELECT COUNT(*) AS n FROM cc_question")[0]["results"][0]["n"]
 if actual!=len(rows): raise SystemExit("Catalogue row count mismatch; no deletion attempted")
+assert sql("SELECT COUNT(*) AS n FROM cc_question_category")[0]["results"][0]["n"]==len(rows)
+assert sql("SELECT COUNT(*) AS n FROM cc_question_category WHERE category>=6")[0]["results"][0]["n"]==sum(cat>=6 for i,cat in rows)
 print("OK: D1 schema and catalogue written, "+str(actual)+" questions; no feedback rows inserted",flush=True)
 # Preserve existing admin secret on future deploys. Always keep public feedback disabled.
 metadata={"main_module":"worker.mjs","compatibility_date":"2026-01-01","bindings":[{"type":"d1","name":"DB","id":db_id},{"type":"plain_text","name":"FEEDBACK_ENABLED","text":"false"}],"keep_bindings":["secret_text"],"observability":{"enabled":False},"logpush":False}

@@ -1,5 +1,5 @@
 {
-  "version": 5,
+  "version": 6,
   "published": "2026-11-24",
   "questions": [
     {
@@ -2171,6 +2171,786 @@
       "fr": "Qu'est-ce qui t'a plu dès le début alors que tu pensais que ce n'était pas pour toi ?",
       "pt": "O que você adorou logo de cara, mesmo achando que não era a sua praia?",
       "it": "Cosa ti è piaciuto fin da subito, anche se pensavi che non facesse per te?"
+    },
+    {
+      "id": 227,
+      "category": 0,
+      "de": "Welche Geschichte über dich klingt erfunden, ist aber wahr?",
+      "en": "What story about you sounds made up but is actually true?",
+      "es": "¿Qué anécdota sobre ti parece inventada, pero es cierta?",
+      "fr": "Quelle anecdote sur toi paraît inventée alors qu'elle est vraie ?",
+      "pt": "Que história sobre você parece inventada, mas é verdade?",
+      "it": "Quale storia su di te sembra inventata, ma è vera?"
+    },
+    {
+      "id": 228,
+      "category": 0,
+      "de": "Wann hast du zuletzt so gelacht, dass du nicht mehr sprechen konntest?",
+      "en": "When did you last laugh so hard you couldn't speak?",
+      "es": "¿Cuándo fue la última vez que te reíste tanto que no podías hablar?",
+      "fr": "Quand as-tu ri pour la dernière fois au point de ne plus pouvoir parler ?",
+      "pt": "Quando foi a última vez que você riu tanto que não conseguiu falar?",
+      "it": "Quand'è stata l'ultima volta che hai riso tanto da non riuscire a parlare?"
+    },
+    {
+      "id": 229,
+      "category": 0,
+      "de": "Bei welcher Gelegenheit hast du so getan, als hättest du alles verstanden?",
+      "en": "When have you pretended to understand what was going on?",
+      "es": "¿En qué ocasión has fingido que lo entendías todo?",
+      "fr": "À quelle occasion as-tu fait semblant d'avoir tout compris ?",
+      "pt": "Em que situação você fingiu que tinha entendido tudo?",
+      "it": "In quale occasione hai fatto finta di aver capito tutto?"
+    },
+    {
+      "id": 230,
+      "category": 0,
+      "de": "Was ist das Merkwürdigste, das du je in einem Kühlschrank gesehen hast?",
+      "en": "What's the strangest thing you've ever seen in a fridge?",
+      "es": "¿Qué es lo más raro que has visto en una nevera?",
+      "fr": "Quelle est la chose la plus étrange que tu aies vue dans un frigo ?",
+      "pt": "Qual foi a coisa mais estranha que você já viu numa geladeira?",
+      "it": "Qual è la cosa più strana che tu abbia mai visto in un frigorifero?"
+    },
+    {
+      "id": 231,
+      "category": 0,
+      "de": "Wann hast du dich schon einmal viel zu früh gefreut?",
+      "en": "When have you celebrated a little too soon?",
+      "es": "¿Cuándo has celebrado algo antes de tiempo?",
+      "fr": "Quand t'es-tu déjà réjoui un peu trop tôt ?",
+      "pt": "Quando você comemorou alguma coisa cedo demais?",
+      "it": "Quando ti è capitato di esultare troppo presto?"
+    },
+    {
+      "id": 232,
+      "category": 0,
+      "de": "Würdest du lieber nach jedem Niesen Applaus oder nach jedem Gähnen einen Trommelwirbel hören?",
+      "en": "Would you rather hear applause after every sneeze or a drum roll after every yawn?",
+      "es": "¿Preferirías oír aplausos después de cada estornudo o un redoble de tambor después de cada bostezo?",
+      "fr": "Tu préférerais entendre des applaudissements après chaque éternuement ou un roulement de tambour après chaque bâillement ?",
+      "pt": "Você preferiria ouvir aplausos depois de cada espirro ou um rufar de tambores depois de cada bocejo?",
+      "it": "Preferiresti sentire un applauso dopo ogni starnuto o un rullo di tamburi dopo ogni sbadiglio?"
+    },
+    {
+      "id": 233,
+      "category": 0,
+      "de": "Was war das kurioseste Geschenk, das du je bekommen hast?",
+      "en": "What's the most peculiar present you've ever received?",
+      "es": "¿Cuál es el regalo más curioso que has recibido?",
+      "fr": "Quel est le cadeau le plus insolite que tu aies reçu ?",
+      "pt": "Qual foi o presente mais inusitado que você já recebeu?",
+      "it": "Qual è il regalo più curioso che tu abbia mai ricevuto?"
+    },
+    {
+      "id": 234,
+      "category": 0,
+      "de": "Welche übertriebene Behauptung in einer Werbung bringt dich zum Lachen?",
+      "en": "What exaggerated claim in an advert makes you laugh?",
+      "es": "¿Qué afirmación exagerada de un anuncio te hace gracia?",
+      "fr": "Quelle affirmation exagérée dans une publicité te fait rire ?",
+      "pt": "Que afirmação exagerada de uma propaganda faz você rir?",
+      "it": "Quale affermazione esagerata in una pubblicità ti fa ridere?"
+    },
+    {
+      "id": 235,
+      "category": 0,
+      "de": "Würdest du lieber immer einen zu großen Hut tragen oder Schuhe, die bei jedem Schritt quietschen?",
+      "en": "Would you rather always wear a hat that's too big or shoes that squeak with every step?",
+      "es": "¿Preferirías llevar siempre un sombrero demasiado grande o unos zapatos que chirríen a cada paso?",
+      "fr": "Tu préférerais toujours porter un chapeau trop grand ou des chaussures qui couinent à chaque pas ?",
+      "pt": "Você preferiria usar sempre um chapéu grande demais ou sapatos que rangem a cada passo?",
+      "it": "Preferiresti portare sempre un cappello troppo grande o scarpe che cigolano a ogni passo?"
+    },
+    {
+      "id": 236,
+      "category": 1,
+      "de": "Wofür hast du zum ersten Mal selbst Geld gespart?",
+      "en": "What did you first save up your own money for?",
+      "es": "¿Para qué ahorraste dinero por primera vez?",
+      "fr": "Pour quoi as-tu économisé ton propre argent pour la première fois ?",
+      "pt": "Para que você juntou seu próprio dinheiro pela primeira vez?",
+      "it": "Per cosa hai messo da parte i tuoi soldi per la prima volta?"
+    },
+    {
+      "id": 237,
+      "category": 1,
+      "de": "Welches Essen mochtest du als Kind gar nicht, heute aber schon?",
+      "en": "What food did you dislike as a child but enjoy now?",
+      "es": "¿Qué comida no te gustaba nada de pequeño y ahora sí?",
+      "fr": "Quel aliment n'aimais-tu pas du tout enfant, mais apprécies-tu aujourd'hui ?",
+      "pt": "Que comida você não gostava nem um pouco quando era criança, mas gosta hoje?",
+      "it": "Quale cibo non ti piaceva affatto da bambino e invece oggi apprezzi?"
+    },
+    {
+      "id": 238,
+      "category": 1,
+      "de": "Welche Geschichte hast du dir als Kind immer wieder erzählen lassen?",
+      "en": "What story did you ask to hear again and again as a child?",
+      "es": "¿Qué cuento pedías que te contaran una y otra vez de pequeño?",
+      "fr": "Quelle histoire demandais-tu qu'on te raconte encore et encore quand tu étais enfant ?",
+      "pt": "Que história você pedia para ouvir várias vezes quando era criança?",
+      "it": "Quale storia ti facevi raccontare continuamente da bambino?"
+    },
+    {
+      "id": 239,
+      "category": 1,
+      "de": "Welchen Ort kanntest du als Kind wie deine Westentasche?",
+      "en": "What place did you know like the back of your hand as a child?",
+      "es": "¿Qué lugar conocías como la palma de tu mano de pequeño?",
+      "fr": "Quel endroit connaissais-tu comme ta poche quand tu étais enfant ?",
+      "pt": "Que lugar você conhecia como a palma da mão quando era criança?",
+      "it": "Quale posto conoscevi come le tue tasche da bambino?"
+    },
+    {
+      "id": 240,
+      "category": 1,
+      "de": "Was hast du als Kind selbst gebaut, worauf du besonders stolz warst?",
+      "en": "What did you build as a child that you were particularly proud of?",
+      "es": "¿Qué construiste de pequeño que te hizo sentir especialmente orgulloso?",
+      "fr": "Qu'as-tu fabriqué enfant dont tu étais particulièrement fier ?",
+      "pt": "O que você construiu quando era criança e que te encheu de orgulho?",
+      "it": "Che cosa hai costruito da bambino di cui eri particolarmente orgoglioso?"
+    },
+    {
+      "id": 241,
+      "category": 1,
+      "de": "Welche Frage hast du Erwachsenen als Kind ständig gestellt?",
+      "en": "What question did you keep asking grown-ups as a child?",
+      "es": "¿Qué pregunta hacías constantemente a los adultos de pequeño?",
+      "fr": "Quelle question posais-tu sans cesse aux adultes quand tu étais enfant ?",
+      "pt": "Que pergunta você vivia fazendo aos adultos quando era criança?",
+      "it": "Quale domanda facevi continuamente agli adulti da bambino?"
+    },
+    {
+      "id": 242,
+      "category": 1,
+      "de": "Was war dein größter Schatz als Kind, den andere wahrscheinlich wertlos fanden?",
+      "en": "What was your childhood treasure that others probably saw as worthless?",
+      "es": "¿Cuál era tu gran tesoro de la infancia, aunque a otros les pareciera que no valía nada?",
+      "fr": "Quel était ton trésor d'enfant que les autres auraient probablement jugé sans valeur ?",
+      "pt": "Qual era seu maior tesouro de infância que outras pessoas provavelmente achariam sem valor?",
+      "it": "Qual era il tuo tesoro d'infanzia che agli altri sarebbe sembrato senza valore?"
+    },
+    {
+      "id": 243,
+      "category": 1,
+      "de": "Würdest du lieber noch einmal eine Schulwoche oder eine Woche Sommerferien aus deiner Kindheit erleben?",
+      "en": "Would you rather relive a week at school or a week of your childhood summer holidays?",
+      "es": "¿Preferirías revivir una semana de colegio o una semana de las vacaciones de verano de tu infancia?",
+      "fr": "Tu préférerais revivre une semaine d'école ou une semaine de grandes vacances de ton enfance ?",
+      "pt": "Você preferiria reviver uma semana na escola ou uma semana das férias de verão da sua infância?",
+      "it": "Preferiresti rivivere una settimana di scuola o una settimana delle vacanze estive della tua infanzia?"
+    },
+    {
+      "id": 244,
+      "category": 2,
+      "de": "Wenn du hinter einem Bücherregal einen geheimen Raum entdecken würdest, was würdest du daraus machen?",
+      "en": "If you discovered a secret room behind a bookcase, what would you turn it into?",
+      "es": "Si descubrieras una habitación secreta detrás de una estantería, ¿qué harías con ella?",
+      "fr": "Si tu découvrais une pièce secrète derrière une bibliothèque, qu'en ferais-tu ?",
+      "pt": "Se você descobrisse um cômodo secreto atrás de uma estante de livros, o que faria com ele?",
+      "it": "Se scoprissi una stanza segreta dietro una libreria, che cosa ne faresti?"
+    },
+    {
+      "id": 245,
+      "category": 2,
+      "de": "Wenn du zwei Tierarten kombinieren könntest, welches neue Tier würde entstehen?",
+      "en": "If you could combine two animal species, what new creature would you create?",
+      "es": "Si pudieras combinar dos especies de animales, ¿qué criatura crearías?",
+      "fr": "Si tu pouvais mélanger deux espèces animales, quelle créature inventerais-tu ?",
+      "pt": "Se você pudesse combinar duas espécies de animais, que criatura criaria?",
+      "it": "Se potessi combinare due specie animali, quale creatura inventeresti?"
+    },
+    {
+      "id": 246,
+      "category": 2,
+      "de": "Würdest du lieber deine Träume als Filme ansehen oder sie selbst gestalten können?",
+      "en": "Would you rather watch your dreams as films or be able to design them yourself?",
+      "es": "¿Preferirías ver tus sueños como películas o poder crearlos a tu gusto?",
+      "fr": "Tu préférerais regarder tes rêves comme des films ou pouvoir les inventer toi-même ?",
+      "pt": "Você preferiria assistir aos seus sonhos como filmes ou poder criá-los por conta própria?",
+      "it": "Preferiresti guardare i tuoi sogni come film o poterli inventare tu?"
+    },
+    {
+      "id": 247,
+      "category": 2,
+      "de": "Wenn du jeden Morgen eine andere Aussicht aus deinem Fenster wählen könntest, welche wäre es heute?",
+      "en": "If you could choose a different view from your window every morning, what would you choose today?",
+      "es": "Si cada mañana pudieras elegir las vistas desde tu ventana, ¿cuáles escogerías hoy?",
+      "fr": "Si tu pouvais choisir chaque matin la vue depuis ta fenêtre, laquelle choisirais-tu aujourd'hui ?",
+      "pt": "Se você pudesse escolher uma vista diferente da janela a cada manhã, qual escolheria hoje?",
+      "it": "Se ogni mattina potessi scegliere una vista diversa dalla finestra, quale sceglieresti oggi?"
+    },
+    {
+      "id": 248,
+      "category": 2,
+      "de": "Wenn du die Schwerkraft in einem Raum ausschalten könntest, was würdest du dort machen?",
+      "en": "If you could switch off gravity in one room, what would you do in it?",
+      "es": "Si pudieras desactivar la gravedad en una habitación, ¿qué harías allí?",
+      "fr": "Si tu pouvais supprimer la gravité dans une pièce, qu'y ferais-tu ?",
+      "pt": "Se você pudesse desligar a gravidade em um cômodo, o que faria lá?",
+      "it": "Se potessi disattivare la gravità in una stanza, che cosa ci faresti?"
+    },
+    {
+      "id": 249,
+      "category": 2,
+      "de": "Wenn dir ein unbewohntes Dorf geschenkt würde, was würdest du daraus machen?",
+      "en": "If someone gave you an uninhabited village, what would you do with it?",
+      "es": "Si te regalaran un pueblo deshabitado, ¿qué harías con él?",
+      "fr": "Si on t'offrait un village inhabité, qu'en ferais-tu ?",
+      "pt": "Se você ganhasse uma vila desabitada, o que faria com ela?",
+      "it": "Se ti regalassero un paese disabitato, che cosa ne faresti?"
+    },
+    {
+      "id": 250,
+      "category": 2,
+      "de": "Würdest du lieber mit Pflanzen sprechen können oder immer eine Stunde vorher wissen, wann es regnet?",
+      "en": "Would you rather be able to talk to plants or always know an hour before it rains?",
+      "es": "¿Preferirías poder hablar con las plantas o saber siempre con una hora de antelación cuándo va a llover?",
+      "fr": "Tu préférerais pouvoir parler aux plantes ou toujours savoir une heure à l'avance quand il va pleuvoir ?",
+      "pt": "Você preferiria conversar com plantas ou saber sempre com uma hora de antecedência quando vai chover?",
+      "it": "Preferiresti poter parlare con le piante o sapere sempre con un'ora di anticipo quando pioverà?"
+    },
+    {
+      "id": 251,
+      "category": 2,
+      "de": "Welche Erinnerung würdest du gerne als Miniaturmodell auf deinem Schreibtisch haben?",
+      "en": "What memory would you love to have as a miniature model on your desk?",
+      "es": "¿Qué recuerdo te gustaría tener en forma de maqueta sobre tu escritorio?",
+      "fr": "Quel souvenir aimerais-tu avoir sous forme de maquette sur ton bureau ?",
+      "pt": "Que lembrança você gostaria de ter como uma maquete sobre sua mesa?",
+      "it": "Quale ricordo vorresti avere sotto forma di modellino sulla scrivania?"
+    },
+    {
+      "id": 252,
+      "category": 2,
+      "de": "Würdest du lieber eine Tür haben, die zu jedem Strand führt, oder eine Treppe, die auf jeden Berggipfel führt?",
+      "en": "Would you rather have a door that leads to any beach or a staircase that leads to any mountain summit?",
+      "es": "¿Preferirías tener una puerta que lleve a cualquier playa o una escalera que lleve a cualquier cima?",
+      "fr": "Tu préférerais une porte menant à n'importe quelle plage ou un escalier menant à n'importe quel sommet ?",
+      "pt": "Você preferiria uma porta que levasse a qualquer praia ou uma escada que levasse ao topo de qualquer montanha?",
+      "it": "Preferiresti una porta che conduce a qualsiasi spiaggia o una scala che porta in cima a qualsiasi montagna?"
+    },
+    {
+      "id": 253,
+      "category": 3,
+      "de": "Was reparierst du lieber, als es neu zu kaufen?",
+      "en": "What would you rather repair than replace?",
+      "es": "¿Qué prefieres reparar antes que comprar otro nuevo?",
+      "fr": "Qu'est-ce que tu préfères réparer plutôt que remplacer ?",
+      "pt": "O que você prefere consertar em vez de comprar outro?",
+      "it": "Che cosa preferisci riparare piuttosto che ricomprare?"
+    },
+    {
+      "id": 254,
+      "category": 3,
+      "de": "Was ist bei dir im Kühlschrank fast immer vorhanden?",
+      "en": "What can almost always be found in your fridge?",
+      "es": "¿Qué tienes casi siempre en la nevera?",
+      "fr": "Qu'est-ce qu'on trouve presque toujours dans ton frigo ?",
+      "pt": "O que quase sempre tem na sua geladeira?",
+      "it": "Che cosa non manca quasi mai nel tuo frigorifero?"
+    },
+    {
+      "id": 255,
+      "category": 3,
+      "de": "Was machst du als Erstes, wenn du aus dem Urlaub nach Hause kommst?",
+      "en": "What's the first thing you do when you get home from holiday?",
+      "es": "¿Qué es lo primero que haces al volver de vacaciones?",
+      "fr": "Que fais-tu en premier en rentrant de vacances ?",
+      "pt": "Qual é a primeira coisa que você faz quando volta de férias?",
+      "it": "Qual è la prima cosa che fai quando torni a casa dalle vacanze?"
+    },
+    {
+      "id": 256,
+      "category": 3,
+      "de": "Welche alltägliche Entscheidung überlässt du gerne anderen?",
+      "en": "What everyday decision are you happy to leave to someone else?",
+      "es": "¿Qué decisión cotidiana prefieres dejar en manos de otros?",
+      "fr": "Quelle décision du quotidien préfères-tu laisser aux autres ?",
+      "pt": "Que decisão do dia a dia você prefere deixar para os outros?",
+      "it": "Quale decisione quotidiana lasci volentieri agli altri?"
+    },
+    {
+      "id": 257,
+      "category": 3,
+      "de": "Was würde jemand über dich erfahren, wenn er deine Einkaufszettel lesen würde?",
+      "en": "What would someone learn about you from reading your shopping lists?",
+      "es": "¿Qué descubriría alguien sobre ti si leyera tus listas de la compra?",
+      "fr": "Qu'apprendrait-on sur toi en lisant tes listes de courses ?",
+      "pt": "O que alguém descobriria sobre você lendo suas listas de compras?",
+      "it": "Che cosa scoprirebbe qualcuno su di te leggendo le tue liste della spesa?"
+    },
+    {
+      "id": 258,
+      "category": 3,
+      "de": "Würdest du lieber nie wieder an einer Kasse anstehen oder nie wieder einen Parkplatz suchen müssen?",
+      "en": "Would you rather never queue at a checkout or never have to look for a parking space again?",
+      "es": "¿Preferirías no tener que hacer nunca más cola en una caja o no tener que buscar aparcamiento nunca más?",
+      "fr": "Tu préférerais ne plus jamais faire la queue en caisse ou ne plus jamais chercher une place de stationnement ?",
+      "pt": "Você preferiria nunca mais pegar fila no caixa ou nunca mais procurar uma vaga para estacionar?",
+      "it": "Preferiresti non fare mai più la fila alla cassa o non dover più cercare parcheggio?"
+    },
+    {
+      "id": 259,
+      "category": 3,
+      "de": "Was schreibst du dir lieber auf Papier als ins Handy?",
+      "en": "What do you prefer to write down on paper rather than on your phone?",
+      "es": "¿Qué prefieres apuntar en papel en vez de en el móvil?",
+      "fr": "Qu'est-ce que tu préfères noter sur papier plutôt que sur ton téléphone ?",
+      "pt": "O que você prefere anotar no papel em vez de no celular?",
+      "it": "Che cosa preferisci annotare su carta anziché sul telefono?"
+    },
+    {
+      "id": 260,
+      "category": 3,
+      "de": "Würdest du lieber jeden Tag dasselbe Frühstück essen oder jeden Tag etwas Überraschendes zum Frühstück bekommen?",
+      "en": "Would you rather have the same breakfast every day or be surprised with a different one each morning?",
+      "es": "¿Preferirías desayunar lo mismo todos los días o que cada mañana te sorprendieran con un desayuno distinto?",
+      "fr": "Tu préférerais manger le même petit-déjeuner tous les jours ou avoir une surprise chaque matin ?",
+      "pt": "Você preferiria tomar o mesmo café da manhã todos os dias ou receber uma surpresa a cada manhã?",
+      "it": "Preferiresti fare sempre la stessa colazione o riceverne una diversa a sorpresa ogni mattina?"
+    },
+    {
+      "id": 261,
+      "category": 4,
+      "de": "Was war der schönste Umweg, den du je gemacht hast?",
+      "en": "What's the best detour you've ever taken?",
+      "es": "¿Cuál ha sido el mejor desvío que has tomado alguna vez?",
+      "fr": "Quel est le plus beau détour que tu aies fait ?",
+      "pt": "Qual foi o melhor desvio de rota que você já fez?",
+      "it": "Qual è stata la deviazione più bella che tu abbia mai fatto?"
+    },
+    {
+      "id": 262,
+      "category": 4,
+      "de": "Welche Aussicht hast du dir einmal richtig erarbeiten müssen?",
+      "en": "What view have you had to work really hard to reach?",
+      "es": "¿Qué vistas has tenido que ganarte con mucho esfuerzo?",
+      "fr": "Pour quelle vue as-tu déjà dû faire de gros efforts ?",
+      "pt": "Que vista você já precisou suar bastante para alcançar?",
+      "it": "Quale panorama ti sei dovuto davvero conquistare?"
+    },
+    {
+      "id": 263,
+      "category": 4,
+      "de": "Was war dein interessantestes Gespräch mit einem Fremden auf einer Reise?",
+      "en": "What's the most interesting conversation you've had with a stranger while travelling?",
+      "es": "¿Cuál ha sido tu conversación más interesante con un desconocido durante un viaje?",
+      "fr": "Quelle a été ta conversation la plus intéressante avec un inconnu en voyage ?",
+      "pt": "Qual foi a conversa mais interessante que você teve com um desconhecido durante uma viagem?",
+      "it": "Qual è stata la conversazione più interessante che hai avuto con uno sconosciuto in viaggio?"
+    },
+    {
+      "id": 264,
+      "category": 4,
+      "de": "Was hast du auf einer Reise gelernt, das in keinem Reiseführer stand?",
+      "en": "What did you learn on a trip that wasn't in any guidebook?",
+      "es": "¿Qué aprendiste en un viaje que no aparecía en ninguna guía?",
+      "fr": "Qu'as-tu appris en voyage qui ne figurait dans aucun guide touristique ?",
+      "pt": "O que você aprendeu em uma viagem que não estava em nenhum guia turístico?",
+      "it": "Che cosa hai imparato in viaggio che non era scritto in nessuna guida?"
+    },
+    {
+      "id": 265,
+      "category": 4,
+      "de": "Was war das ungewöhnlichste Souvenir, das du je mitgebracht hast?",
+      "en": "What's the most unusual souvenir you've ever brought home?",
+      "es": "¿Cuál es el recuerdo de viaje más raro que te has traído a casa?",
+      "fr": "Quel est le souvenir de voyage le plus insolite que tu aies rapporté ?",
+      "pt": "Qual foi a lembrança de viagem mais inusitada que você já trouxe para casa?",
+      "it": "Qual è il souvenir più insolito che tu abbia mai portato a casa?"
+    },
+    {
+      "id": 266,
+      "category": 4,
+      "de": "Wo würdest du gerne einmal unter freiem Himmel übernachten?",
+      "en": "Where would you love to spend a night under the stars?",
+      "es": "¿Dónde te gustaría pasar una noche al aire libre?",
+      "fr": "Où aimerais-tu passer une nuit à la belle étoile ?",
+      "pt": "Onde você gostaria de passar uma noite ao ar livre?",
+      "it": "Dove ti piacerebbe passare una notte sotto le stelle?"
+    },
+    {
+      "id": 267,
+      "category": 4,
+      "de": "Würdest du lieber eine Woche ohne Plan verreisen oder eine Reise mit komplett durchorganisiertem Programm machen?",
+      "en": "Would you rather travel for a week with no plans or take a trip with everything organised?",
+      "es": "¿Preferirías viajar una semana sin ningún plan o hacer un viaje con todo organizado?",
+      "fr": "Tu préférerais partir une semaine sans aucun programme ou faire un voyage où tout est organisé ?",
+      "pt": "Você preferiria viajar por uma semana sem planejar nada ou fazer uma viagem com tudo organizado?",
+      "it": "Preferiresti viaggiare per una settimana senza programmi o fare un viaggio con tutto organizzato?"
+    },
+    {
+      "id": 268,
+      "category": 4,
+      "de": "Würdest du lieber eine unbekannte Stadt bei Nacht oder eine unbekannte Insel bei Sonnenaufgang erkunden?",
+      "en": "Would you rather explore an unfamiliar city at night or an unfamiliar island at sunrise?",
+      "es": "¿Preferirías explorar una ciudad desconocida de noche o una isla desconocida al amanecer?",
+      "fr": "Tu préférerais découvrir une ville inconnue de nuit ou une île inconnue au lever du soleil ?",
+      "pt": "Você preferiria explorar uma cidade desconhecida à noite ou uma ilha desconhecida ao amanhecer?",
+      "it": "Preferiresti esplorare una città sconosciuta di notte o un'isola sconosciuta all'alba?"
+    },
+    {
+      "id": 269,
+      "category": 5,
+      "de": "Bei welchem Thema hast du deine Meinung im Laufe der Jahre geändert?",
+      "en": "What have you changed your mind about over the years?",
+      "es": "¿Sobre qué tema has cambiado de opinión con los años?",
+      "fr": "Sur quel sujet as-tu changé d'avis au fil des années ?",
+      "pt": "Sobre que assunto você mudou de opinião ao longo dos anos?",
+      "it": "Su quale argomento hai cambiato idea nel corso degli anni?"
+    },
+    {
+      "id": 270,
+      "category": 5,
+      "de": "Woran merkst du, dass du bei etwas richtig gut geworden bist?",
+      "en": "How do you know when you've become really good at something?",
+      "es": "¿Cómo te das cuenta de que se te empieza a dar muy bien algo?",
+      "fr": "Comment sais-tu que tu es vraiment devenu bon dans quelque chose ?",
+      "pt": "Como você percebe que ficou muito bom em alguma coisa?",
+      "it": "Come ti accorgi di essere diventato davvero bravo in qualcosa?"
+    },
+    {
+      "id": 271,
+      "category": 5,
+      "de": "Würdest du lieber immer die richtigen Worte finden oder dir jeden Namen auf Anhieb merken können?",
+      "en": "Would you rather always find the right words or remember everyone's name straight away?",
+      "es": "¿Preferirías encontrar siempre las palabras adecuadas o recordar cualquier nombre a la primera?",
+      "fr": "Tu préférerais toujours trouver les mots justes ou retenir tous les prénoms du premier coup ?",
+      "pt": "Você preferiria sempre encontrar as palavras certas ou lembrar o nome de todo mundo de primeira?",
+      "it": "Preferiresti trovare sempre le parole giuste o ricordare tutti i nomi al primo colpo?"
+    },
+    {
+      "id": 272,
+      "category": 5,
+      "de": "Was macht dir Spaß, obwohl du darin überhaupt nicht gut bist?",
+      "en": "What do you enjoy even though you're no good at it?",
+      "es": "¿Qué te divierte aunque no se te dé nada bien?",
+      "fr": "Qu'est-ce qui te plaît alors que tu n'es pas doué pour ça ?",
+      "pt": "O que você gosta de fazer mesmo sem levar jeito?",
+      "it": "Che cosa ti diverte anche se non sei per niente bravo a farla?"
+    },
+    {
+      "id": 273,
+      "category": 5,
+      "de": "Was müsste jemand über dich wissen, um dir das perfekte Geschenk zu machen?",
+      "en": "What would someone need to know about you to choose the perfect present?",
+      "es": "¿Qué tendría que saber alguien sobre ti para acertar con el regalo perfecto?",
+      "fr": "Que faudrait-il savoir sur toi pour t'offrir le cadeau idéal ?",
+      "pt": "O que alguém precisaria saber sobre você para escolher o presente perfeito?",
+      "it": "Che cosa dovrebbe sapere di te qualcuno per farti il regalo perfetto?"
+    },
+    {
+      "id": 274,
+      "category": 5,
+      "de": "Woran erkennst du einen gelungenen Tag, an dem du nichts Produktives gemacht hast?",
+      "en": "What makes a day feel well spent even when you've done nothing productive?",
+      "es": "¿Qué hace que un día haya merecido la pena aunque no hayas hecho nada productivo?",
+      "fr": "Qu'est-ce qui fait qu'une journée est réussie même si tu n'as rien fait de productif ?",
+      "pt": "O que faz um dia valer a pena mesmo quando você não fez nada produtivo?",
+      "it": "Che cosa rende una giornata riuscita anche se non hai fatto niente di produttivo?"
+    },
+    {
+      "id": 275,
+      "category": 5,
+      "de": "Würdest du lieber bei jedem Quiz die richtige Antwort wissen oder bei jedem Spieleabend alle zum Lachen bringen?",
+      "en": "Would you rather know every answer in a quiz or make everyone laugh at every games night?",
+      "es": "¿Preferirías acertar siempre todas las preguntas de un concurso o hacer reír a todos cada vez que jugáis juntos?",
+      "fr": "Tu préférerais connaître toutes les réponses à un quiz ou faire rire tout le monde à chaque soirée jeux ?",
+      "pt": "Você preferiria acertar todas as perguntas de um quiz ou fazer todo mundo rir em cada noite de jogos?",
+      "it": "Preferiresti conoscere tutte le risposte a un quiz o far ridere tutti a ogni serata di giochi?"
+    },
+    {
+      "id": 276,
+      "category": 5,
+      "de": "Welche Sache sollte es deiner Meinung nach auch für Erwachsene zum Kinderpreis geben?",
+      "en": "What do you think adults should be able to get at children's prices?",
+      "es": "¿Qué debería tener precio infantil también para los adultos?",
+      "fr": "Pour quoi les adultes devraient-ils aussi avoir droit au tarif enfant ?",
+      "pt": "O que deveria ter preço de criança também para adultos?",
+      "it": "Che cosa dovrebbe avere il prezzo per bambini anche per gli adulti?"
+    },
+    {
+      "id": 277,
+      "category": 5,
+      "de": "Würdest du lieber für deine Kreativität oder deinen Humor bekannt sein?",
+      "en": "Would you rather be known for your creativity or your sense of humour?",
+      "es": "¿Preferirías que te conocieran por tu creatividad o por tu sentido del humor?",
+      "fr": "Tu préférerais être connu pour ta créativité ou ton sens de l'humour ?",
+      "pt": "Você preferiria ser conhecido pela sua criatividade ou pelo seu senso de humor?",
+      "it": "Preferiresti essere conosciuto per la tua creatività o per il tuo senso dell'umorismo?"
+    },
+    {
+      "id": 278,
+      "category": 6,
+      "de": "Welche Rolle übernimmst du ganz automatisch in einer Freundesgruppe?",
+      "en": "What role do you naturally take on in a group of friends?",
+      "es": "¿Qué papel sueles asumir de forma natural en un grupo de amigos?",
+      "fr": "Quel rôle prends-tu naturellement dans un groupe d'amis ?",
+      "pt": "Que papel você assume naturalmente em um grupo de amigos?",
+      "it": "Quale ruolo assumi spontaneamente in un gruppo di amici?"
+    },
+    {
+      "id": 279,
+      "category": 6,
+      "de": "An welchem ungewöhnlichen Ort hast du schon einmal einen Freund kennengelernt?",
+      "en": "What's the most unusual place you've made a friend?",
+      "es": "¿En qué lugar poco habitual has hecho alguna vez un amigo?",
+      "fr": "Dans quel endroit insolite t'es-tu déjà fait un ami ?",
+      "pt": "Em que lugar inusitado você já fez uma amizade?",
+      "it": "In quale posto insolito ti è capitato di fare amicizia?"
+    },
+    {
+      "id": 280,
+      "category": 6,
+      "de": "Mit welchen drei Wörtern würden deine Freunde dich beschreiben?",
+      "en": "What three words would your friends use to describe you?",
+      "es": "¿Con qué tres palabras te describirían tus amigos?",
+      "fr": "Quels trois mots tes amis utiliseraient-ils pour te décrire ?",
+      "pt": "Que três palavras seus amigos usariam para descrever você?",
+      "it": "Con quali tre parole ti descriverebbero i tuoi amici?"
+    },
+    {
+      "id": 281,
+      "category": 6,
+      "de": "Woran merkst du, dass dich jemand richtig gut kennt?",
+      "en": "How can you tell someone knows you really well?",
+      "es": "¿Cómo te das cuenta de que alguien te conoce muy bien?",
+      "fr": "À quoi reconnais-tu que quelqu'un te connaît vraiment bien ?",
+      "pt": "Como você percebe que alguém conhece você muito bem?",
+      "it": "Da cosa capisci che qualcuno ti conosce davvero bene?"
+    },
+    {
+      "id": 282,
+      "category": 6,
+      "de": "Wie würdest du jemanden begrüßen, der zum ersten Mal zu eurer Runde dazukommt?",
+      "en": "How would you welcome someone who's joining your group for the first time?",
+      "es": "¿Cómo recibirías a alguien que se incorpora por primera vez a vuestro grupo?",
+      "fr": "Comment accueillerais-tu quelqu'un qui rejoint votre groupe pour la première fois ?",
+      "pt": "Como você receberia alguém que está chegando ao seu grupo pela primeira vez?",
+      "it": "Come accoglieresti qualcuno che si unisce al vostro gruppo per la prima volta?"
+    },
+    {
+      "id": 283,
+      "category": 6,
+      "de": "Worüber kannst du mit Freunden stundenlang diskutieren, ohne euch einig zu werden?",
+      "en": "What could you debate with friends for hours without ever agreeing?",
+      "es": "¿Sobre qué podrías debatir durante horas con tus amigos sin poneros de acuerdo?",
+      "fr": "De quoi pourrais-tu débattre pendant des heures avec tes amis sans jamais être d'accord ?",
+      "pt": "Sobre o que você poderia discutir por horas com os amigos sem chegar a um acordo?",
+      "it": "Su cosa potresti discutere per ore con gli amici senza mai trovare un accordo?"
+    },
+    {
+      "id": 284,
+      "category": 6,
+      "de": "Was schätzt du an Freunden, die ganz anders sind als du selbst?",
+      "en": "What do you appreciate about friends who are very different from you?",
+      "es": "¿Qué valoras de los amigos que son muy distintos a ti?",
+      "fr": "Qu'apprécies-tu chez tes amis qui sont très différents de toi ?",
+      "pt": "O que você valoriza nos amigos que são muito diferentes de você?",
+      "it": "Che cosa apprezzi degli amici molto diversi da te?"
+    },
+    {
+      "id": 285,
+      "category": 6,
+      "de": "Was war dein schönster ungeplanter Abend mit Freunden?",
+      "en": "What's the best unplanned evening you've spent with friends?",
+      "es": "¿Cuál ha sido tu mejor noche improvisada con amigos?",
+      "fr": "Quelle a été ta meilleure soirée improvisée entre amis ?",
+      "pt": "Qual foi a melhor noite improvisada que você passou com amigos?",
+      "it": "Qual è stata la tua serata improvvisata più bella con gli amici?"
+    },
+    {
+      "id": 286,
+      "category": 6,
+      "de": "Würdest du lieber mit Freunden eine Woche zusammen wohnen oder jeden Monat einen gemeinsamen Ausflug machen?",
+      "en": "Would you rather live with friends for a week or go on a day trip together every month?",
+      "es": "¿Preferirías convivir una semana con tus amigos o hacer una excursión juntos cada mes?",
+      "fr": "Tu préférerais vivre une semaine avec tes amis ou faire une sortie ensemble tous les mois ?",
+      "pt": "Você preferiria morar com os amigos por uma semana ou fazer um passeio juntos todo mês?",
+      "it": "Preferiresti vivere una settimana con gli amici o fare una gita insieme ogni mese?"
+    },
+    {
+      "id": 287,
+      "category": 6,
+      "de": "Welche kleine Aufmerksamkeit eines Freundes ist dir besonders in Erinnerung geblieben?",
+      "en": "What small gesture from a friend has stuck in your memory?",
+      "es": "¿Qué pequeño detalle de un amigo recuerdas especialmente?",
+      "fr": "Quelle petite attention d'un ami t'a particulièrement marqué ?",
+      "pt": "Que pequeno gesto de um amigo ficou na sua memória?",
+      "it": "Quale piccolo gesto di un amico ti è rimasto particolarmente impresso?"
+    },
+    {
+      "id": 288,
+      "category": 6,
+      "de": "Welche Frage würdest du jemandem stellen, um ihn besser kennenzulernen?",
+      "en": "What question would you ask someone to get to know them better?",
+      "es": "¿Qué pregunta le harías a alguien para conocerlo mejor?",
+      "fr": "Quelle question poserais-tu à quelqu'un pour mieux le connaître ?",
+      "pt": "Que pergunta você faria a alguém para conhecer melhor essa pessoa?",
+      "it": "Quale domanda faresti a qualcuno per conoscerlo meglio?"
+    },
+    {
+      "id": 289,
+      "category": 6,
+      "de": "Würdest du lieber für deine Freunde kochen oder mit ihnen zusammen kochen?",
+      "en": "Would you rather cook for your friends or cook together with them?",
+      "es": "¿Preferirías cocinar para tus amigos o cocinar todos juntos?",
+      "fr": "Tu préférerais cuisiner pour tes amis ou cuisiner tous ensemble ?",
+      "pt": "Você preferiria cozinhar para seus amigos ou cozinhar junto com eles?",
+      "it": "Preferiresti cucinare per i tuoi amici o cucinare insieme a loro?"
+    },
+    {
+      "id": 290,
+      "category": 6,
+      "de": "Welche harmlose Marotte hast du dir von einem Freund abgeschaut?",
+      "en": "What harmless habit have you picked up from a friend?",
+      "es": "¿Qué manía inofensiva se te ha pegado de algún amigo?",
+      "fr": "Quelle petite manie as-tu attrapée au contact d'un ami ?",
+      "pt": "Que mania inofensiva você pegou de um amigo?",
+      "it": "Quale piccola mania hai preso da un amico?"
+    },
+    {
+      "id": 291,
+      "category": 6,
+      "de": "Was wäre ein guter Name für eine Quizmannschaft aus den Leuten in dieser Runde?",
+      "en": "What would be a good quiz team name for the people playing right now?",
+      "es": "¿Qué nombre le pondrías a un equipo de concurso formado por los que estáis aquí?",
+      "fr": "Quel nom donnerais-tu à une équipe de quiz composée des personnes présentes ?",
+      "pt": "Que nome você daria a uma equipe de quiz formada pelas pessoas desta roda?",
+      "it": "Quale nome daresti a una squadra di quiz formata dalle persone qui presenti?"
+    },
+    {
+      "id": 292,
+      "category": 7,
+      "de": "Welche Frage würdest du einem Astronauten stellen?",
+      "en": "What question would you ask an astronaut?",
+      "es": "¿Qué pregunta le harías a un astronauta?",
+      "fr": "Quelle question poserais-tu à un astronaute ?",
+      "pt": "Que pergunta você faria a um astronauta?",
+      "it": "Quale domanda faresti a un astronauta?"
+    },
+    {
+      "id": 293,
+      "category": 7,
+      "de": "Bei welchem Produkt würdest du gerne den gesamten Herstellungsprozess beobachten?",
+      "en": "What product would you love to watch being made from start to finish?",
+      "es": "¿De qué producto te gustaría ver todo el proceso de fabricación?",
+      "fr": "Quel produit aimerais-tu voir fabriquer du début à la fin ?",
+      "pt": "De qual produto você gostaria de acompanhar todo o processo de fabricação?",
+      "it": "Di quale prodotto ti piacerebbe osservare l'intero processo di fabbricazione?"
+    },
+    {
+      "id": 294,
+      "category": 7,
+      "de": "Welches wissenschaftliche Rätsel würdest du gerne gelöst sehen?",
+      "en": "What scientific mystery would you love to see solved?",
+      "es": "¿Qué misterio científico te gustaría que se resolviera?",
+      "fr": "Quel mystère scientifique aimerais-tu voir résolu ?",
+      "pt": "Que mistério científico você gostaria de ver resolvido?",
+      "it": "Quale mistero scientifico vorresti vedere risolto?"
+    },
+    {
+      "id": 295,
+      "category": 7,
+      "de": "Welche Geschichte aus deinem Heimatland sollte man auch anderswo kennen?",
+      "en": "What story from your home country deserves to be known elsewhere too?",
+      "es": "¿Qué historia de tu país debería conocerse también en otros lugares?",
+      "fr": "Quelle histoire de ton pays mériterait d'être connue ailleurs ?",
+      "pt": "Que história do seu país deveria ser conhecida em outros lugares também?",
+      "it": "Quale storia del tuo paese meriterebbe di essere conosciuta anche altrove?"
+    },
+    {
+      "id": 296,
+      "category": 7,
+      "de": "Welchen Film würdest du jemandem zeigen, der deine Generation verstehen möchte?",
+      "en": "What film would you show someone who wanted to understand your generation?",
+      "es": "¿Qué película le pondrías a alguien que quisiera entender a tu generación?",
+      "fr": "Quel film montrerais-tu à quelqu'un qui voudrait comprendre ta génération ?",
+      "pt": "Que filme você mostraria a alguém que quisesse entender sua geração?",
+      "it": "Quale film mostreresti a qualcuno che volesse capire la tua generazione?"
+    },
+    {
+      "id": 297,
+      "category": 7,
+      "de": "Welche fremdsprachige Redewendung würdest du gerne in deine eigene Sprache übernehmen?",
+      "en": "What expression from another language would you love to adopt into your own?",
+      "es": "¿Qué expresión de otro idioma te gustaría incorporar al tuyo?",
+      "fr": "Quelle expression d'une autre langue aimerais-tu adopter dans la tienne ?",
+      "pt": "Que expressão de outro idioma você gostaria de adotar no seu?",
+      "it": "Quale modo di dire di un'altra lingua vorresti adottare nella tua?"
+    },
+    {
+      "id": 298,
+      "category": 7,
+      "de": "Welche Fähigkeit eines Tieres findest du besonders faszinierend?",
+      "en": "What animal ability do you find particularly fascinating?",
+      "es": "¿Qué capacidad de un animal te parece especialmente fascinante?",
+      "fr": "Quelle faculté d'un animal te fascine particulièrement ?",
+      "pt": "Que habilidade de um animal você acha especialmente fascinante?",
+      "it": "Quale capacità di un animale trovi particolarmente affascinante?"
+    },
+    {
+      "id": 299,
+      "category": 7,
+      "de": "Welches komplizierte Thema würdest du gerne endlich richtig verstehen?",
+      "en": "What complicated subject would you love to finally understand properly?",
+      "es": "¿Qué tema complicado te gustaría entender por fin de verdad?",
+      "fr": "Quel sujet compliqué aimerais-tu enfin comprendre vraiment ?",
+      "pt": "Que assunto complicado você gostaria de finalmente entender de verdade?",
+      "it": "Quale argomento complicato vorresti finalmente capire davvero?"
+    },
+    {
+      "id": 300,
+      "category": 7,
+      "de": "Welche Gewohnheit aus einem anderen Land würdest du gerne bei dir übernehmen?",
+      "en": "What habit from another country would you like to adopt where you live?",
+      "es": "¿Qué costumbre de otro país te gustaría adoptar donde vives?",
+      "fr": "Quelle habitude d'un autre pays aimerais-tu adopter là où tu vis ?",
+      "pt": "Que hábito de outro país você gostaria de adotar onde mora?",
+      "it": "Quale abitudine di un altro paese vorresti adottare dove vivi?"
+    },
+    {
+      "id": 301,
+      "category": 7,
+      "de": "Welches berühmte Kunstwerk würdest du gerne einmal im Original sehen?",
+      "en": "What famous work of art would you love to see in person?",
+      "es": "¿Qué obra de arte famosa te gustaría ver en persona?",
+      "fr": "Quelle œuvre d'art célèbre aimerais-tu voir en vrai ?",
+      "pt": "Que obra de arte famosa você gostaria de ver pessoalmente?",
+      "it": "Quale famosa opera d'arte ti piacerebbe vedere dal vivo?"
+    },
+    {
+      "id": 302,
+      "category": 7,
+      "de": "Würdest du lieber den tiefsten Punkt des Ozeans oder die Oberfläche des Mondes besuchen?",
+      "en": "Would you rather visit the deepest point in the ocean or the surface of the Moon?",
+      "es": "¿Preferirías visitar el punto más profundo del océano o la superficie de la Luna?",
+      "fr": "Tu préférerais visiter le point le plus profond de l'océan ou la surface de la Lune ?",
+      "pt": "Você preferiria visitar o ponto mais profundo do oceano ou a superfície da Lua?",
+      "it": "Preferiresti visitare il punto più profondo dell'oceano o la superficie della Luna?"
+    },
+    {
+      "id": 303,
+      "category": 7,
+      "de": "Bei welcher historischen Entdeckung wärst du gerne persönlich dabei gewesen?",
+      "en": "What historical discovery would you love to have witnessed first-hand?",
+      "es": "¿Qué descubrimiento histórico te habría gustado presenciar?",
+      "fr": "À quelle découverte historique aurais-tu aimé assister en personne ?",
+      "pt": "Que descoberta histórica você gostaria de ter presenciado?",
+      "it": "A quale scoperta storica ti sarebbe piaciuto assistere di persona?"
+    },
+    {
+      "id": 304,
+      "category": 7,
+      "de": "Würdest du lieber einen Tag hinter den Kulissen eines Zoos oder eines Filmstudios verbringen?",
+      "en": "Would you rather spend a day behind the scenes at a zoo or a film studio?",
+      "es": "¿Preferirías pasar un día entre bastidores en un zoo o en un estudio de cine?",
+      "fr": "Tu préférerais passer une journée dans les coulisses d'un zoo ou d'un studio de cinéma ?",
+      "pt": "Você preferiria passar um dia nos bastidores de um zoológico ou de um estúdio de cinema?",
+      "it": "Preferiresti passare una giornata dietro le quinte di uno zoo o di uno studio cinematografico?"
     }
   ]
 }

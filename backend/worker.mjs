@@ -69,7 +69,7 @@ async function feedback(request,env){
  await db.prepare('INSERT OR IGNORE INTO cc_feedback(receipt_hash,text,language,app_version,submitted_day) VALUES(?,?,?,?,?)').bind(receipt,text,o.language,o.app_version,today()).run();
  return reply({ok:true,status:'received'},200,true);
 }
-const statsSQL='SELECT q.id AS question_id,q.category,v.language,COUNT(*) AS total,SUM(CASE WHEN v.vote=1 THEN 1 ELSE 0 END) AS positive,SUM(CASE WHEN v.vote=-1 THEN 1 ELSE 0 END) AS negative FROM cc_vote v JOIN cc_question q ON q.id=v.question_id WHERE v.vote IS NOT NULL GROUP BY q.id,q.category,v.language ORDER BY q.id,v.language';
+const statsSQL='SELECT q.id AS question_id,COALESCE(qc.category,q.category) AS category,v.language,COUNT(*) AS total,SUM(CASE WHEN v.vote=1 THEN 1 ELSE 0 END) AS positive,SUM(CASE WHEN v.vote=-1 THEN 1 ELSE 0 END) AS negative FROM cc_vote v JOIN cc_question q ON q.id=v.question_id LEFT JOIN cc_question_category qc ON qc.question_id=q.id WHERE v.vote IS NOT NULL GROUP BY q.id,COALESCE(qc.category,q.category),v.language ORDER BY q.id,v.language';
 const suggestionsSQL='SELECT receipt_hash AS id,text,language,status,submitted_day,reviewed_day FROM cc_suggestion ORDER BY submitted_day DESC,receipt_hash LIMIT 500';
 const csvCell=v=>'"'+String(v??'').replace(/^[\s\uFEFF]*[=+\-@\t\r]/,m=>"'"+m).replace(/"/g,'""')+'"';
 function csv(rows,keys){return [keys.join(','),...rows.map(r=>keys.map(k=>csvCell(r[k])).join(','))].join('\r\n')+'\r\n'}

@@ -58,8 +58,13 @@ def sql(statement,params=None):
         raise SystemExit("D1 statement failed")
     return result
 # Each statement is additive. No user rows created in remote smoke test.
-for part in schema.split(";"):
-    if part.strip(): sql(part)
+statement=""
+for line in schema.splitlines(keepends=True):
+    statement+=line
+    if sqlite3.complete_statement(statement):
+        sql(statement)
+        statement=""
+if statement.strip(): raise SystemExit("Incomplete schema statement")
 for start in range(0,len(rows),40):
     batch=rows[start:start+40]
     sql("INSERT INTO cc_question(id,category) VALUES "+",".join("(?,?)" for _ in batch)+" ON CONFLICT(id) DO UPDATE SET category=excluded.category",[x for row in batch for x in row])

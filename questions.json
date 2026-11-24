@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "published": "2026-11-24",
   "questions": [
     {
@@ -601,6 +601,706 @@
       "en": "What new tradition would you start with your friends?",
       "de": "Welche neue Tradition würdest du mit deinen Freunden beginnen?",
       "es": "¿Qué nueva tradición iniciarías con tus amigos?"
+    },
+    {
+      "id": 100,
+      "category": 0,
+      "de": "Bei welcher banalen Sache bist du übertrieben pingelig?",
+      "en": "What trivial thing are you ridiculously fussy about?",
+      "es": "¿Con qué tontería eres exageradamente quisquilloso?"
+    },
+    {
+      "id": 101,
+      "category": 0,
+      "de": "Welcher Gegenstand in deiner Wohnung hätte die lustigste Lebensgeschichte?",
+      "en": "Which object in your home would have the funniest life story?",
+      "es": "¿Qué objeto de tu casa tendría la historia más divertida?"
+    },
+    {
+      "id": 102,
+      "category": 1,
+      "de": "Was hast du als Kind völlig falsch verstanden?",
+      "en": "What did you completely misunderstand as a child?",
+      "es": "¿Qué entendías completamente mal de pequeño?"
+    },
+    {
+      "id": 103,
+      "category": 3,
+      "de": "Welche Verpackung bringt dich regelmäßig zur Verzweiflung?",
+      "en": "What packaging regularly drives you mad?",
+      "es": "¿Qué envase te desespera cada dos por tres?"
+    },
+    {
+      "id": 104,
+      "category": 5,
+      "de": "Welche Kleinigkeit macht jemanden sofort sympathisch?",
+      "en": "What little thing makes someone instantly likeable?",
+      "es": "¿Qué pequeño detalle hace que alguien te caiga bien enseguida?"
+    },
+    {
+      "id": 105,
+      "category": 2,
+      "de": "Welche völlig unnötige Weltmeisterschaft würdest du veranstalten?",
+      "en": "What completely unnecessary world championship would you organise?",
+      "es": "¿Qué campeonato mundial totalmente innecesario organizarías?"
+    },
+    {
+      "id": 106,
+      "category": 4,
+      "de": "Welche Sache würdest du gerne einmal auf einem anderen Kontinent ausprobieren?",
+      "en": "What would you love to try on another continent?",
+      "es": "¿Qué te gustaría probar alguna vez en otro continente?"
+    },
+    {
+      "id": 107,
+      "category": 0,
+      "de": "Was sieht bei anderen cool aus, bei dir aber überhaupt nicht?",
+      "en": "What looks cool on other people but not on you at all?",
+      "es": "¿Qué queda genial a los demás pero a ti fatal?"
+    },
+    {
+      "id": 108,
+      "category": 1,
+      "de": "Welche Regel deiner Eltern fandest du als Kind besonders merkwürdig?",
+      "en": "Which of your parents' rules seemed particularly odd as a child?",
+      "es": "¿Qué norma de tus padres te parecía especialmente rara de pequeño?"
+    },
+    {
+      "id": 109,
+      "category": 3,
+      "de": "Welche Alltagssituation fühlt sich grundlos unangenehm an?",
+      "en": "What everyday situation feels awkward for no good reason?",
+      "es": "¿Qué situación cotidiana resulta incómoda sin motivo?"
+    },
+    {
+      "id": 110,
+      "category": 5,
+      "de": "Welche ungeschriebene Regel sollte jeder kennen?",
+      "en": "What unwritten rule should everyone know?",
+      "es": "¿Qué norma no escrita debería conocer todo el mundo?"
+    },
+    {
+      "id": 111,
+      "category": 2,
+      "de": "Welche Durchsage würdest du gerne einmal im Supermarkt machen?",
+      "en": "What announcement would you love to make in a supermarket?",
+      "es": "¿Qué anuncio te gustaría hacer por megafonía en un supermercado?"
+    },
+    {
+      "id": 112,
+      "category": 4,
+      "de": "Welche Landschaft würdest du gerne zum ersten Mal wieder sehen?",
+      "en": "Which landscape would you love to see for the first time again?",
+      "es": "¿Qué paisaje te gustaría volver a ver por primera vez?"
+    },
+    {
+      "id": 113,
+      "category": 0,
+      "de": "Welche harmlose Sache sieht bei dir immer dramatischer aus als nötig?",
+      "en": "What harmless thing always looks more dramatic than necessary when you do it?",
+      "es": "¿Qué cosa inofensiva parece mucho más dramática de lo necesario cuando la haces tú?"
+    },
+    {
+      "id": 114,
+      "category": 1,
+      "de": "Welche Werbung aus deiner Kindheit kannst du noch auswendig?",
+      "en": "What advert from your childhood can you still recite?",
+      "es": "¿Qué anuncio de tu infancia todavía te sabes de memoria?"
+    },
+    {
+      "id": 115,
+      "category": 3,
+      "de": "Was kaufst du grundsätzlich erst, wenn es wirklich zu spät ist?",
+      "en": "What do you always buy only when it's already too late?",
+      "es": "¿Qué compras siempre cuando ya es demasiado tarde?"
+    },
+    {
+      "id": 116,
+      "category": 5,
+      "de": "Welche Eigenschaft wird deiner Meinung nach unterschätzt?",
+      "en": "What quality do you think is underrated?",
+      "es": "¿Qué cualidad crees que está infravalorada?"
+    },
+    {
+      "id": 117,
+      "category": 2,
+      "de": "Welchen völlig neuen Feiertag würdest du erfinden?",
+      "en": "What brand-new public holiday would you invent?",
+      "es": "¿Qué día festivo completamente nuevo inventarías?"
+    },
+    {
+      "id": 118,
+      "category": 4,
+      "de": "Welche lokale Tradition würdest du gerne einmal miterleben?",
+      "en": "What local tradition would you love to experience?",
+      "es": "¿Qué tradición local te gustaría vivir alguna vez?"
+    },
+    {
+      "id": 119,
+      "category": 0,
+      "de": "Was wäre das schlechteste Thema für eine Motivationsrede von dir?",
+      "en": "What would be the worst topic for you to give a motivational speech on?",
+      "es": "¿Sobre qué tema darías la peor charla motivacional?"
+    },
+    {
+      "id": 120,
+      "category": 1,
+      "de": "Welche Sache war auf dem Schulhof plötzlich bei allen angesagt?",
+      "en": "What suddenly became fashionable in your school playground?",
+      "es": "¿Qué se puso de moda de repente en el patio del colegio?"
+    },
+    {
+      "id": 121,
+      "category": 3,
+      "de": "Was ist für dich die beste Sitzposition im Kino?",
+      "en": "Where is the best place to sit in a cinema?",
+      "es": "¿Cuál es el mejor sitio para sentarse en el cine?"
+    },
+    {
+      "id": 122,
+      "category": 5,
+      "de": "Woran erkennst du einen guten Gastgeber?",
+      "en": "How do you recognise a good host?",
+      "es": "¿Cómo reconoces a un buen anfitrión?"
+    },
+    {
+      "id": 123,
+      "category": 2,
+      "de": "Welche drei Wörter würdest du einem sprechenden Kühlschrank beibringen?",
+      "en": "Which three words would you teach a talking fridge?",
+      "es": "¿Qué tres palabras enseñarías a una nevera que habla?"
+    },
+    {
+      "id": 124,
+      "category": 4,
+      "de": "Welche Handwerkskunst würdest du gerne vor Ort kennenlernen?",
+      "en": "Which traditional craft would you love to discover where it is practised?",
+      "es": "¿Qué oficio artesanal te gustaría conocer en su lugar de origen?"
+    },
+    {
+      "id": 125,
+      "category": 0,
+      "de": "Bei welcher Tätigkeit würdest du lieber nicht gefilmt werden, weil sie so unbeholfen aussieht?",
+      "en": "What activity would you rather not be filmed doing because you look so clumsy?",
+      "es": "¿Qué actividad preferirías que no te grabaran haciendo porque pareces muy torpe?"
+    },
+    {
+      "id": 126,
+      "category": 1,
+      "de": "Welche Kleinigkeit hat sich früher wie ein riesiger Luxus angefühlt?",
+      "en": "What little thing used to feel like an enormous luxury?",
+      "es": "¿Qué pequeña cosa te parecía antes un lujo enorme?"
+    },
+    {
+      "id": 127,
+      "category": 3,
+      "de": "Welche Sache räumst du immer an denselben falschen Ort?",
+      "en": "What do you always put away in the same wrong place?",
+      "es": "¿Qué guardas siempre en el mismo sitio equivocado?"
+    },
+    {
+      "id": 128,
+      "category": 5,
+      "de": "Welche Fähigkeit sollte man deiner Meinung nach in der Schule lernen?",
+      "en": "What skill do you think should be taught at school?",
+      "es": "¿Qué habilidad crees que debería enseñarse en el colegio?"
+    },
+    {
+      "id": 129,
+      "category": 2,
+      "de": "Wenn dein Haustürschild einen zweiten Satz hätte, was stünde darauf?",
+      "en": "If your front door sign had a second line, what would it say?",
+      "es": "Si el cartel de tu puerta tuviera una segunda línea, ¿qué pondría?"
+    },
+    {
+      "id": 130,
+      "category": 4,
+      "de": "Welche Art von Ausflug würdest du spontan mitmachen?",
+      "en": "What kind of day trip would you join on the spur of the moment?",
+      "es": "¿A qué tipo de excursión te apuntarías sin pensártelo?"
+    },
+    {
+      "id": 131,
+      "category": 0,
+      "de": "Welches Geräusch könntest du am schlechtesten nachmachen?",
+      "en": "Which sound would you be worst at imitating?",
+      "es": "¿Qué sonido se te daría peor imitar?"
+    },
+    {
+      "id": 132,
+      "category": 1,
+      "de": "Was hast du früher gesammelt, ohne zu wissen warum?",
+      "en": "What did you collect when you were younger without knowing why?",
+      "es": "¿Qué coleccionabas de pequeño sin saber por qué?"
+    },
+    {
+      "id": 133,
+      "category": 3,
+      "de": "Was ist dein persönlicher Trick gegen einen langweiligen Einkauf?",
+      "en": "What's your personal trick for making shopping less boring?",
+      "es": "¿Qué truco tienes para que hacer la compra sea menos aburrido?"
+    },
+    {
+      "id": 134,
+      "category": 5,
+      "de": "Welche Sache ist ihren hohen Preis tatsächlich wert?",
+      "en": "What is genuinely worth its high price?",
+      "es": "¿Qué cosa merece realmente lo que cuesta?"
+    },
+    {
+      "id": 135,
+      "category": 2,
+      "de": "Welches völlig unpassende Geräusch sollte ein Auto beim Hupen machen?",
+      "en": "What completely inappropriate sound should a car horn make?",
+      "es": "¿Qué sonido totalmente inesperado debería hacer el claxon de un coche?"
+    },
+    {
+      "id": 136,
+      "category": 4,
+      "de": "Welche ungewöhnliche Unterkunft würdest du gerne ausprobieren?",
+      "en": "What unusual type of accommodation would you like to try?",
+      "es": "¿En qué alojamiento poco habitual te gustaría dormir?"
+    },
+    {
+      "id": 137,
+      "category": 0,
+      "de": "Was wäre dein peinlichster Künstlername, wenn er aus deinem Frühstück bestünde?",
+      "en": "What would your most embarrassing stage name be if it came from your breakfast?",
+      "es": "¿Cuál sería tu nombre artístico más ridículo si saliera de tu desayuno?"
+    },
+    {
+      "id": 138,
+      "category": 1,
+      "de": "Welche Schulaufgabe hat dir überraschend viel Spaß gemacht?",
+      "en": "Which school assignment did you enjoy surprisingly much?",
+      "es": "¿Qué tarea del colegio te gustó sorprendentemente?"
+    },
+    {
+      "id": 139,
+      "category": 3,
+      "de": "Welche Sache dauert bei dir immer länger als geplant?",
+      "en": "What always takes you longer than planned?",
+      "es": "¿Qué tardas siempre más de lo previsto en hacer?"
+    },
+    {
+      "id": 140,
+      "category": 5,
+      "de": "Welche kleine Geste macht einen guten Nachbarn aus?",
+      "en": "What small gesture makes someone a good neighbour?",
+      "es": "¿Qué pequeño gesto distingue a un buen vecino?"
+    },
+    {
+      "id": 141,
+      "category": 2,
+      "de": "Welche Erfindung sollte ausschließlich an Montagen funktionieren?",
+      "en": "What invention should only work on Mondays?",
+      "es": "¿Qué invento debería funcionar únicamente los lunes?"
+    },
+    {
+      "id": 142,
+      "category": 4,
+      "de": "Welches ungewöhnliche Fortbewegungsmittel würdest du gerne ausprobieren?",
+      "en": "What unusual means of transport would you like to try?",
+      "es": "¿Qué medio de transporte poco habitual te gustaría probar?"
+    },
+    {
+      "id": 143,
+      "category": 0,
+      "de": "Welche Aufgabe würdest du bei einer Talentshow möglichst elegant umgehen?",
+      "en": "What task would you try to dodge as elegantly as possible on a talent show?",
+      "es": "¿Qué prueba intentarías esquivar con elegancia en un concurso de talentos?"
+    },
+    {
+      "id": 144,
+      "category": 1,
+      "de": "Welches Geschenk aus deiner Kindheit hast du besonders lange benutzt?",
+      "en": "Which childhood present did you use for a particularly long time?",
+      "es": "¿Qué regalo de tu infancia utilizaste durante muchísimo tiempo?"
+    },
+    {
+      "id": 145,
+      "category": 3,
+      "de": "Welche App öffnest du manchmal und vergisst sofort warum?",
+      "en": "Which app do you sometimes open and immediately forget why?",
+      "es": "¿Qué aplicación abres a veces y enseguida olvidas por qué?"
+    },
+    {
+      "id": 146,
+      "category": 5,
+      "de": "Welche höfliche Floskel könnte man deiner Meinung nach abschaffen?",
+      "en": "Which polite expression could we do without?",
+      "es": "¿De qué fórmula de cortesía podríamos prescindir?"
+    },
+    {
+      "id": 147,
+      "category": 2,
+      "de": "Was wäre die erste Attraktion in einem Freizeitpark über deinen Alltag?",
+      "en": "What would be the first attraction in a theme park based on your everyday life?",
+      "es": "¿Cuál sería la primera atracción de un parque temático sobre tu día a día?"
+    },
+    {
+      "id": 148,
+      "category": 4,
+      "de": "Welche Naturerscheinung würdest du gerne live erleben?",
+      "en": "What natural phenomenon would you love to witness in person?",
+      "es": "¿Qué fenómeno natural te gustaría presenciar en directo?"
+    },
+    {
+      "id": 149,
+      "category": 0,
+      "de": "Welche Sache würdest du niemals in Zeitlupe sehen wollen?",
+      "en": "What would you never want to watch in slow motion?",
+      "es": "¿Qué cosa no querrías ver nunca a cámara lenta?"
+    },
+    {
+      "id": 150,
+      "category": 1,
+      "de": "Welches Geräusch erinnert dich an deine Schulzeit?",
+      "en": "What sound reminds you of your school days?",
+      "es": "¿Qué sonido te recuerda a tu época escolar?"
+    },
+    {
+      "id": 151,
+      "category": 3,
+      "de": "Was machst du lieber von Hand als mit einer Maschine?",
+      "en": "What do you prefer doing by hand rather than using a machine?",
+      "es": "¿Qué prefieres hacer a mano en vez de con una máquina?"
+    },
+    {
+      "id": 152,
+      "category": 5,
+      "de": "Was macht für dich ein gutes Gespräch aus?",
+      "en": "What makes a good conversation for you?",
+      "es": "¿Qué hace que una conversación sea buena para ti?"
+    },
+    {
+      "id": 153,
+      "category": 2,
+      "de": "Welches Tier sollte einen eigenen Nachrichtensender bekommen?",
+      "en": "Which animal should have its own news channel?",
+      "es": "¿Qué animal debería tener su propio canal de noticias?"
+    },
+    {
+      "id": 154,
+      "category": 4,
+      "de": "Welche Stadt würdest du gerne mit einem Einheimischen entdecken?",
+      "en": "Which city would you love to explore with a local?",
+      "es": "¿Qué ciudad te gustaría descubrir con alguien de allí?"
+    },
+    {
+      "id": 155,
+      "category": 0,
+      "de": "Welche Tätigkeit klingt in einer Stellenanzeige viel besser als in Wirklichkeit?",
+      "en": "What activity sounds much better in a job advert than in real life?",
+      "es": "¿Qué actividad suena mucho mejor en una oferta de empleo que en la realidad?"
+    },
+    {
+      "id": 156,
+      "category": 1,
+      "de": "Welche Sache hast du früher heimlich für besonders erwachsen gehalten?",
+      "en": "What did you secretly consider particularly grown-up when you were younger?",
+      "es": "¿Qué cosa te parecía de mayores cuando eras pequeño?"
+    },
+    {
+      "id": 157,
+      "category": 3,
+      "de": "Was ist für dich das beste Geräusch am Ende eines Arbeitstags?",
+      "en": "What's the best sound at the end of a working day?",
+      "es": "¿Cuál es el mejor sonido al terminar la jornada laboral?"
+    },
+    {
+      "id": 158,
+      "category": 5,
+      "de": "Welche kleine Entscheidung sollte man öfter spontan treffen?",
+      "en": "What small decision should people make spontaneously more often?",
+      "es": "¿Qué pequeña decisión deberíamos tomar más a menudo de forma espontánea?"
+    },
+    {
+      "id": 159,
+      "category": 2,
+      "de": "Welche Funktion sollte eine Fernbedienung fürs echte Leben haben?",
+      "en": "What feature should a remote control for real life have?",
+      "es": "¿Qué función debería tener un mando a distancia para la vida real?"
+    },
+    {
+      "id": 160,
+      "category": 4,
+      "de": "Welchen Ort würdest du gerne einmal vor Sonnenaufgang besuchen?",
+      "en": "What place would you like to visit before sunrise?",
+      "es": "¿Qué lugar te gustaría visitar antes de que salga el sol?"
+    },
+    {
+      "id": 161,
+      "category": 0,
+      "de": "Welche Sache würdest du als Sportkommentator am liebsten kommentieren?",
+      "en": "What activity would you most enjoy commentating on as a sports commentator?",
+      "es": "¿Qué actividad te gustaría narrar como si fueras comentarista deportivo?"
+    },
+    {
+      "id": 162,
+      "category": 1,
+      "de": "Welche Geschichte aus deiner Schulzeit erzählst du immer wieder gerne?",
+      "en": "What story from your school days do you enjoy telling again and again?",
+      "es": "¿Qué anécdota de tu época escolar te gusta contar una y otra vez?"
+    },
+    {
+      "id": 163,
+      "category": 3,
+      "de": "Was ist dein Lieblingsplatz zum Warten?",
+      "en": "Where is your favourite place to wait?",
+      "es": "¿Cuál es tu sitio favorito para esperar?"
+    },
+    {
+      "id": 164,
+      "category": 5,
+      "de": "Welche moderne Gewohnheit findest du besonders praktisch?",
+      "en": "What modern habit do you find particularly useful?",
+      "es": "¿Qué costumbre moderna te parece especialmente práctica?"
+    },
+    {
+      "id": 165,
+      "category": 2,
+      "de": "Welche Überschrift hätte die Zeitung über deinen letzten Sonntag?",
+      "en": "What newspaper headline would describe your last Sunday?",
+      "es": "¿Qué titular de periódico describiría tu último domingo?"
+    },
+    {
+      "id": 166,
+      "category": 4,
+      "de": "Welche Veranstaltung im Ausland würdest du gerne einmal besuchen?",
+      "en": "What event abroad would you love to attend?",
+      "es": "¿A qué evento en el extranjero te gustaría asistir?"
+    },
+    {
+      "id": 167,
+      "category": 0,
+      "de": "Welches Haushaltsgerät hat deiner Meinung nach die größte Diva-Energie?",
+      "en": "Which household appliance has the biggest diva energy?",
+      "es": "¿Qué electrodoméstico tiene más aires de diva?"
+    },
+    {
+      "id": 168,
+      "category": 1,
+      "de": "Welche Sache aus deiner ersten Wohnung würdest du heute noch benutzen?",
+      "en": "What item from your first home would you still use today?",
+      "es": "¿Qué objeto de tu primera casa seguirías usando hoy?"
+    },
+    {
+      "id": 169,
+      "category": 3,
+      "de": "Was machst du grundsätzlich in einer bestimmten Reihenfolge?",
+      "en": "What do you always do in a particular order?",
+      "es": "¿Qué haces siempre siguiendo un orden concreto?"
+    },
+    {
+      "id": 170,
+      "category": 5,
+      "de": "Was ist für dich ein Zeichen von gutem Geschmack, das nichts kostet?",
+      "en": "What is a sign of good taste that costs nothing?",
+      "es": "¿Qué señal de buen gusto no cuesta nada?"
+    },
+    {
+      "id": 171,
+      "category": 2,
+      "de": "Welche harmlose Sache sollte einen dramatischen Soundtrack bekommen?",
+      "en": "What harmless activity deserves a dramatic soundtrack?",
+      "es": "¿Qué actividad inofensiva merece una banda sonora dramática?"
+    },
+    {
+      "id": 172,
+      "category": 4,
+      "de": "Welche regionale Spezialität würdest du gerne direkt bei ihrem Hersteller probieren?",
+      "en": "What regional speciality would you like to try straight from its producer?",
+      "es": "¿Qué especialidad regional te gustaría probar directamente donde se elabora?"
+    },
+    {
+      "id": 173,
+      "category": 0,
+      "de": "Welche Sache würdest du bei einem Werbespot besonders schlecht verkaufen?",
+      "en": "What would you be particularly bad at selling in an advert?",
+      "es": "¿Qué producto se te daría especialmente mal vender en un anuncio?"
+    },
+    {
+      "id": 174,
+      "category": 1,
+      "de": "Welche frühere Freizeitbeschäftigung würdest du gerne wieder aufnehmen?",
+      "en": "What pastime from your younger years would you like to take up again?",
+      "es": "¿Qué afición de antes te gustaría retomar?"
+    },
+    {
+      "id": 175,
+      "category": 3,
+      "de": "Was ist das Erste, das du bei einem neuen Stift ausprobierst?",
+      "en": "What's the first thing you try with a new pen?",
+      "es": "¿Qué es lo primero que pruebas con un bolígrafo nuevo?"
+    },
+    {
+      "id": 176,
+      "category": 5,
+      "de": "Welche Sache sollte in öffentlichen Gebäuden selbstverständlich sein?",
+      "en": "What should be standard in public buildings?",
+      "es": "¿Qué debería ser imprescindible en los edificios públicos?"
+    },
+    {
+      "id": 177,
+      "category": 2,
+      "de": "Wenn du einen neuen Wochentag erfinden könntest, wofür wäre er da?",
+      "en": "If you could invent a new day of the week, what would it be for?",
+      "es": "Si pudieras inventar un día de la semana, ¿para qué serviría?"
+    },
+    {
+      "id": 178,
+      "category": 4,
+      "de": "Welche kleine Entdeckung in deiner Umgebung hat dich zuletzt überrascht?",
+      "en": "What little discovery near home surprised you recently?",
+      "es": "¿Qué pequeño descubrimiento cerca de casa te ha sorprendido últimamente?"
+    },
+    {
+      "id": 179,
+      "category": 0,
+      "de": "Welche Sache klingt besonders wichtig, wenn man sie flüstert?",
+      "en": "What sounds particularly important when whispered?",
+      "es": "¿Qué cosa parece especialmente importante cuando se dice en voz baja?"
+    },
+    {
+      "id": 180,
+      "category": 1,
+      "de": "Was war dein Lieblingsritual vor den Schulferien?",
+      "en": "What was your favourite ritual before the school holidays?",
+      "es": "¿Cuál era tu ritual favorito antes de las vacaciones escolares?"
+    },
+    {
+      "id": 181,
+      "category": 3,
+      "de": "Was ist deine bevorzugte Strategie beim Öffnen einer neuen Packung Kekse?",
+      "en": "What's your preferred strategy for opening a new packet of biscuits?",
+      "es": "¿Cuál es tu estrategia para estrenar un paquete de galletas?"
+    },
+    {
+      "id": 182,
+      "category": 5,
+      "de": "Welche Sache sollte man sich öfter von Freunden zeigen lassen?",
+      "en": "What should people ask their friends to show them more often?",
+      "es": "¿Qué deberíamos pedir a nuestros amigos que nos enseñaran más a menudo?"
+    },
+    {
+      "id": 183,
+      "category": 2,
+      "de": "Welchen Gegenstand würdest du als Trophäe für einen besonders gelungenen Sonntag vergeben?",
+      "en": "What object would you award as a trophy for a particularly successful Sunday?",
+      "es": "¿Qué objeto entregarías como trofeo por un domingo especialmente bueno?"
+    },
+    {
+      "id": 184,
+      "category": 4,
+      "de": "Welches Reiseziel interessiert dich vor allem wegen seiner Architektur?",
+      "en": "Which destination interests you mainly because of its architecture?",
+      "es": "¿Qué destino te interesa sobre todo por su arquitectura?"
+    },
+    {
+      "id": 185,
+      "category": 0,
+      "de": "Welche völlig normale Tätigkeit wäre mit Applaus am Ende besonders lustig?",
+      "en": "What perfectly normal activity would be especially funny with applause at the end?",
+      "es": "¿Qué actividad totalmente normal sería especialmente graciosa con aplausos al terminar?"
+    },
+    {
+      "id": 186,
+      "category": 1,
+      "de": "Welche Sache hast du als Kind für viel schwieriger gehalten, als sie tatsächlich ist?",
+      "en": "What did you think was much harder as a child than it really is?",
+      "es": "¿Qué te parecía mucho más difícil de pequeño de lo que realmente es?"
+    },
+    {
+      "id": 187,
+      "category": 3,
+      "de": "Welche Sache erledigst du am liebsten früh morgens?",
+      "en": "What do you most enjoy getting done early in the morning?",
+      "es": "¿Qué prefieres hacer a primera hora de la mañana?"
+    },
+    {
+      "id": 188,
+      "category": 5,
+      "de": "Welche Art von Humor funktioniert für dich fast immer?",
+      "en": "What kind of humour almost always works for you?",
+      "es": "¿Qué tipo de humor casi siempre te hace gracia?"
+    },
+    {
+      "id": 189,
+      "category": 2,
+      "de": "Welchen Beruf sollte es für genau eine Stunde pro Woche geben?",
+      "en": "What job should exist for exactly one hour a week?",
+      "es": "¿Qué profesión debería existir durante exactamente una hora a la semana?"
+    },
+    {
+      "id": 190,
+      "category": 4,
+      "de": "Welche Aktivität würdest du gerne einmal mit einem Profi ausprobieren?",
+      "en": "What activity would you love to try with a professional?",
+      "es": "¿Qué actividad te gustaría probar alguna vez con un profesional?"
+    },
+    {
+      "id": 191,
+      "category": 0,
+      "de": "Welche Sache wäre als olympische Disziplin besonders unterhaltsam?",
+      "en": "What would be particularly entertaining as an Olympic event?",
+      "es": "¿Qué actividad sería especialmente divertida como disciplina olímpica?"
+    },
+    {
+      "id": 192,
+      "category": 1,
+      "de": "Welcher Ausflug aus deiner Kindheit ist dir besonders im Gedächtnis geblieben?",
+      "en": "Which childhood outing particularly sticks in your mind?",
+      "es": "¿Qué excursión de tu infancia recuerdas especialmente?"
+    },
+    {
+      "id": 193,
+      "category": 3,
+      "de": "Welche Kleinigkeit macht einen Hotelaufenthalt für dich besser?",
+      "en": "What little thing makes a hotel stay better for you?",
+      "es": "¿Qué pequeño detalle mejora tu estancia en un hotel?"
+    },
+    {
+      "id": 194,
+      "category": 5,
+      "de": "Was sollte bei einem Treffen mit Freunden niemals fehlen?",
+      "en": "What should never be missing at a get-together with friends?",
+      "es": "¿Qué no debería faltar nunca en una reunión con amigos?"
+    },
+    {
+      "id": 195,
+      "category": 2,
+      "de": "Welche Nachricht würdest du auf eine riesige Anzeigetafel mitten in der Stadt schreiben?",
+      "en": "What message would you put on a giant billboard in the city centre?",
+      "es": "¿Qué mensaje pondrías en una pantalla gigante en pleno centro de la ciudad?"
+    },
+    {
+      "id": 196,
+      "category": 4,
+      "de": "Welchen Ort würdest du gerne einmal ganz ohne andere Besucher erleben?",
+      "en": "What place would you love to experience without any other visitors?",
+      "es": "¿Qué lugar te gustaría disfrutar sin ningún otro visitante?"
+    },
+    {
+      "id": 197,
+      "category": 0,
+      "de": "Welche Sache würdest du gerne einmal von einem Opernsänger erklärt bekommen?",
+      "en": "What would you love to have explained by an opera singer?",
+      "es": "¿Qué te gustaría que te explicara un cantante de ópera?"
+    },
+    {
+      "id": 198,
+      "category": 1,
+      "de": "Welche Kleinigkeit hat dich bei deinem ersten Urlaub ohne Eltern überrascht?",
+      "en": "What little thing surprised you on your first holiday without your parents?",
+      "es": "¿Qué pequeño detalle te sorprendió en tus primeras vacaciones sin tus padres?"
+    },
+    {
+      "id": 199,
+      "category": 5,
+      "de": "Welche Sache würdest du gerne öfter mit anderen teilen, statt sie allein zu machen?",
+      "en": "What would you like to do with others more often rather than on your own?",
+      "es": "¿Qué te gustaría hacer más a menudo en compañía en vez de por tu cuenta?"
     }
   ]
 }

@@ -92,7 +92,7 @@ const CCCommunity=(()=>{
  function setVote(v){
   if(!ready||!Number.isInteger(question)||question<0||question>=100000)return;
   const old=data.votes[question];if(old?.vote===v){if(old.pending)flush();return}
-  const next={receipt:old?.receipt||receipt(),revision:(old?.revision||0)+1,vote:v,language:lang,app_version:version,pending:true,attempted:false,confirmed:old?.confirmed||null};
+  const next={receipt:old?.receipt||receipt(),revision:(old?.revision||0)+1,vote:v,language:lang,app_version:version,pending:true,attempted:!!(old?.pending&&old?.attempted),confirmed:old?.confirmed||null};
   data.votes[question]=next;if(!persist()){if(old)data.votes[question]=old;else delete data.votes[question];say(12);return}
   statusIndex=9;render();flush()
  }

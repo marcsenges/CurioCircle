@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "published": "2026-11-24",
   "questions": [
     {
@@ -121,6 +121,486 @@
       "en": "What is the strangest food combination you actually enjoy?",
       "de": "Welche seltsame Essenskombination schmeckt dir wirklich?",
       "es": "¿Qué combinación rara de alimentos te gusta de verdad?"
+    },
+    {
+      "id": 20,
+      "en": "Which three things would you put in a time capsule?",
+      "de": "Welche drei Dinge würdest du in eine Zeitkapsel legen?",
+      "es": "¿Qué tres cosas meterías en una cápsula del tiempo?"
+    },
+    {
+      "id": 21,
+      "en": "What would your signature sandwich contain?",
+      "de": "Was käme auf dein persönliches Lieblingssandwich?",
+      "es": "¿Qué llevaría tu bocadillo estrella?"
+    },
+    {
+      "id": 22,
+      "en": "Which word do you particularly like the sound of?",
+      "de": "Welches Wort klingt für dich besonders schön?",
+      "es": "¿Qué palabra te gusta especialmente por cómo suena?"
+    },
+    {
+      "id": 23,
+      "en": "What was your first paid job?",
+      "de": "Was war dein erster bezahlter Job?",
+      "es": "¿Cuál fue tu primer trabajo remunerado?"
+    },
+    {
+      "id": 24,
+      "en": "Which shop could you browse for hours?",
+      "de": "In welchem Laden könntest du stundenlang stöbern?",
+      "es": "¿En qué tienda podrías pasarte horas mirando cosas?"
+    },
+    {
+      "id": 25,
+      "en": "What would you name a boat?",
+      "de": "Wie würdest du ein Boot nennen?",
+      "es": "¿Qué nombre le pondrías a un barco?"
+    },
+    {
+      "id": 26,
+      "en": "Which film have you watched most often?",
+      "de": "Welchen Film hast du am häufigsten gesehen?",
+      "es": "¿Qué película has visto más veces?"
+    },
+    {
+      "id": 27,
+      "en": "What is your favourite thing about Sundays?",
+      "de": "Was magst du an Sonntagen am liebsten?",
+      "es": "¿Qué es lo que más te gusta de los domingos?"
+    },
+    {
+      "id": 28,
+      "en": "Which invention deserves more appreciation?",
+      "de": "Welche Erfindung verdient mehr Anerkennung?",
+      "es": "¿Qué invento merece más reconocimiento?"
+    },
+    {
+      "id": 29,
+      "en": "What would you choose as a mascot for this group?",
+      "de": "Welches Maskottchen würdest du für diese Runde wählen?",
+      "es": "¿Qué mascota elegirías para este grupo?"
+    },
+    {
+      "id": 30,
+      "en": "Which game were you obsessed with as a child?",
+      "de": "Welches Spiel hast du als Kind ständig gespielt?",
+      "es": "¿A qué juego no parabas de jugar de pequeño?"
+    },
+    {
+      "id": 31,
+      "en": "What is the best thing to eat after midnight?",
+      "de": "Was isst du am liebsten nach Mitternacht?",
+      "es": "¿Qué es lo mejor que se puede comer después de medianoche?"
+    },
+    {
+      "id": 32,
+      "en": "Which celebrity would you invite to a barbecue?",
+      "de": "Welchen Prominenten würdest du zum Grillen einladen?",
+      "es": "¿A qué famoso invitarías a una barbacoa?"
+    },
+    {
+      "id": 33,
+      "en": "What is your favourite excuse for staying at home?",
+      "de": "Was ist deine liebste Ausrede, um zu Hause zu bleiben?",
+      "es": "¿Cuál es tu excusa favorita para quedarte en casa?"
+    },
+    {
+      "id": 34,
+      "en": "Which subject would you teach at school?",
+      "de": "Welches Fach würdest du in der Schule unterrichten?",
+      "es": "¿Qué asignatura darías en un colegio?"
+    },
+    {
+      "id": 35,
+      "en": "What is the funniest thing you have misunderstood?",
+      "de": "Was war dein lustigstes Missverständnis?",
+      "es": "¿Cuál ha sido tu malentendido más divertido?"
+    },
+    {
+      "id": 36,
+      "en": "Which city would you explore without a map?",
+      "de": "Welche Stadt würdest du ohne Stadtplan erkunden?",
+      "es": "¿Qué ciudad explorarías sin mapa?"
+    },
+    {
+      "id": 37,
+      "en": "What would you serve at your own food truck?",
+      "de": "Was würdest du in deinem eigenen Foodtruck anbieten?",
+      "es": "¿Qué servirías en tu propia furgoneta de comida?"
+    },
+    {
+      "id": 38,
+      "en": "Which household item do you keep losing?",
+      "de": "Welchen Haushaltsgegenstand verlegst du ständig?",
+      "es": "¿Qué objeto de casa pierdes continuamente?"
+    },
+    {
+      "id": 39,
+      "en": "What is your favourite thing to do on a rainy day?",
+      "de": "Was machst du an Regentagen am liebsten?",
+      "es": "¿Qué te gusta hacer cuando llueve?"
+    },
+    {
+      "id": 40,
+      "en": "Which sport would be funniest with fancy dress?",
+      "de": "Welche Sportart wäre in Verkleidung am lustigsten?",
+      "es": "¿Qué deporte sería más divertido si todos fueran disfrazados?"
+    },
+    {
+      "id": 41,
+      "en": "What is the best compliment about your cooking you could receive?",
+      "de": "Welches Kompliment über deine Kochkünste würde dich am meisten freuen?",
+      "es": "¿Qué cumplido sobre tu forma de cocinar te haría más ilusión?"
+    },
+    {
+      "id": 42,
+      "en": "Which childhood toy would you happily buy again?",
+      "de": "Welches Spielzeug aus deiner Kindheit würdest du wieder kaufen?",
+      "es": "¿Qué juguete de tu infancia volverías a comprar?"
+    },
+    {
+      "id": 43,
+      "en": "What is your favourite thing about travelling by train?",
+      "de": "Was magst du am Zugfahren am liebsten?",
+      "es": "¿Qué es lo que más te gusta de viajar en tren?"
+    },
+    {
+      "id": 44,
+      "en": "Which silly rule would you introduce for one day?",
+      "de": "Welche alberne Regel würdest du für einen Tag einführen?",
+      "es": "¿Qué norma absurda implantarías durante un día?"
+    },
+    {
+      "id": 45,
+      "en": "What would your dream garden have in it?",
+      "de": "Was dürfte in deinem Traumgarten nicht fehlen?",
+      "es": "¿Qué no podría faltar en el jardín de tus sueños?"
+    },
+    {
+      "id": 46,
+      "en": "Which snack disappears fastest when you are around?",
+      "de": "Welcher Snack verschwindet am schnellsten, wenn du da bist?",
+      "es": "¿Qué aperitivo desaparece más rápido cuando estás tú?"
+    },
+    {
+      "id": 47,
+      "en": "What is the nicest surprise you have found in a pocket?",
+      "de": "Was war die schönste Überraschung, die du in einer Tasche gefunden hast?",
+      "es": "¿Cuál ha sido la mejor sorpresa que has encontrado en un bolsillo?"
+    },
+    {
+      "id": 48,
+      "en": "Which instrument would you like to play well?",
+      "de": "Welches Instrument würdest du gerne gut spielen können?",
+      "es": "¿Qué instrumento te gustaría tocar bien?"
+    },
+    {
+      "id": 49,
+      "en": "What would you call a festival organised by you?",
+      "de": "Wie würde ein von dir organisiertes Festival heißen?",
+      "es": "¿Cómo llamarías a un festival organizado por ti?"
+    },
+    {
+      "id": 50,
+      "en": "Which everyday task do you secretly enjoy?",
+      "de": "Welche alltägliche Aufgabe machst du insgeheim gerne?",
+      "es": "¿Qué tarea cotidiana disfrutas en secreto?"
+    },
+    {
+      "id": 51,
+      "en": "What is your ideal breakfast on holiday?",
+      "de": "Wie sieht dein ideales Urlaubsfrühstück aus?",
+      "es": "¿Cómo sería tu desayuno ideal de vacaciones?"
+    },
+    {
+      "id": 52,
+      "en": "Which decade had the best music?",
+      "de": "Welches Jahrzehnt hatte die beste Musik?",
+      "es": "¿Qué década tuvo la mejor música?"
+    },
+    {
+      "id": 53,
+      "en": "What would you put on a personalised number plate?",
+      "de": "Was würde auf deinem Wunschkennzeichen stehen?",
+      "es": "¿Qué pondrías en una matrícula personalizada?"
+    },
+    {
+      "id": 54,
+      "en": "Which skill would you learn in a weekend if you could?",
+      "de": "Welche Fähigkeit würdest du gerne an einem Wochenende erlernen?",
+      "es": "¿Qué habilidad aprenderías en un fin de semana si pudieras?"
+    },
+    {
+      "id": 55,
+      "en": "What is your favourite thing to order in a café?",
+      "de": "Was bestellst du im Café am liebsten?",
+      "es": "¿Qué te gusta pedir en una cafetería?"
+    },
+    {
+      "id": 56,
+      "en": "Which animal would you like to observe in the wild?",
+      "de": "Welches Tier würdest du gerne in freier Wildbahn beobachten?",
+      "es": "¿Qué animal te gustaría observar en libertad?"
+    },
+    {
+      "id": 57,
+      "en": "What would your autobiography be called?",
+      "de": "Wie würde deine Autobiografie heißen?",
+      "es": "¿Cómo se titularía tu autobiografía?"
+    },
+    {
+      "id": 58,
+      "en": "Which food tastes better the next day?",
+      "de": "Welches Essen schmeckt am nächsten Tag besser?",
+      "es": "¿Qué comida está más rica al día siguiente?"
+    },
+    {
+      "id": 59,
+      "en": "What is your favourite way to spend a spare hour?",
+      "de": "Wie verbringst du am liebsten eine freie Stunde?",
+      "es": "¿Cómo prefieres pasar una hora libre?"
+    },
+    {
+      "id": 60,
+      "en": "Which museum would you create if money were no object?",
+      "de": "Welches Museum würdest du eröffnen, wenn Geld keine Rolle spielte?",
+      "es": "¿Qué museo crearías si el dinero no fuera un problema?"
+    },
+    {
+      "id": 61,
+      "en": "What is the most memorable meal you have had on holiday?",
+      "de": "Welches Essen im Urlaub ist dir besonders in Erinnerung geblieben?",
+      "es": "¿Qué comida de vacaciones recuerdas especialmente?"
+    },
+    {
+      "id": 62,
+      "en": "Which fictional character would be a terrible tour guide?",
+      "de": "Welche erfundene Figur wäre ein furchtbarer Reiseführer?",
+      "es": "¿Qué personaje ficticio sería un guía turístico desastroso?"
+    },
+    {
+      "id": 63,
+      "en": "What do you always notice first in a hotel room?",
+      "de": "Was fällt dir in einem Hotelzimmer immer zuerst auf?",
+      "es": "¿En qué te fijas primero al entrar en una habitación de hotel?"
+    },
+    {
+      "id": 64,
+      "en": "Which fruit would you happily grow at home?",
+      "de": "Welches Obst würdest du gerne selbst anbauen?",
+      "es": "¿Qué fruta te gustaría cultivar en casa?"
+    },
+    {
+      "id": 65,
+      "en": "What would your ideal picnic spot look like?",
+      "de": "Wie sähe dein idealer Picknickplatz aus?",
+      "es": "¿Cómo sería tu lugar ideal para hacer un pícnic?"
+    },
+    {
+      "id": 66,
+      "en": "Which old technology do you miss a little?",
+      "de": "Welche alte Technik vermisst du ein bisschen?",
+      "es": "¿Qué tecnología antigua echas un poco de menos?"
+    },
+    {
+      "id": 67,
+      "en": "What is the best name you have heard for a pet?",
+      "de": "Was ist der beste Haustiername, den du je gehört hast?",
+      "es": "¿Cuál es el mejor nombre de mascota que has oído?"
+    },
+    {
+      "id": 68,
+      "en": "Which hobby looks easier than it really is?",
+      "de": "Welches Hobby sieht leichter aus, als es tatsächlich ist?",
+      "es": "¿Qué afición parece más fácil de lo que realmente es?"
+    },
+    {
+      "id": 69,
+      "en": "What would you do with a surprise day off tomorrow?",
+      "de": "Was würdest du mit einem überraschend freien Tag morgen anfangen?",
+      "es": "¿Qué harías si mañana tuvieras el día libre por sorpresa?"
+    },
+    {
+      "id": 70,
+      "en": "Which dish would you enter in a cooking competition?",
+      "de": "Mit welchem Gericht würdest du bei einem Kochwettbewerb antreten?",
+      "es": "¿Con qué plato participarías en un concurso de cocina?"
+    },
+    {
+      "id": 71,
+      "en": "What is the funniest thing you have seen on public transport?",
+      "de": "Was war das Lustigste, das du in öffentlichen Verkehrsmitteln erlebt hast?",
+      "es": "¿Qué es lo más divertido que has visto en el transporte público?"
+    },
+    {
+      "id": 72,
+      "en": "Which place looks particularly beautiful at night?",
+      "de": "Welcher Ort sieht nachts besonders schön aus?",
+      "es": "¿Qué lugar te parece especialmente bonito de noche?"
+    },
+    {
+      "id": 73,
+      "en": "What would you collect if space were unlimited?",
+      "de": "Was würdest du sammeln, wenn du unbegrenzt Platz hättest?",
+      "es": "¿Qué coleccionarías si tuvieras espacio ilimitado?"
+    },
+    {
+      "id": 74,
+      "en": "Which everyday phrase do you use too often?",
+      "de": "Welche alltägliche Redewendung benutzt du zu oft?",
+      "es": "¿Qué expresión utilizas demasiado a menudo?"
+    },
+    {
+      "id": 75,
+      "en": "What is your favourite thing about summer evenings?",
+      "de": "Was magst du an Sommerabenden am liebsten?",
+      "es": "¿Qué es lo que más te gusta de las noches de verano?"
+    },
+    {
+      "id": 76,
+      "en": "Which cartoon deserves a comeback?",
+      "de": "Welche Zeichentrickserie sollte ein Comeback feiern?",
+      "es": "¿Qué serie de dibujos animados merece volver?"
+    },
+    {
+      "id": 77,
+      "en": "What would you choose as your personal ice cream flavour?",
+      "de": "Welche persönliche Eissorte würdest du erfinden?",
+      "es": "¿Qué sabor de helado inventarías?"
+    },
+    {
+      "id": 78,
+      "en": "Which small inconvenience annoys you disproportionately?",
+      "de": "Welche Kleinigkeit nervt dich unverhältnismäßig stark?",
+      "es": "¿Qué pequeña molestia te irrita más de la cuenta?"
+    },
+    {
+      "id": 79,
+      "en": "What is the best thing you have learnt from a friend?",
+      "de": "Was ist das Beste, das du von einem Freund gelernt hast?",
+      "es": "¿Qué es lo mejor que has aprendido de un amigo?"
+    },
+    {
+      "id": 80,
+      "en": "Which building would you love to see from the inside?",
+      "de": "Welches Gebäude würdest du gerne von innen sehen?",
+      "es": "¿Qué edificio te encantaría conocer por dentro?"
+    },
+    {
+      "id": 81,
+      "en": "What would you wear to a party with no dress code whatsoever?",
+      "de": "Was würdest du auf einer Party ganz ohne Dresscode tragen?",
+      "es": "¿Qué te pondrías para una fiesta sin ningún código de vestimenta?"
+    },
+    {
+      "id": 82,
+      "en": "Which board game brings out your competitive side?",
+      "de": "Bei welchem Brettspiel kommt dein Ehrgeiz zum Vorschein?",
+      "es": "¿Qué juego de mesa despierta tu lado competitivo?"
+    },
+    {
+      "id": 83,
+      "en": "What is your favourite thing to find at a market?",
+      "de": "Was entdeckst du auf einem Markt am liebsten?",
+      "es": "¿Qué te gusta más encontrar en un mercadillo?"
+    },
+    {
+      "id": 84,
+      "en": "Which everyday object would confuse someone from 200 years ago?",
+      "de": "Welcher Alltagsgegenstand würde jemanden von vor 200 Jahren verwirren?",
+      "es": "¿Qué objeto cotidiano desconcertaría a alguien de hace 200 años?"
+    },
+    {
+      "id": 85,
+      "en": "What is your favourite way to celebrate good news?",
+      "de": "Wie feierst du gute Nachrichten am liebsten?",
+      "es": "¿Cómo prefieres celebrar una buena noticia?"
+    },
+    {
+      "id": 86,
+      "en": "Which place would you recommend for a first visit to your region?",
+      "de": "Welchen Ort würdest du bei einem ersten Besuch in deiner Region empfehlen?",
+      "es": "¿Qué lugar recomendarías a quien visita tu región por primera vez?"
+    },
+    {
+      "id": 87,
+      "en": "What would you put in a vending machine of your own?",
+      "de": "Was würdest du in deinem eigenen Verkaufsautomaten anbieten?",
+      "es": "¿Qué venderías en tu propia máquina expendedora?"
+    },
+    {
+      "id": 88,
+      "en": "Which harmless habit makes you feel like an old person?",
+      "de": "Bei welcher harmlosen Angewohnheit fühlst du dich alt?",
+      "es": "¿Qué costumbre inofensiva te hace sentir mayor?"
+    },
+    {
+      "id": 89,
+      "en": "What is your favourite thing about having guests?",
+      "de": "Was magst du am liebsten daran, Besuch zu haben?",
+      "es": "¿Qué es lo que más te gusta de recibir visitas?"
+    },
+    {
+      "id": 90,
+      "en": "Which historical period would you visit for lunch only?",
+      "de": "Welche historische Epoche würdest du nur zum Mittagessen besuchen?",
+      "es": "¿A qué época histórica viajarías solo para comer?"
+    },
+    {
+      "id": 91,
+      "en": "What would be the theme of your ideal quiz night?",
+      "de": "Welches Thema hätte dein idealer Quizabend?",
+      "es": "¿Cuál sería el tema de tu noche de preguntas y respuestas ideal?"
+    },
+    {
+      "id": 92,
+      "en": "Which piece of advice has made everyday life easier for you?",
+      "de": "Welcher Ratschlag hat dir den Alltag erleichtert?",
+      "es": "¿Qué consejo te ha facilitado la vida cotidiana?"
+    },
+    {
+      "id": 93,
+      "en": "What is your favourite thing to photograph?",
+      "de": "Was fotografierst du am liebsten?",
+      "es": "¿Qué te gusta más fotografiar?"
+    },
+    {
+      "id": 94,
+      "en": "Which job would you try for just one afternoon?",
+      "de": "Welchen Beruf würdest du für einen Nachmittag ausprobieren?",
+      "es": "¿Qué profesión probarías durante una sola tarde?"
+    },
+    {
+      "id": 95,
+      "en": "What would you bring to a spontaneous dinner with friends?",
+      "de": "Was würdest du zu einem spontanen Abendessen mit Freunden mitbringen?",
+      "es": "¿Qué llevarías a una cena improvisada con amigos?"
+    },
+    {
+      "id": 96,
+      "en": "Which fictional gadget would you like to own?",
+      "de": "Welches erfundene Gerät hättest du gerne?",
+      "es": "¿Qué artilugio ficticio te gustaría tener?"
+    },
+    {
+      "id": 97,
+      "en": "What is a small thing that instantly improves your mood?",
+      "de": "Welche Kleinigkeit hebt sofort deine Laune?",
+      "es": "¿Qué pequeña cosa te pone de buen humor al instante?"
+    },
+    {
+      "id": 98,
+      "en": "Which unusual competition would you stand a chance of winning?",
+      "de": "Bei welchem ungewöhnlichen Wettbewerb hättest du eine Chance zu gewinnen?",
+      "es": "¿En qué concurso poco habitual tendrías posibilidades de ganar?"
+    },
+    {
+      "id": 99,
+      "en": "What new tradition would you start with your friends?",
+      "de": "Welche neue Tradition würdest du mit deinen Freunden beginnen?",
+      "es": "¿Qué nueva tradición iniciarías con tus amigos?"
     }
   ]
 }

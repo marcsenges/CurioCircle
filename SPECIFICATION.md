@@ -102,3 +102,11 @@ These ideas are explicitly outside the current 0.9.x/1.0 roadmap. Do not schedul
 - Optional conversation-style preferences: depth, humour, fantasy, flirt/intimacy. Keep safe, non-intimate default; intimate content only in explicitly opted-in adult groups, with easy skip and reset, no pressure. Consider simple presets (friends, family, party, adults-only couples, deep talk) before complex sliders.
 - Reuse existing card engine, translations, catalogue versioning, categories, feedback, favourites and achievements where sensible; no unnecessary separate engines or mandatory setup.
 - All concepts remain exploratory, with no commitment to version numbers, dates or scope. Reassess simplicity, safety, multilingual content quality and maintainability after Classic 1.0.
+
+### Future concept: audience × conversation style × game mechanics (owner endorsed, 2026-11-24)
+- Revisit after Classic 1.0 is released and stable, and the voluntary feedback/community backend is connected; not part of current release scope.
+- Distinguish three independent dimensions: audience (new acquaintances, close friends, family, couples), conversation style (safe icebreakers, humorous/curious Classic, personal but not emotionally demanding, deep talk, cheeky/party, adult intimacy), and game mechanics (Classic and the previously listed future games).
+- Classic's core is close friends, humour, curiosity and interesting personal conversation without excessive emotional depth. New acquaintances favour accessible icebreakers; families favour inclusive intergenerational content; couples may prefer emotional connection; adult party groups may choose cheekier content independently of couple profiles.
+- Treat emotional depth and sexual/intimate content as separate dimensions. Adult intimate content strictly opt-in for consenting adults; default off, easy skip, no pressure. Avoid treating couple status or intoxication as consent.
+- Use audience/style metadata and a suitability matrix internally, with a handful of intuitive presets externally. Preserve instant Classic play; no mandatory multi-step configuration. Reuse shared catalogue and card engine where useful; assess content quality and maintenance burden.
+- Bring this concept back for discussion at the appropriate post-1.0 milestone; no dates or implementation commitments now.

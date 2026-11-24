@@ -45,5 +45,16 @@ assert.equal((await send('/admin/api/suggestions',undefined,true)).json().rows[0
 assert.match((await send('/admin/api/suggestions.csv',undefined,true)).text,/"'= Welche Erfindung/);
 assert.equal((await send('/admin/api/moderate',{id:row.id,status:'rejected'},true)).status,200);
 assert.equal((await send('/admin/api/suggestions',undefined,true)).json().rows[0].status,'rejected');
+
+const fb={receipt:'d'.repeat(64),language:'es',text:'El formulario resulta sencillo.',app_version:'0.9.6.4 (Beta)'};
+assert.equal((await send('/v1/feedback',fb,false,{...env,FEEDBACK_ENABLED:'false'})).status,503);
+assert.equal((await send('/v1/feedback',fb,false,env,'https://other.example')).status,403);
+assert.equal((await send('/v1/feedback',{...fb,email:'test@example.invalid'})).status,400);
+assert.equal((await send('/v1/feedback',{...fb,text:'x'})).status,400);
+assert.equal((await send('/v1/feedback',fb)).json().status,'received');
+assert.equal((await send('/v1/feedback',fb)).json().status,'received');
+assert.equal(db.prepare('SELECT COUNT(*) AS n FROM cc_feedback').get().n,1);
+assert.equal(db.prepare('SELECT language FROM cc_feedback').get().language,'es');
+
 db.close();
 console.log('OK: isolated SQL, Worker validation, vote lifecycle, idempotency, aggregation, moderation, CSV and auth');

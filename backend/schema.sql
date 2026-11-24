@@ -26,3 +26,11 @@ CREATE INDEX IF NOT EXISTS cc_suggestion_status ON cc_suggestion(status,submitte
 CREATE TABLE IF NOT EXISTS cc_rate (
   bucket TEXT PRIMARY KEY, count INTEGER NOT NULL CHECK(count>=0)
 );
+
+CREATE TABLE IF NOT EXISTS cc_feedback (
+  receipt_hash TEXT PRIMARY KEY CHECK(length(receipt_hash)=64),
+  text TEXT NOT NULL CHECK(length(text) BETWEEN 5 AND 1000),
+  language TEXT NOT NULL CHECK(language IN ('de','en','es','fr','pt','it')),
+  app_version TEXT NOT NULL CHECK(length(app_version)<=32),
+  submitted_day TEXT NOT NULL
+);

@@ -10,11 +10,11 @@ const hash=async s=>hex(await crypto.subtle.digest('SHA-256',new TextEncoder().e
 const validReceipt=s=>typeof s==='string'&&/^[0-9a-f]{64}$/.test(s);
 const validVersion=s=>typeof s==='string'&&/^\d+\.\d+\.\d+(?:\.\d+)?(?: \(Beta\))?$/.test(s)&&s.length<=32;
 function fields(o,allowed){return o&&typeof o==='object'&&!Array.isArray(o)&&Object.keys(o).every(k=>allowed.includes(k))&&allowed.every(k=>Object.hasOwn(o,k))}
-async function body(request){
+async function body(request,limit=2048){
  if(!/^application\/json(?:;|$)/i.test(request.headers.get('content-type')||''))throw new Error('body');
  const reader=request.body?.getReader();if(!reader)throw new Error('body');
  let n=0;const parts=[];
- while(true){const {done,value}=await reader.read();if(done)break;n+=value.length;if(n>2048){await reader.cancel();throw new Error('body')}parts.push(value)}
+ while(true){const {done,value}=await reader.read();if(done)break;n+=value.length;if(n>limit){await reader.cancel();throw new Error('body')}parts.push(value)}
  const all=new Uint8Array(n);let offset=0;for(const p of parts){all.set(p,offset);offset+=p.length}
  return JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(all));
 }
@@ -58,6 +58,17 @@ async function suggest(request,env){
  const result=await db.prepare('INSERT OR IGNORE INTO cc_suggestion(receipt_hash,text,language,text_hash,submitted_day) VALUES(?,?,?,?,?)').bind(receipt,text,o.language,dedup,today()).run();
  return reply({ok:true,status:result.meta.changes?'received':'duplicate'},200,true);
 }
+async function feedback(request,env){
+ let o;try{o=await body(request,8192)}catch{return fail('invalid_body',400,true)}
+ if(!fields(o,['receipt','language','text','app_version'])||!validReceipt(o.receipt)||!LANG.has(o.language)||!validVersion(o.app_version)||typeof o.text!=='string')return fail('invalid_feedback',400,true);
+ const text=o.text.normalize('NFC').trim().replace(/\s+/g,' ');
+ if(text.length<5||text.length>1000||/[\p{Cc}\p{Cf}]/u.test(text)||/[\w.+-]+@[\w.-]+\.[a-z]{2,}|\d{7,}/i.test(text))return fail('invalid_feedback',400,true);
+ const receipt=await hash('feedback:'+o.receipt),db=env.DB;
+ if(await db.prepare('SELECT receipt_hash FROM cc_feedback WHERE receipt_hash=?').bind(receipt).first())return reply({ok:true,status:'received'},200,true);
+ if(!await allow(db,'feedback',50))return fail('rate_limited',429,true);
+ await db.prepare('INSERT OR IGNORE INTO cc_feedback(receipt_hash,text,language,app_version,submitted_day) VALUES(?,?,?,?,?)').bind(receipt,text,o.language,o.app_version,today()).run();
+ return reply({ok:true,status:'received'},200,true);
+}
 const statsSQL='SELECT q.id AS question_id,q.category,v.language,COUNT(*) AS total,SUM(CASE WHEN v.vote=1 THEN 1 ELSE 0 END) AS positive,SUM(CASE WHEN v.vote=-1 THEN 1 ELSE 0 END) AS negative FROM cc_vote v JOIN cc_question q ON q.id=v.question_id WHERE v.vote IS NOT NULL GROUP BY q.id,q.category,v.language ORDER BY q.id,v.language';
 const suggestionsSQL='SELECT receipt_hash AS id,text,language,status,submitted_day,reviewed_day FROM cc_suggestion ORDER BY submitted_day DESC,receipt_hash LIMIT 500';
 const csvCell=v=>'"'+String(v??'').replace(/^[\s\uFEFF]*[=+\-@\t\r]/,m=>"'"+m).replace(/"/g,'""')+'"';
@@ -99,11 +110,11 @@ async function handle(request,env){
   }
   return fail('not_found',404);
  }
- if(!['/v1/vote','/v1/suggestion'].includes(path))return fail('not_found',404,cors);
+ if(!['/v1/vote','/v1/suggestion','/v1/feedback'].includes(path))return fail('not_found',404,cors);
  if(!cors)return fail('forbidden',403);
  if(method==='OPTIONS')return new Response(null,{status:204,headers:{...headers,'Access-Control-Allow-Origin':ORIGIN,'Access-Control-Allow-Methods':'POST, OPTIONS','Access-Control-Allow-Headers':'Content-Type','Access-Control-Max-Age':'600','Vary':'Origin'}});
  if(method!=='POST')return fail('method',405,true);
  if(!feedbackOpen(env))return fail('feedback_disabled',503,true);
- return path==='/v1/vote'?vote(request,env):suggest(request,env);
+ return path==='/v1/vote'?vote(request,env):path==='/v1/suggestion'?suggest(request,env):feedback(request,env);
 }
 export default {async fetch(request,env){try{return await handle(request,env)}catch{return fail('temporarily_unavailable',503,request.headers.get('Origin')===ORIGIN)}}};

@@ -14,7 +14,7 @@ page.on('pageerror',e=>errors.push(e.message));page.on('dialog',d=>{dialogs.push
 await context.route('https://curiocircle-api.*.workers.dev/**',async route=>{
 const req=route.request(),url=new URL(req.url()),headers={'Access-Control-Allow-Origin':base,'Access-Control-Allow-Headers':'Content-Type','Access-Control-Allow-Methods':'GET, POST, OPTIONS'};
 if(req.method()==='OPTIONS')return route.fulfill({status:204,headers});
-if(url.pathname==='/health')return route.fulfill({json:{ok:true,feedback_enabled:true,catalogue_count:227},headers});
+if(url.pathname==='/health')return route.fulfill({json:{ok:true,feedback_enabled:true,catalogue_count:305},headers});
 const p=req.postDataJSON();sent.push({path:url.pathname,payload:p});
 return route.fulfill({json:{ok:true,status:'received',vote:p.vote,revision:p.revision},headers});
 });
@@ -47,6 +47,26 @@ for(const width of [320,375,430,812]){
  await page.setViewportSize({width,height:width===812?375:812});
  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false,'settings overflow '+width);
 }
+await page.setViewportSize({width:375,height:812});
+assert.equal(await page.locator('#categoryChoices input').count(),8);
+assert.equal(await page.locator('#allCategories').isChecked(),true);
+await page.locator('#allCategories').uncheck();
+assert.equal(await page.locator('#applyCategories').isDisabled(),true);
+for(const c of ['0','3','7'])await page.locator('#categoryChoices input[value="'+c+'"]').check();
+assert.equal(await page.locator('#allCategories').evaluate(e=>e.indeterminate),true);
+await page.locator('#applyCategories').click();
+let saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('curiocircle-v1')));
+assert.deepEqual(saved.categories,[0,3,7]);assert.equal(new Set(saved.deck).size,saved.deck.length);
+assert.ok(await page.evaluate(()=>deck.every(id=>[0,3,7].includes(categoryOf(id)))));
+await page.reload();
+await page.locator('.cc-thumb').first().waitFor({state:'visible'});
+assert.deepEqual(await page.evaluate(()=>selectedCategories()),[0,3,7]);
+await page.locator('#settingsJump').click();
+assert.equal(await page.locator('#categoryChoices input:checked').count(),3);
+await page.locator('#allCategories').check();
+await page.locator('#applyCategories').click();
+assert.deepEqual(await page.evaluate(()=>selectedCategories()),[0,1,2,3,4,5,6,7]);
+assert.equal(await page.evaluate(()=>deck.length),305);
 assert.deepEqual(dialogs,[]);assert.deepEqual(errors,[]);
 console.log('OK: six languages, four viewport widths, thumbs and withdrawal, proposal, favourite removal, feedback sending, no dialogs or page errors');
 await context.close();

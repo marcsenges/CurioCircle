@@ -27,8 +27,8 @@ async function authorized(request,env){
 }
 // Global hourly write caps; deliberately no stored IP or device identifiers.
 // This is a circuit breaker, not proof of unique people or a complete anti-bot defence.
-async function allow(db,kind,max,testBucket){
- const bucket=testBucket?testBucket+':'+kind:kind+':'+new Date().toISOString().slice(0,13);
+async function allow(db,kind,max){
+ const bucket=kind+':'+new Date().toISOString().slice(0,13);
  const r=await db.prepare('INSERT INTO cc_rate(bucket,count) VALUES(?,1) ON CONFLICT(bucket) DO UPDATE SET count=count+1 WHERE count<? RETURNING count').bind(bucket,max).first();
  return !!r;
 }
@@ -40,7 +40,7 @@ async function vote(request,env){
  const receipt=await hash('vote:'+o.question_id+':'+o.receipt);
  const old=await db.prepare('SELECT revision,vote FROM cc_vote WHERE question_id=? AND receipt_hash=?').bind(o.question_id,receipt).first();
  if(old&&old.revision>=o.revision)return reply({ok:true,revision:old.revision,vote:old.vote},200,true);
- if(!await allow(db,'vote',1000,env.TEST_BUCKET))return fail('rate_limited',429,true);
+ if(!await allow(db,'vote',1000))return fail('rate_limited',429,true);
  await db.prepare('INSERT INTO cc_vote(question_id,receipt_hash,revision,vote,language,app_version,updated_day) VALUES(?,?,?,?,?,?,?) ON CONFLICT(question_id,receipt_hash) DO UPDATE SET revision=excluded.revision,vote=excluded.vote,language=excluded.language,app_version=excluded.app_version,updated_day=excluded.updated_day WHERE excluded.revision>cc_vote.revision').bind(o.question_id,receipt,o.revision,o.vote,o.language,o.app_version,today()).run();
  const stored=await db.prepare('SELECT revision,vote FROM cc_vote WHERE question_id=? AND receipt_hash=?').bind(o.question_id,receipt).first();
  return reply({ok:true,revision:stored.revision,vote:stored.vote},200,true);
@@ -53,7 +53,7 @@ async function suggest(request,env){
  const receipt=await hash('suggestion:'+o.receipt),dedup=await hash(o.language+':'+text.toLocaleLowerCase(o.language));
  const db=env.DB;
  if(await db.prepare('SELECT receipt_hash FROM cc_suggestion WHERE receipt_hash=?').bind(receipt).first())return reply({ok:true,status:'received'},200,true);
- if(!await allow(db,'suggestion',50,env.TEST_BUCKET))return fail('rate_limited',429,true);
+ if(!await allow(db,'suggestion',50))return fail('rate_limited',429,true);
  const result=await db.prepare('INSERT OR IGNORE INTO cc_suggestion(receipt_hash,text,language,text_hash,submitted_day) VALUES(?,?,?,?,?)').bind(receipt,text,o.language,dedup,today()).run();
  return reply({ok:true,status:result.meta.changes?'received':'duplicate'},200,true);
 }
@@ -70,63 +70,8 @@ $('load').onclick=()=>{token=$('key').value;$('key').value='';load()};$('logout'
 async function exportCsv(kind){try{const r=await api(kind+'.csv');const url=URL.createObjectURL(await r.blob());const a=document.createElement('a');a.href=url;a.download='curiocircle-'+kind+'.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}catch(e){$('status').textContent=e.message}}
 $('csvVotes').onclick=()=>exportCsv('votes');$('csvSuggestions').onclick=()=>exportCsv('suggestions');
 //--></script></html>`;
-// A short-lived CI-only capability. It cannot submit arbitrary content or enable public feedback.
-async function selftest(request,env){
- const secret=env.SELFTEST_TOKEN;
- if(env.FEEDBACK_ENABLED!=='false'||typeof secret!=='string')return fail('not_found',404);
- const [expires,key]=secret.split(':');
- if(!validReceipt(key)||!Number.isFinite(Number(expires))||Date.now()>Number(expires))return fail('not_found',404);
- const token=request.headers.get('Authorization')||'';
- const a=await hash(token),b=await hash('Bearer '+key);let diff=0;
- for(let i=0;i<a.length;i++)diff|=a.charCodeAt(i)^b.charCodeAt(i);
- if(diff)return fail('unauthorized',401);
- const db=env.DB,receipt=await hash('test-vote:'+key),receipt2=await hash('test-suggestion:'+key);
- const vh=await hash('vote:0:'+receipt),sh=await hash('suggestion:'+receipt2);
- const testEnv={DB:db,ADMIN_TOKEN:key,FEEDBACK_ENABLED:'true',TEST_BUCKET:'test:'+vh};
- const checks=[];
- const must=(condition,label)=>{if(!condition)throw new Error(label);checks.push(label)};
- const send=async(path,payload,admin=false)=>{
-  const h={Origin:admin?new URL(request.url).origin:ORIGIN,'Content-Type':'application/json'};
-  if(admin)h.Authorization='Bearer '+key;
-  const res=await handle(new Request(new URL(path,request.url),{method:payload===undefined?'GET':'POST',headers:h,...(payload===undefined?{}:{body:JSON.stringify(payload)})}),testEnv);
-  const data=await res.text();return {status:res.status,data,headers:res.headers,json:()=>JSON.parse(data)};
- };
- let success=false;
- try{
-  const base={question_id:0,receipt,revision:1,vote:1,language:'de',app_version:'0.9.6 (Beta)'};
-  let result=await send('/v1/vote',base);
-  must(result.status===200&&result.json().vote===1,'vote created');
-  result=await send('/v1/vote',base);must(result.status===200&&result.json().revision===1,'idempotent repeat');
-  result=await send('/v1/vote',{...base,revision:2,vote:-1});must(result.json().vote===-1,'vote changed');
-  result=await send('/v1/vote',base);must(result.json().vote===-1&&result.json().revision===2,'stale retry ignored');
-  const stored=await db.prepare('SELECT COUNT(*) AS n FROM cc_vote WHERE receipt_hash=?').bind(vh).first();must(stored.n===1,'one vote row');
-  result=await send('/admin/api/votes',undefined,true);must(result.status===200&&result.json().rows.some(r=>r.question_id===0&&r.language==='de'&&r.negative>=1),'authenticated aggregate');
-  result=await send('/admin/api/votes.csv',undefined,true);must(result.status===200&&result.headers.get('Content-Type').includes('text/csv')&&result.data.startsWith('question_id,category,language,total,positive,negative'),'rating CSV');
-  result=await send('/v1/vote',{...base,revision:3,vote:null});must(result.json().vote===null,'vote withdrawn');
-  result=await send('/v1/vote',base);must(result.json().vote===null,'withdrawal survives stale retry');
-  result=await send('/v1/vote',{...base,name:'synthetic'});must(result.status===400,'extra personal field rejected');
-  const proposal={receipt:receipt2,language:'de',text:'= Synthetische CurioCircle Testfrage '+receipt2.slice(0,16)+'?'};
-  result=await send('/v1/suggestion',proposal);must(result.status===200&&result.json().status==='received','suggestion created');
-  result=await send('/v1/suggestion',proposal);must(result.json().status==='received','suggestion retry idempotent');
-  result=await send('/admin/api/suggestions',undefined,true);must(result.status===200&&result.json().rows.some(r=>r.id===sh&&r.status==='pending'),'pending moderation');
-  result=await send('/admin/api/moderate',{id:sh,status:'approved'},true);must(result.status===200,'moderation write');
-  result=await send('/admin/api/suggestions.csv',undefined,true);must(result.status===200&&result.data.includes("'= Synthetische CurioCircle Testfrage"),'CSV formula protection');
-  result=await send('/admin/api/moderate',{id:sh,status:'rejected'},true);must(result.status===200,'moderation rejection');
-  result=await send('/v1/suggestion',{...proposal,text:'synthetic@example.invalid test question'});must(result.status===400,'obvious contact information rejected');
-  success=true;
- }catch(e){checks.push('FAILED: '+(e.message&&checks.includes(e.message)?'check':String(e.message).slice(0,80)));}
- finally{
-  await db.batch([db.prepare('DELETE FROM cc_vote WHERE question_id=0 AND receipt_hash=?').bind(vh),db.prepare('DELETE FROM cc_suggestion WHERE receipt_hash=?').bind(sh),db.prepare('DELETE FROM cc_rate WHERE bucket=? OR bucket=?').bind(testEnv.TEST_BUCKET+':vote',testEnv.TEST_BUCKET+':suggestion')]);
- }
- const v=await db.prepare('SELECT COUNT(*) AS n FROM cc_vote WHERE receipt_hash=?').bind(vh).first();
- const s=await db.prepare('SELECT COUNT(*) AS n FROM cc_suggestion WHERE receipt_hash=?').bind(sh).first();
- const clean=v.n===0&&s.n===0;
- return reply({ok:success&&clean,checks:success?checks:['selftest_failed_after_'+(checks.length-1)+'_checks'],clean},success&&clean?200:500);
-}
-
 async function handle(request,env){
  const url=new URL(request.url),path=url.pathname,method=request.method,origin=request.headers.get('Origin'),cors=origin===ORIGIN;
- if(path==='/internal/selftest'&&method==='POST')return selftest(request,env);
  if(path==='/health'&&method==='GET'){
   const row=await env.DB.prepare('SELECT COUNT(*) AS n FROM cc_question').first();
   return reply({ok:true,feedback_enabled:env.FEEDBACK_ENABLED==='true',catalogue_count:row.n},200,cors);

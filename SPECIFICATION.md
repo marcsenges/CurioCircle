@@ -23,3 +23,11 @@ Validate unique IDs, complete translations and catalogue schema; test shuffle, f
 
 ## Repository scope
 Only marcsenges/CurioCircle using the marcsenges personal GitHub account. Never access or modify office@pryme.eu or other repositories for this project.
+
+## Version 0.3: Share with friends
+- Dedicated, easily accessible sharing screen; opening and closing preserves the current game and language.
+- Share the canonical public app URL via WhatsApp with a short localized invitation, copy link with feedback, and native Web Share API when supported (copy fallback).
+- Locally generated scannable QR code for the canonical URL, with image save/share option; no external QR service or tracking. Test actual scanning on another phone.
+- Localized Android/iOS home-screen installation guidance and offline availability after successful initial caching; no registration or mandatory installation.
+- German, British English and Spain Spanish throughout; accessible controls and large touch targets. Never include local favourites, counts, names or session data in shared URLs.
+- Test clipboard fallback, WhatsApp link encoding, native share availability, QR decoding and return to the unchanged game.

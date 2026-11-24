@@ -1,0 +1,29 @@
+name: CurioCircle backend setup (feedback disabled)
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/cloudflare-backend.yml'
+permissions:
+  contents: read
+concurrency:
+  group: curiocircle-backend
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Validate catalogue and Worker
+        run: |
+          node scripts/check-catalogue.mjs
+          node --check backend/worker.mjs
+          node backend/worker.test.mjs
+      - name: Create schema, seed question metadata and deploy closed Worker
+        env:
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: python3 backend/deploy.py

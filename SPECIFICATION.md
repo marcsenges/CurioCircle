@@ -38,3 +38,8 @@ Only marcsenges/CurioCircle using the marcsenges personal GitHub account. Never 
 - de-DE: CurioCircle installieren. Kostenlos. Ohne Anmeldung. Keine Werbung. Offline spielen. Mit Freunden teilen.
 - es-ES: Instala CurioCircle. Gratis. Sin registro. Sin publicidad. Juega sin conexión. Comparte con tus amigos.
 - Show offline promise with initial online setup guidance; retain brand name in all languages.
+
+## Six-language localisation (0.9 Beta)
+- Add fr-FR, pt-BR and it-IT to existing en-GB, de-DE and es-ES. Localise all 200 questions and every UI string idiomatically, with informal natural address and culturally appropriate humour. Preserve stable IDs and existing translations.
+- Compact globe language selector, accessible at any time; detect device language on first launch, preserve question and session on switching.
+- Validate all six translations per question, all interface labels, offline availability, custom questions, sharing and backup compatibility before enabling the new languages. Native-speaker review recommended. Do not label 1.0 without explicit owner approval.

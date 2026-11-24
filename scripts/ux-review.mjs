@@ -37,7 +37,7 @@ await page.locator('.cc-thumb').last().click();await page.waitForTimeout(200);as
 await page.locator('.cc-thumb').last().click();await page.waitForTimeout(200);assert.equal(sent.filter(x=>x.path==='/v1/vote').at(-1).payload.vote,null);
 await page.locator('#communitySettings > details > summary').click();
 const proposal=page.locator('#communitySettings textarea');await proposal.fill('¿Qué invento te gustaría crear?');
-assert.equal(await page.locator('.cc-pending-actions').count(),0);
+assert.equal(await page.locator('.cc-pending-actions').isVisible(),false);
 await page.locator('.cc-submit').click();await page.waitForTimeout(200);assert.equal(sent.filter(x=>x.path==='/v1/suggestion').at(-1).payload.language,'es');assert.equal(await proposal.inputValue(),'');
 await page.locator('#heart').click();
 await page.locator('#settingsJump').click();await page.locator('#extrasTitle').click();await page.locator('#favTitle').click();

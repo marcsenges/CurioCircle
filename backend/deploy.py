@@ -181,6 +181,8 @@ if os.environ.get("COMMUNITY_BETA")=="true":
     vote_hash=digest("vote:0:"+vote_receipt)
     proposal_receipt=secrets.token_hex(32)
     proposal_hash=digest("suggestion:"+proposal_receipt)
+    feedback_receipt=secrets.token_hex(32)
+    feedback_hash=digest("feedback:"+feedback_receipt)
     proposal={"receipt":proposal_receipt,"language":"de","text":"Synthetische CurioCircle Beta-Testfrage "+proposal_hash[:16]+"?"}
     payload={"question_id":0,"receipt":vote_receipt,"revision":1,"vote":1,"language":"de","app_version":"0.9.6 (Beta)"}
     def post(path,data):
@@ -206,6 +208,10 @@ if os.environ.get("COMMUNITY_BETA")=="true":
         status,result=post("/v1/suggestion",proposal)
         assert status==200 and result.get("status")=="received","Live suggestion failed"
         assert scalar("SELECT status FROM cc_suggestion WHERE receipt_hash=?",[proposal_hash])["status"]=="pending"
+        fb={"receipt":feedback_receipt,"language":"es","text":"Prueba sintetica de comentarios de CurioCircle","app_version":"0.9.6.4 (Beta)"}
+        status,result=post("/v1/feedback",fb)
+        assert status==200 and result.get("status")=="received","Live app feedback failed"
+        assert scalar("SELECT COUNT(*) AS n FROM cc_feedback WHERE receipt_hash=?",[feedback_hash])["n"]==1
         status,result=get("/admin/api/votes")
         assert status==401,"Admin must stay private"
         passed=True
@@ -214,6 +220,8 @@ if os.environ.get("COMMUNITY_BETA")=="true":
         try:
             sql("DELETE FROM cc_vote WHERE question_id=0 AND receipt_hash=?",[vote_hash])
             sql("DELETE FROM cc_suggestion WHERE receipt_hash=?",[proposal_hash])
+            sql("DELETE FROM cc_feedback WHERE receipt_hash=?",[feedback_hash])
+            assert scalar("SELECT COUNT(*) AS n FROM cc_feedback WHERE receipt_hash=?",[feedback_hash])["n"]==0
             assert scalar("SELECT COUNT(*) AS n FROM cc_vote WHERE receipt_hash=?",[vote_hash])["n"]==0
             assert scalar("SELECT COUNT(*) AS n FROM cc_suggestion WHERE receipt_hash=?",[proposal_hash])["n"]==0
         except BaseException:

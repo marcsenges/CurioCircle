@@ -1,0 +1,53 @@
+name: CurioCircle Cloudflare connection check
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/cloudflare-check.yml'
+permissions: {}
+jobs:
+  connection:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Verify Cloudflare account and D1 (read only)
+        env:
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          python3 - <<'PY'
+          import hashlib, json, os, urllib.request, urllib.error
+          token = os.environ.get("CF_TOKEN")
+          if not token:
+              raise SystemExit("Missing CLOUDFLARE_API_TOKEN repository secret")
+          def api(path):
+              req = urllib.request.Request("https://api.cloudflare.com/client/v4/" + path, headers={"Authorization": "Bearer " + token, "Accept": "application/json"})
+              try:
+                  with urllib.request.urlopen(req, timeout=20) as response:
+                      data = json.load(response)
+              except urllib.error.HTTPError as e:
+                  raise SystemExit("Cloudflare request failed: HTTP " + str(e.code))
+              except Exception:
+                  raise SystemExit("Cloudflare connection failed")
+              if not data.get("success"):
+                  raise SystemExit("Cloudflare API returned an unsuccessful response")
+              return data.get("result")
+          def digest(value):
+              return hashlib.sha256(str(value).encode()).hexdigest()
+          accounts = api("accounts?per_page=50")
+          matches = [a["id"] for a in accounts if digest(a.get("id")) == "9b6fe543e9ae22689f9bbf55e6f594eb0906fdefb30841529db43fdfee69d8d1"]
+          if len(matches) != 1:
+              raise SystemExit("Expected Cloudflare account not found")
+          print("OK: authorized account matched")
+          account = matches[0]
+          databases = api("accounts/" + account + "/d1/database?name=curiocircle-db&per_page=100")
+          matches = [d for d in databases if digest(d.get("uuid")) == "fe7fbe8c89a60bde00261597b8069c911c7e3299724adc602591827db19dfa88"]
+          if len(matches) != 1 or matches[0].get("name") != "curiocircle-db":
+              raise SystemExit("Expected D1 database not found")
+          db = api("accounts/" + account + "/d1/database/" + matches[0]["uuid"])
+          print("OK: D1 database reachable")
+          if db.get("jurisdiction") != "eu":
+              raise SystemExit("EU jurisdiction not confirmed. Do not enable feedback.")
+          print("OK: EU jurisdiction confirmed")
+          print("Connection check passed. No data modified or collected.")
+          PY

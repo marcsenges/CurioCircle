@@ -5,6 +5,10 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/cloudflare-backend.yml'
+      - 'backend/deploy.py'
+      - 'backend/schema.sql'
+      - 'backend/worker.mjs'
+      - 'backend/worker.test.mjs'
 permissions:
   contents: read
 concurrency:

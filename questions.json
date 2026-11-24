@@ -2681,6 +2681,276 @@
       "fr": "Tu préférerais être connu pour ta créativité ou ton sens de l'humour ?",
       "pt": "Você preferiria ser conhecido pela sua criatividade ou pelo seu senso de humor?",
       "it": "Preferiresti essere conosciuto per la tua creatività o per il tuo senso dell'umorismo?"
+    },
+    {
+      "id": 278,
+      "category": 6,
+      "de": "Welche Rolle übernimmst du ganz automatisch in einer Freundesgruppe?",
+      "en": "What role do you naturally take on in a group of friends?",
+      "es": "¿Qué papel sueles asumir de forma natural en un grupo de amigos?",
+      "fr": "Quel rôle prends-tu naturellement dans un groupe d'amis ?",
+      "pt": "Que papel você assume naturalmente em um grupo de amigos?",
+      "it": "Quale ruolo assumi spontaneamente in un gruppo di amici?"
+    },
+    {
+      "id": 279,
+      "category": 6,
+      "de": "An welchem ungewöhnlichen Ort hast du schon einmal einen Freund kennengelernt?",
+      "en": "What's the most unusual place you've made a friend?",
+      "es": "¿En qué lugar poco habitual has hecho alguna vez un amigo?",
+      "fr": "Dans quel endroit insolite t'es-tu déjà fait un ami ?",
+      "pt": "Em que lugar inusitado você já fez uma amizade?",
+      "it": "In quale posto insolito ti è capitato di fare amicizia?"
+    },
+    {
+      "id": 280,
+      "category": 6,
+      "de": "Mit welchen drei Wörtern würden deine Freunde dich beschreiben?",
+      "en": "What three words would your friends use to describe you?",
+      "es": "¿Con qué tres palabras te describirían tus amigos?",
+      "fr": "Quels trois mots tes amis utiliseraient-ils pour te décrire ?",
+      "pt": "Que três palavras seus amigos usariam para descrever você?",
+      "it": "Con quali tre parole ti descriverebbero i tuoi amici?"
+    },
+    {
+      "id": 281,
+      "category": 6,
+      "de": "Woran merkst du, dass dich jemand richtig gut kennt?",
+      "en": "How can you tell someone knows you really well?",
+      "es": "¿Cómo te das cuenta de que alguien te conoce muy bien?",
+      "fr": "À quoi reconnais-tu que quelqu'un te connaît vraiment bien ?",
+      "pt": "Como você percebe que alguém conhece você muito bem?",
+      "it": "Da cosa capisci che qualcuno ti conosce davvero bene?"
+    },
+    {
+      "id": 282,
+      "category": 6,
+      "de": "Wie würdest du jemanden begrüßen, der zum ersten Mal zu eurer Runde dazukommt?",
+      "en": "How would you welcome someone who's joining your group for the first time?",
+      "es": "¿Cómo recibirías a alguien que se incorpora por primera vez a vuestro grupo?",
+      "fr": "Comment accueillerais-tu quelqu'un qui rejoint votre groupe pour la première fois ?",
+      "pt": "Como você receberia alguém que está chegando ao seu grupo pela primeira vez?",
+      "it": "Come accoglieresti qualcuno che si unisce al vostro gruppo per la prima volta?"
+    },
+    {
+      "id": 283,
+      "category": 6,
+      "de": "Worüber kannst du mit Freunden stundenlang diskutieren, ohne euch einig zu werden?",
+      "en": "What could you debate with friends for hours without ever agreeing?",
+      "es": "¿Sobre qué podrías debatir durante horas con tus amigos sin poneros de acuerdo?",
+      "fr": "De quoi pourrais-tu débattre pendant des heures avec tes amis sans jamais être d'accord ?",
+      "pt": "Sobre o que você poderia discutir por horas com os amigos sem chegar a um acordo?",
+      "it": "Su cosa potresti discutere per ore con gli amici senza mai trovare un accordo?"
+    },
+    {
+      "id": 284,
+      "category": 6,
+      "de": "Was schätzt du an Freunden, die ganz anders sind als du selbst?",
+      "en": "What do you appreciate about friends who are very different from you?",
+      "es": "¿Qué valoras de los amigos que son muy distintos a ti?",
+      "fr": "Qu'apprécies-tu chez tes amis qui sont très différents de toi ?",
+      "pt": "O que você valoriza nos amigos que são muito diferentes de você?",
+      "it": "Che cosa apprezzi degli amici molto diversi da te?"
+    },
+    {
+      "id": 285,
+      "category": 6,
+      "de": "Was war dein schönster ungeplanter Abend mit Freunden?",
+      "en": "What's the best unplanned evening you've spent with friends?",
+      "es": "¿Cuál ha sido tu mejor noche improvisada con amigos?",
+      "fr": "Quelle a été ta meilleure soirée improvisée entre amis ?",
+      "pt": "Qual foi a melhor noite improvisada que você passou com amigos?",
+      "it": "Qual è stata la tua serata improvvisata più bella con gli amici?"
+    },
+    {
+      "id": 286,
+      "category": 6,
+      "de": "Würdest du lieber mit Freunden eine Woche zusammen wohnen oder jeden Monat einen gemeinsamen Ausflug machen?",
+      "en": "Would you rather live with friends for a week or go on a day trip together every month?",
+      "es": "¿Preferirías convivir una semana con tus amigos o hacer una excursión juntos cada mes?",
+      "fr": "Tu préférerais vivre une semaine avec tes amis ou faire une sortie ensemble tous les mois ?",
+      "pt": "Você preferiria morar com os amigos por uma semana ou fazer um passeio juntos todo mês?",
+      "it": "Preferiresti vivere una settimana con gli amici o fare una gita insieme ogni mese?"
+    },
+    {
+      "id": 287,
+      "category": 6,
+      "de": "Welche kleine Aufmerksamkeit eines Freundes ist dir besonders in Erinnerung geblieben?",
+      "en": "What small gesture from a friend has stuck in your memory?",
+      "es": "¿Qué pequeño detalle de un amigo recuerdas especialmente?",
+      "fr": "Quelle petite attention d'un ami t'a particulièrement marqué ?",
+      "pt": "Que pequeno gesto de um amigo ficou na sua memória?",
+      "it": "Quale piccolo gesto di un amico ti è rimasto particolarmente impresso?"
+    },
+    {
+      "id": 288,
+      "category": 6,
+      "de": "Welche Frage würdest du jemandem stellen, um ihn besser kennenzulernen?",
+      "en": "What question would you ask someone to get to know them better?",
+      "es": "¿Qué pregunta le harías a alguien para conocerlo mejor?",
+      "fr": "Quelle question poserais-tu à quelqu'un pour mieux le connaître ?",
+      "pt": "Que pergunta você faria a alguém para conhecer melhor essa pessoa?",
+      "it": "Quale domanda faresti a qualcuno per conoscerlo meglio?"
+    },
+    {
+      "id": 289,
+      "category": 6,
+      "de": "Würdest du lieber für deine Freunde kochen oder mit ihnen zusammen kochen?",
+      "en": "Would you rather cook for your friends or cook together with them?",
+      "es": "¿Preferirías cocinar para tus amigos o cocinar todos juntos?",
+      "fr": "Tu préférerais cuisiner pour tes amis ou cuisiner tous ensemble ?",
+      "pt": "Você preferiria cozinhar para seus amigos ou cozinhar junto com eles?",
+      "it": "Preferiresti cucinare per i tuoi amici o cucinare insieme a loro?"
+    },
+    {
+      "id": 290,
+      "category": 6,
+      "de": "Welches harmlose Thema sorgt in deiner Freundesgruppe immer für Diskussionen?",
+      "en": "What harmless topic always gets your group of friends debating?",
+      "es": "¿Qué tema inofensivo siempre genera debate entre tus amigos?",
+      "fr": "Quel sujet anodin lance toujours un débat dans ton groupe d'amis ?",
+      "pt": "Que assunto inofensivo sempre rende discussão no seu grupo de amigos?",
+      "it": "Quale argomento innocuo accende sempre un dibattito nel tuo gruppo di amici?"
+    },
+    {
+      "id": 291,
+      "category": 6,
+      "de": "Was wäre ein guter Name für eine Quizmannschaft aus den Leuten in dieser Runde?",
+      "en": "What would be a good quiz team name for the people playing right now?",
+      "es": "¿Qué nombre le pondrías a un equipo de concurso formado por los que estáis aquí?",
+      "fr": "Quel nom donnerais-tu à une équipe de quiz composée des personnes présentes ?",
+      "pt": "Que nome você daria a uma equipe de quiz formada pelas pessoas desta roda?",
+      "it": "Quale nome daresti a una squadra di quiz formata dalle persone qui presenti?"
+    },
+    {
+      "id": 292,
+      "category": 7,
+      "de": "Welche Frage würdest du einem Astronauten stellen?",
+      "en": "What question would you ask an astronaut?",
+      "es": "¿Qué pregunta le harías a un astronauta?",
+      "fr": "Quelle question poserais-tu à un astronaute ?",
+      "pt": "Que pergunta você faria a um astronauta?",
+      "it": "Quale domanda faresti a un astronauta?"
+    },
+    {
+      "id": 293,
+      "category": 7,
+      "de": "Bei welchem Produkt würdest du gerne den gesamten Herstellungsprozess beobachten?",
+      "en": "What product would you love to watch being made from start to finish?",
+      "es": "¿De qué producto te gustaría ver todo el proceso de fabricación?",
+      "fr": "Quel produit aimerais-tu voir fabriquer du début à la fin ?",
+      "pt": "De qual produto você gostaria de acompanhar todo o processo de fabricação?",
+      "it": "Di quale prodotto ti piacerebbe osservare l'intero processo di fabbricazione?"
+    },
+    {
+      "id": 294,
+      "category": 7,
+      "de": "Welches wissenschaftliche Rätsel würdest du gerne gelöst sehen?",
+      "en": "What scientific mystery would you love to see solved?",
+      "es": "¿Qué misterio científico te gustaría que se resolviera?",
+      "fr": "Quel mystère scientifique aimerais-tu voir résolu ?",
+      "pt": "Que mistério científico você gostaria de ver resolvido?",
+      "it": "Quale mistero scientifico vorresti vedere risolto?"
+    },
+    {
+      "id": 295,
+      "category": 7,
+      "de": "Welche Geschichte aus deinem Heimatland sollte man auch anderswo kennen?",
+      "en": "What story from your home country deserves to be known elsewhere too?",
+      "es": "¿Qué historia de tu país debería conocerse también en otros lugares?",
+      "fr": "Quelle histoire de ton pays mériterait d'être connue ailleurs ?",
+      "pt": "Que história do seu país deveria ser conhecida em outros lugares também?",
+      "it": "Quale storia del tuo paese meriterebbe di essere conosciuta anche altrove?"
+    },
+    {
+      "id": 296,
+      "category": 7,
+      "de": "Welchen Film würdest du jemandem zeigen, der deine Generation verstehen möchte?",
+      "en": "What film would you show someone who wanted to understand your generation?",
+      "es": "¿Qué película le pondrías a alguien que quisiera entender a tu generación?",
+      "fr": "Quel film montrerais-tu à quelqu'un qui voudrait comprendre ta génération ?",
+      "pt": "Que filme você mostraria a alguém que quisesse entender sua geração?",
+      "it": "Quale film mostreresti a qualcuno che volesse capire la tua generazione?"
+    },
+    {
+      "id": 297,
+      "category": 7,
+      "de": "Welche fremdsprachige Redewendung würdest du gerne in deine eigene Sprache übernehmen?",
+      "en": "What expression from another language would you love to adopt into your own?",
+      "es": "¿Qué expresión de otro idioma te gustaría incorporar al tuyo?",
+      "fr": "Quelle expression d'une autre langue aimerais-tu adopter dans la tienne ?",
+      "pt": "Que expressão de outro idioma você gostaria de adotar no seu?",
+      "it": "Quale modo di dire di un'altra lingua vorresti adottare nella tua?"
+    },
+    {
+      "id": 298,
+      "category": 7,
+      "de": "Welche Fähigkeit eines Tieres findest du besonders faszinierend?",
+      "en": "What animal ability do you find particularly fascinating?",
+      "es": "¿Qué capacidad de un animal te parece especialmente fascinante?",
+      "fr": "Quelle faculté d'un animal te fascine particulièrement ?",
+      "pt": "Que habilidade de um animal você acha especialmente fascinante?",
+      "it": "Quale capacità di un animale trovi particolarmente affascinante?"
+    },
+    {
+      "id": 299,
+      "category": 7,
+      "de": "Welches komplizierte Thema würdest du gerne endlich richtig verstehen?",
+      "en": "What complicated subject would you love to finally understand properly?",
+      "es": "¿Qué tema complicado te gustaría entender por fin de verdad?",
+      "fr": "Quel sujet compliqué aimerais-tu enfin comprendre vraiment ?",
+      "pt": "Que assunto complicado você gostaria de finalmente entender de verdade?",
+      "it": "Quale argomento complicato vorresti finalmente capire davvero?"
+    },
+    {
+      "id": 300,
+      "category": 7,
+      "de": "Welche Gewohnheit aus einem anderen Land würdest du gerne bei dir übernehmen?",
+      "en": "What habit from another country would you like to adopt where you live?",
+      "es": "¿Qué costumbre de otro país te gustaría adoptar donde vives?",
+      "fr": "Quelle habitude d'un autre pays aimerais-tu adopter là où tu vis ?",
+      "pt": "Que hábito de outro país você gostaria de adotar onde mora?",
+      "it": "Quale abitudine di un altro paese vorresti adottare dove vivi?"
+    },
+    {
+      "id": 301,
+      "category": 7,
+      "de": "Welches berühmte Kunstwerk würdest du gerne einmal im Original sehen?",
+      "en": "What famous work of art would you love to see in person?",
+      "es": "¿Qué obra de arte famosa te gustaría ver en persona?",
+      "fr": "Quelle œuvre d'art célèbre aimerais-tu voir en vrai ?",
+      "pt": "Que obra de arte famosa você gostaria de ver pessoalmente?",
+      "it": "Quale famosa opera d'arte ti piacerebbe vedere dal vivo?"
+    },
+    {
+      "id": 302,
+      "category": 7,
+      "de": "Würdest du lieber den tiefsten Punkt des Ozeans oder die Oberfläche des Mondes besuchen?",
+      "en": "Would you rather visit the deepest point in the ocean or the surface of the Moon?",
+      "es": "¿Preferirías visitar el punto más profundo del océano o la superficie de la Luna?",
+      "fr": "Tu préférerais visiter le point le plus profond de l'océan ou la surface de la Lune ?",
+      "pt": "Você preferiria visitar o ponto mais profundo do oceano ou a superfície da Lua?",
+      "it": "Preferiresti visitare il punto più profondo dell'oceano o la superficie della Luna?"
+    },
+    {
+      "id": 303,
+      "category": 7,
+      "de": "Bei welcher historischen Entdeckung wärst du gerne persönlich dabei gewesen?",
+      "en": "What historical discovery would you love to have witnessed first-hand?",
+      "es": "¿Qué descubrimiento histórico te habría gustado presenciar?",
+      "fr": "À quelle découverte historique aurais-tu aimé assister en personne ?",
+      "pt": "Que descoberta histórica você gostaria de ter presenciado?",
+      "it": "A quale scoperta storica ti sarebbe piaciuto assistere di persona?"
+    },
+    {
+      "id": 304,
+      "category": 7,
+      "de": "Würdest du lieber einen Tag hinter den Kulissen eines Zoos oder eines Filmstudios verbringen?",
+      "en": "Would you rather spend a day behind the scenes at a zoo or a film studio?",
+      "es": "¿Preferirías pasar un día entre bastidores en un zoo o en un estudio de cine?",
+      "fr": "Tu préférerais passer une journée dans les coulisses d'un zoo ou d'un studio de cinéma ?",
+      "pt": "Você preferiria passar um dia nos bastidores de um zoológico ou de um estúdio de cinema?",
+      "it": "Preferiresti passare una giornata dietro le quinte di uno zoo o di uno studio cinematografico?"
     }
   ]
 }

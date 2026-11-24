@@ -98,14 +98,14 @@ assert.equal(await page.evaluate(()=>state.players.length),0);
 await page.locator('#settingsJump').click();await page.locator('#extrasTitle').click();await page.locator('#dataTitle').click();
 const backup={format:1,state:{lang:'es',fav:[2],counts:{2:1},players:['Uno','Dos'],mode:'free',custom:[]}};
 await page.locator('#importFile').setInputFiles({name:'test.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(backup))});
-await page.locator('#dialogCancel').click();await page.waitForFunction(()=>!document.querySelector('#appDialog').open);assert.equal(await page.evaluate(()=>state.fav.length),0);
+await page.locator('#dialogCancel').click();await page.waitForFunction(()=>!document.querySelector('#appDialog').open&&dialogResolver===null&&document.querySelector('#importFile').value==='');assert.equal(await page.evaluate(()=>state.fav.length),0);
 await page.locator('#importFile').setInputFiles({name:'test.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(backup))});
 await page.locator('#dialogOK').click();await page.waitForFunction(()=>state.fav.includes(2));
 assert.equal(await page.evaluate(()=>localStorage.getItem('curiocircle-community-v1')),oldCommunity);
 // Clipboard failure uses a selectable text box in the app, not window.prompt.
 await page.evaluate(()=>{Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:async()=>{throw Error('clipboard unavailable')}}});Object.defineProperty(navigator,'share',{configurable:true,value:undefined})});
 await page.locator('#shareJump').click();
-await page.locator('#copyLink').click();assert.equal(await page.locator('#appDialog').isVisible(),true);assert.ok((await page.locator('#dialogCopy').inputValue()).includes('https://'));await page.locator('#dialogCancel').click();
+await page.locator('#copyLink').click();assert.equal(await page.locator('#appDialog').isVisible(),true);assert.ok((await page.locator('#dialogCopy').inputValue()).includes('https://'));await page.locator('#dialogCancel').click();await page.waitForFunction(()=>dialogResolver===null);
 await page.locator('#shareQuestion').click();assert.equal(await page.locator('#appDialog').isVisible(),true);assert.ok((await page.locator('#dialogCopy').inputValue()).includes('https://'));await page.locator('#dialogCancel').click();
 assert.deepEqual(dialogs,[]);assert.deepEqual(errors,[]);
 console.log('OK: six languages, four viewport widths, thumbs and withdrawal, proposal, favourite removal, feedback sending, no dialogs or page errors');

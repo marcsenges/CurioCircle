@@ -43,3 +43,10 @@ Only marcsenges/CurioCircle using the marcsenges personal GitHub account. Never 
 - Add fr-FR, pt-BR and it-IT to existing en-GB, de-DE and es-ES. Localise all 200 questions and every UI string idiomatically, with informal natural address and culturally appropriate humour. Preserve stable IDs and existing translations.
 - Compact globe language selector, accessible at any time; detect device language on first launch, preserve question and session on switching.
 - Validate all six translations per question, all interface labels, offline availability, custom questions, sharing and backup compatibility before enabling the new languages. Native-speaker review recommended. Do not label 1.0 without explicit owner approval.
+
+## Deferred idea: voluntary question quality feedback (post-0.9.1 Beta)
+- Pending owner setup and connection of a backend (suggested Cloudflare Workers + D1); do not activate data collection before approval and privacy review.
+- Separate thumbs up/down from private local favourites; optional per-question vote, changeable, with offline queue and duplicate protection.
+- Collect only question ID, vote, language and app version as necessary; no names, answers, favourites, location, advertising tracking or user profiles. Assess technical identifiers, logs, retention and privacy notice in all six languages.
+- Protected aggregate dashboard and CSV export by question, language and category. Consider revisions rather than deletion; use at least 30 ratings as an initial review threshold, not an automatic decision rule.
+- Restore visible app benefits: free, no account, no ads, offline play; six languages. Keep UI compact.

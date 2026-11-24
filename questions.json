@@ -1,0 +1,126 @@
+{
+  "version": 1,
+  "published": "2026-11-24",
+  "questions": [
+    {
+      "id": 0,
+      "en": "What was your most ridiculous purchase?",
+      "de": "Was war dein absurdester Fehlkauf?",
+      "es": "¿Cuál ha sido tu compra más absurda?"
+    },
+    {
+      "id": 1,
+      "en": "What did you want to be when you were a child?",
+      "de": "Was wolltest du als Kind werden?",
+      "es": "¿Qué querías ser de pequeño?"
+    },
+    {
+      "id": 2,
+      "en": "What harmless thing are you surprisingly bad at?",
+      "de": "Welche harmlose Sache kannst du überraschend schlecht?",
+      "es": "¿Qué cosa sin importancia se te da sorprendentemente mal?"
+    },
+    {
+      "id": 3,
+      "en": "What would your entrance music be?",
+      "de": "Was wäre deine persönliche Einlaufmusik?",
+      "es": "¿Con qué canción harías tu entrada triunfal?"
+    },
+    {
+      "id": 4,
+      "en": "Which food could you happily eat every week?",
+      "de": "Welches Gericht könntest du jede Woche essen?",
+      "es": "¿Qué plato comerías encantado todas las semanas?"
+    },
+    {
+      "id": 5,
+      "en": "Which smell takes you straight back to childhood?",
+      "de": "Welcher Geruch versetzt dich sofort in deine Kindheit zurück?",
+      "es": "¿Qué olor te transporta directamente a tu infancia?"
+    },
+    {
+      "id": 6,
+      "en": "What is your most useless talent?",
+      "de": "Was ist dein nutzlosestes Talent?",
+      "es": "¿Cuál es tu talento más inútil?"
+    },
+    {
+      "id": 7,
+      "en": "Which household chore would you gladly never do again?",
+      "de": "Welche Hausarbeit würdest du am liebsten nie wieder machen?",
+      "es": "¿Qué tarea de casa no volverías a hacer encantado?"
+    },
+    {
+      "id": 8,
+      "en": "What would you call your own pub?",
+      "de": "Wie würdest du deine eigene Kneipe nennen?",
+      "es": "¿Cómo llamarías a tu propio bar?"
+    },
+    {
+      "id": 9,
+      "en": "Which fashion trend did you once follow and now regret?",
+      "de": "Welchen Modetrend hast du früher mitgemacht und bereust es heute?",
+      "es": "¿Qué moda seguiste en su día y ahora te arrepientes?"
+    },
+    {
+      "id": 10,
+      "en": "What is your favourite time of day?",
+      "de": "Was ist deine liebste Tageszeit?",
+      "es": "¿Cuál es tu momento favorito del día?"
+    },
+    {
+      "id": 11,
+      "en": "Which fictional place would you visit for a weekend?",
+      "de": "Welchen erfundenen Ort würdest du für ein Wochenende besuchen?",
+      "es": "¿Qué lugar ficticio visitarías durante un fin de semana?"
+    },
+    {
+      "id": 12,
+      "en": "What do you always pack but rarely use?",
+      "de": "Was packst du immer ein, benutzt es aber selten?",
+      "es": "¿Qué metes siempre en la maleta y casi nunca usas?"
+    },
+    {
+      "id": 13,
+      "en": "Which sound do you find oddly satisfying?",
+      "de": "Welches Geräusch findest du seltsamerweise angenehm?",
+      "es": "¿Qué sonido te resulta curiosamente agradable?"
+    },
+    {
+      "id": 14,
+      "en": "What was your favourite school break snack?",
+      "de": "Was war dein liebster Pausensnack in der Schule?",
+      "es": "¿Qué te gustaba más comer en el recreo?"
+    },
+    {
+      "id": 15,
+      "en": "Which everyday object would you redesign?",
+      "de": "Welchen Alltagsgegenstand würdest du neu gestalten?",
+      "es": "¿Qué objeto cotidiano rediseñarías?"
+    },
+    {
+      "id": 16,
+      "en": "What is your go-to karaoke song?",
+      "de": "Welches Lied singst du am liebsten beim Karaoke?",
+      "es": "¿Qué canción elegirías para un karaoke?"
+    },
+    {
+      "id": 17,
+      "en": "Which animal would make the funniest flatmate?",
+      "de": "Welches Tier wäre der lustigste Mitbewohner?",
+      "es": "¿Qué animal sería el compañero de piso más divertido?"
+    },
+    {
+      "id": 18,
+      "en": "What small luxury would you hate to give up?",
+      "de": "Auf welchen kleinen Luxus würdest du ungern verzichten?",
+      "es": "¿A qué pequeño lujo te costaría renunciar?"
+    },
+    {
+      "id": 19,
+      "en": "What is the strangest food combination you actually enjoy?",
+      "de": "Welche seltsame Essenskombination schmeckt dir wirklich?",
+      "es": "¿Qué combinación rara de alimentos te gusta de verdad?"
+    }
+  ]
+}

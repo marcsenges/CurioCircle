@@ -85,10 +85,17 @@ payload=b"".join(parts)+("--"+boundary+"--\r\n").encode()
 script=base+"/workers/scripts/"+NAME
 api(script,"PUT",payload,"multipart/form-data; boundary="+boundary)
 print("OK: Worker uploaded with public feedback disabled and observability off",flush=True)
-# Do not invent or reserve an account subdomain. Ask owner if not already configured.
-sub=api(base+"/workers/subdomain").get("subdomain")
+# Owner requested the free workers.dev setup; preserve any existing account subdomain.
+try:
+    sub=api(base+"/workers/subdomain").get("subdomain")
+except SystemExit as exc:
+    if str(exc)!="Cloudflare request failed: HTTP 404 codes [10007]":
+        raise
+    print("No workers.dev subdomain registered; creating requested CurioCircle subdomain",flush=True)
+    sub=api(base+"/workers/subdomain","PUT",{"subdomain":"curiocircle"}).get("subdomain")
 if not isinstance(sub,str) or not re.fullmatch(r"[a-z0-9-]+",sub):
-    raise SystemExit("Worker uploaded; owner needs to configure workers.dev subdomain")
+    raise SystemExit("Worker uploaded; account workers.dev subdomain not confirmed")
+print("OK: account workers.dev subdomain confirmed",flush=True)
 api(script+"/subdomain","POST",{"enabled":True,"previews_enabled":False})
 url="https://"+NAME+"."+sub+".workers.dev"
 print("Worker URL: "+url,flush=True)

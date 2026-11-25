@@ -3,7 +3,7 @@ on:
   pull_request:
     branches: [main]
   push:
-    branches: [local-reset-dialogs-0972]
+    branches: [analytics-098]
 permissions:
   contents: read
 jobs:
@@ -21,6 +21,7 @@ jobs:
         run: |
           node scripts/check-catalogue.mjs
           node scripts/check-mix.mjs
+          node --check usage.js
           node --experimental-sqlite backend/worker.integration.test.mjs
           python3 -m py_compile backend/deploy.py
       - name: Install pinned browser test tooling

@@ -108,6 +108,28 @@ await page.evaluate(()=>{Object.defineProperty(navigator,'clipboard',{configurab
 await page.locator('#shareJump').click();
 await page.locator('#copyLink').click();assert.equal(await page.locator('#appDialog').isVisible(),true);assert.ok((await page.locator('#dialogCopy').inputValue()).includes('https://'));await page.locator('#dialogCancel').click();await page.waitForFunction(()=>dialogResolver===null);
 await page.locator('#shareQuestion').click();assert.equal(await page.locator('#appDialog').isVisible(),true);assert.ok((await page.locator('#dialogCopy').inputValue()).includes('https://'));await page.locator('#dialogCancel').click();
+// Analytics stays off until opt-in, then counts only allowed anonymous actions.
+assert.equal(sent.filter(x=>x.path==='/v1/usage').length,0);
+await page.goto(base+'/?src=qr');await page.locator('.cc-thumb').first().waitFor({state:'visible'});
+assert.equal(sent.filter(x=>x.path==='/v1/usage').length,0);
+await page.locator('#settingsJump').click();await page.locator('#extrasTitle').click();
+assert.equal(await page.locator('#usageConsent').isChecked(),false);
+await page.locator('#usageConsent').check();
+await page.waitForFunction(()=>CCUsage.enabled());
+await page.waitForTimeout(400);
+let usage=()=>sent.filter(x=>x.path==='/v1/usage').map(x=>x.payload);
+assert.ok(usage().some(x=>x.event==='qr_open'));
+assert.ok(usage().some(x=>x.event==='app_open'));
+await page.locator('#skip').click();await page.waitForTimeout(450);
+await page.locator('#answer').click();await page.waitForTimeout(400);
+assert.ok(usage().some(x=>x.event==='round_start'));assert.ok(usage().some(x=>x.event==='skip'));assert.ok(usage().some(x=>x.event==='answer'));
+await page.evaluate(()=>{Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:async()=>{}}});window.open=()=>null});
+await page.locator('#shareJump').click();await page.locator('#copyLink').click();await page.locator('#whatsapp').click();await page.waitForTimeout(400);
+assert.ok(usage().some(x=>x.event==='link_copy'));assert.ok(usage().some(x=>x.event==='whatsapp_click'));
+assert.ok(usage().every(x=>Object.keys(x).sort().join(',')==='dimension,event'));
+await page.locator('#usageConsent').uncheck();const before=usage().length;
+await page.locator('#skip').click();await page.waitForTimeout(400);assert.equal(usage().length,before);
+await page.reload();await page.locator('.cc-thumb').first().waitFor({state:'visible'});assert.equal(await page.evaluate(()=>CCUsage.enabled()),false);assert.equal(usage().length,before);
 assert.deepEqual(dialogs,[]);assert.deepEqual(errors,[]);
 console.log('OK: six languages, four viewport widths, thumbs and withdrawal, proposal, favourite removal, feedback sending, no dialogs or page errors');
 await context.close();

@@ -130,6 +130,46 @@ assert.ok(usage().every(x=>Object.keys(x).sort().join(',')==='dimension,event'))
 await page.locator('#usageConsent').uncheck();const before=usage().length;
 await page.locator('#skip').click();await page.waitForTimeout(400);assert.equal(usage().length,before);
 await page.reload();await page.locator('.cc-thumb').first().waitFor({state:'visible'});assert.equal(await page.evaluate(()=>CCUsage.enabled()),false);assert.equal(usage().length,before);
+// Local achievements are independent of optional usage analytics.
+const usageBeforeAchievements=usage().length;
+await page.locator('#settingsJump').click();await page.locator('#extrasTitle').click();await page.locator('#achievementTitle').click();
+assert.equal(await page.locator('#achievementGroups details').count(),7);
+assert.equal(await page.locator('#achievementOverview .achievementMetric').count(),4);
+const beforeShares=await page.evaluate(()=>state.achievements.shares);
+await page.evaluate(()=>{Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:async()=>{}}});window.open=()=>null});
+await page.locator('#shareJump').click();await page.locator('#copyLink').click();
+await page.waitForFunction(n=>state.achievements.shares===n+1,beforeShares);
+await page.locator('#copyLink').click();
+assert.equal(await page.evaluate(()=>state.achievements.shares),beforeShares+1);
+await page.waitForTimeout(1100);await page.locator('#whatsapp').click();
+assert.equal(await page.evaluate(()=>state.achievements.shares),beforeShares+2);
+await page.locator('#answer').click();await page.waitForTimeout(400);
+assert.ok(await page.evaluate(()=>state.achievements.days.length>=1&&state.achievements.languages.includes(state.lang)));
+assert.equal(usage().length,usageBeforeAchievements);
+const snapshot=await page.evaluate(()=>JSON.stringify(state.achievements));
+await page.reload();await page.locator('.cc-thumb').first().waitFor({state:'visible'});
+assert.equal(await page.evaluate(()=>JSON.stringify(state.achievements)),snapshot);
+assert.equal(await page.locator('#achievementNotice').isVisible(),false);
+await page.locator('#settingsJump').click();await page.locator('#extrasTitle').click();await page.locator('#achievementTitle').click();
+for(const lang of ['de','en','es','fr','pt','it']){
+ await page.locator('#lang').selectOption(lang);
+ for(const width of [320,375,812]){
+  await page.setViewportSize({width,height:width===812?375:812});
+  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false,'achievements overflow '+lang+' '+width);
+ }
+}
+await page.setViewportSize({width:375,height:812});await page.locator('#achievementEffects').uncheck();
+assert.equal(await page.evaluate(()=>state.achievements.effects),false);
+const backed=await page.evaluate(()=>JSON.parse(JSON.stringify({format:1,state})));
+await page.locator('#dataTitle').click();
+const communityBeforeAchievementReset=await page.evaluate(()=>localStorage.getItem('curiocircle-community-v1'));
+await page.locator('#resetData').click();await page.locator('#dialogOK').click();
+await page.waitForFunction(()=>state.achievements.unlocked.length===0&&state.achievements.shares===0);
+assert.equal(await page.evaluate(()=>localStorage.getItem('curiocircle-community-v1')),communityBeforeAchievementReset);
+await page.locator('#importFile').setInputFiles({name:'achievements.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(backed))});
+await page.locator('#dialogOK').click();await page.waitForFunction(n=>state.achievements.shares===n,backed.state.achievements.shares);
+assert.equal(await page.evaluate(()=>state.achievements.effects),false);
+assert.equal(usage().length,usageBeforeAchievements);
 assert.deepEqual(dialogs,[]);assert.deepEqual(errors,[]);
 console.log('OK: six languages, four viewport widths, thumbs and withdrawal, proposal, favourite removal, feedback sending, no dialogs or page errors');
 await context.close();

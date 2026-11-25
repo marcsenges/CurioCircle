@@ -56,5 +56,19 @@ assert.equal((await send('/v1/feedback',fb)).json().status,'received');
 assert.equal(db.prepare('SELECT COUNT(*) AS n FROM cc_feedback').get().n,1);
 assert.equal(db.prepare('SELECT language FROM cc_feedback').get().language,'es');
 
+// Aggregated analytics: no identifiers, no text or arbitrary dimensions.
+const u={event:'app_open',dimension:''};
+assert.equal((await send('/v1/usage',u,false,{...env,FEEDBACK_ENABLED:'false'})).status,503);
+assert.equal((await send('/v1/usage',u,false,env,'https://other.example')).status,403);
+for(const bad of [{...u,user_id:'abc'},{...u,dimension:'de'},{event:'language',dimension:'unknown'},{event:'category',dimension:'8'},{event:'other',dimension:''}])assert.equal((await send('/v1/usage',bad)).status,400);
+assert.equal((await send('/v1/usage',u)).status,200);
+assert.equal((await send('/v1/usage',u)).status,200);
+assert.equal((await send('/v1/usage',{event:'qr_open',dimension:''})).status,200);
+assert.equal((await send('/v1/usage',{event:'language',dimension:'de'})).status,200);
+assert.equal((await send('/v1/usage',{event:'category',dimension:'7'})).status,200);
+assert.equal(db.prepare("SELECT count FROM cc_usage_daily WHERE event='app_open'").get().count,2);
+assert.equal(db.prepare("SELECT COUNT(*) AS n FROM cc_usage_daily").get().n,4);
+assert.deepEqual(db.prepare("PRAGMA table_info(cc_usage_daily)").all().map(x=>x.name),['day','event','dimension','count']);
+assert.equal((await send('/admin/api/usage')).status,401);
 db.close();
 console.log('OK: isolated SQL, Worker validation, vote lifecycle, idempotency, aggregation, moderation, CSV and auth');

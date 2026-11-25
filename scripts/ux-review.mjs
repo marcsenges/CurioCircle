@@ -18,7 +18,16 @@ if(url.pathname==='/health')return route.fulfill({json:{ok:true,feedback_enabled
 const p=req.postDataJSON();sent.push({path:url.pathname,payload:p});
 return route.fulfill({json:{ok:true,status:'received',vote:p.vote,revision:p.revision},headers});
 });
-await page.goto(base);await page.locator('.cc-thumb').first().waitFor({state:'visible'});
+await page.goto(base);await page.locator('#appDialog').waitFor({state:'visible'});
+assert.equal(sent.length,0);
+assert.equal(await page.locator('#dialogOK').textContent(),'Yes');
+assert.equal(await page.locator('#dialogCancel').textContent(),'No');
+assert.equal(await page.locator('#dialogOK').evaluate(e=>getComputedStyle(e).backgroundColor),await page.locator('#dialogCancel').evaluate(e=>getComputedStyle(e).backgroundColor));
+assert.equal(await page.locator('#dialogCancel').evaluate(e=>e===document.activeElement),true);
+await page.locator('#dialogCancel').click();await page.waitForFunction(()=>CCUsage.decided()&&!CCUsage.enabled());
+assert.equal(await page.evaluate(()=>localStorage.getItem('curiocircle-usage-choice-v1')),'no');
+await page.reload();await page.locator('.cc-thumb').first().waitFor({state:'visible'});
+assert.equal(await page.locator('#appDialog').isVisible(),false);
 assert.equal(sent.length,0);
 for(const lang of ['en','de','es','fr','pt','it']){
  await page.locator('#lang').selectOption(lang);
@@ -78,7 +87,7 @@ for(const lang of ['en','de','es','fr','pt','it']){
  await page.locator('#lang').selectOption(lang);
  await page.locator('#resetData').click();
  assert.equal(await page.locator('#appDialog').isVisible(),true);
- assert.equal(await page.locator('#dialogTitle').textContent(),await page.evaluate(()=>dialogText[state.lang][0]));
+ assert.equal(await page.locator('#dialogTitle').textContent(),await page.evaluate(()=>({de:'Bist du dir sicher?',en:'Are you sure?',es:'¿Seguro que quieres hacerlo?',fr:'Tu es sûr de vouloir continuer ?',pt:'Tem certeza?',it:'Sei sicuro di voler continuare?'}[state.lang])));
  await page.locator('#dialogCancel').click();
  await page.waitForFunction(()=>!document.querySelector('#appDialog').open);
  assert.equal(await page.evaluate(()=>state.players.length),2);
@@ -110,11 +119,16 @@ await page.locator('#copyLink').click();assert.equal(await page.locator('#appDia
 await page.locator('#shareQuestion').click();assert.equal(await page.locator('#appDialog').isVisible(),true);assert.ok((await page.locator('#dialogCopy').inputValue()).includes('https://'));await page.locator('#dialogCancel').click();
 // Analytics stays off until opt-in, then counts only allowed anonymous actions.
 assert.equal(sent.filter(x=>x.path==='/v1/usage').length,0);
-await page.goto(base+'/?src=qr');await page.locator('.cc-thumb').first().waitFor({state:'visible'});
+// Simulate an already installed copy that never made a choice.
+await page.evaluate(()=>localStorage.removeItem('curiocircle-usage-choice-v1'));
+await page.goto(base+'/?src=qr');await page.locator('#appDialog').waitFor({state:'visible'});
 assert.equal(sent.filter(x=>x.path==='/v1/usage').length,0);
+assert.equal(await page.evaluate(()=>CCUsage.decided()),false);
+await page.locator('#dialogOK').click();
+await page.waitForFunction(()=>CCUsage.decided()&&CCUsage.enabled());
+assert.equal(await page.evaluate(()=>localStorage.getItem('curiocircle-usage-choice-v1')),'yes');
 await page.locator('#settingsJump').click();await page.locator('#extrasTitle').click();
-assert.equal(await page.locator('#usageConsent').isChecked(),false);
-await page.locator('#usageConsent').check();
+assert.equal(await page.locator('#usageConsent').isChecked(),true);
 await page.waitForFunction(()=>CCUsage.enabled());
 await page.waitForTimeout(400);
 let usage=()=>sent.filter(x=>x.path==='/v1/usage').map(x=>x.payload);
@@ -163,13 +177,24 @@ assert.equal(await page.evaluate(()=>state.achievements.effects),false);
 const backed=await page.evaluate(()=>JSON.parse(JSON.stringify({format:1,state})));
 await page.locator('#dataTitle').click();
 const communityBeforeAchievementReset=await page.evaluate(()=>localStorage.getItem('curiocircle-community-v1'));
+await page.locator('#resetData').click();await page.locator('#appDialog').waitFor({state:'visible'});
+assert.equal(await page.locator('#dialogOK').textContent(),await page.evaluate(()=>CCUsage.consentCopy(state.lang)[2]));
+assert.equal(await page.locator('#dialogCancel').textContent(),await page.evaluate(()=>CCUsage.consentCopy(state.lang)[3]));
+await page.locator('#dialogCancel').click();await page.waitForFunction(()=>dialogResolver===null);
+assert.equal(await page.evaluate(()=>state.achievements.shares),backed.state.achievements.shares);
 await page.locator('#resetData').click();await page.locator('#dialogOK').click();
 await page.waitForFunction(()=>state.achievements.unlocked.length===0&&state.achievements.shares===0);
+assert.equal(await page.evaluate(()=>localStorage.getItem('curiocircle-usage-choice-v1')),'no');
 assert.equal(await page.evaluate(()=>localStorage.getItem('curiocircle-community-v1')),communityBeforeAchievementReset);
 await page.locator('#importFile').setInputFiles({name:'achievements.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(backed))});
 await page.locator('#dialogOK').click();await page.waitForFunction(n=>state.achievements.shares===n,backed.state.achievements.shares);
 assert.equal(await page.evaluate(()=>state.achievements.effects),false);
 assert.equal(usage().length,usageBeforeAchievements);
+// Existing explicit opt-in survives an update without a new prompt.
+await page.evaluate(()=>localStorage.setItem('curiocircle-usage-choice-v1','yes'));
+await page.reload();await page.locator('.cc-thumb').first().waitFor({state:'visible'});
+assert.equal(await page.evaluate(()=>CCUsage.decided()&&CCUsage.enabled()),true);
+assert.equal(await page.locator('#appDialog').isVisible(),false);
 assert.deepEqual(dialogs,[]);assert.deepEqual(errors,[]);
 console.log('OK: six languages, four viewport widths, thumbs and withdrawal, proposal, favourite removal, feedback sending, no dialogs or page errors');
 await context.close();

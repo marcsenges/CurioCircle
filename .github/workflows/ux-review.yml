@@ -3,7 +3,7 @@ on:
   pull_request:
     branches: [main]
   push:
-    branches: [achievements-0981]
+    branches: [consent-0982]
 permissions:
   contents: read
 jobs:

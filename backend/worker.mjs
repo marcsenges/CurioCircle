@@ -69,6 +69,18 @@ async function feedback(request,env){
  await db.prepare('INSERT OR IGNORE INTO cc_feedback(receipt_hash,text,language,app_version,submitted_day) VALUES(?,?,?,?,?)').bind(receipt,text,o.language,o.app_version,today()).run();
  return reply({ok:true,status:'received'},200,true);
 }
+const usageEvents=new Set(['app_open','round_start','answer','skip','qr_open','whatsapp_open','link_open','share_open','whatsapp_click','link_copy','share_success','install','language','category']);
+async function usage(request,env){
+ let o;try{o=await body(request,256)}catch{return fail('invalid_body',400,true)}
+ if(!fields(o,['event','dimension'])||!usageEvents.has(o.event)||typeof o.dimension!=='string')return fail('invalid_usage',400,true);
+ if(o.event==='language'?!LANG.has(o.dimension):o.event==='category'?!/^[0-7]$/.test(o.dimension):o.dimension!=='')return fail('invalid_usage',400,true);
+ const db=env.DB;
+ if(!await allow(db,'usage',3000))return fail('rate_limited',429,true);
+ await db.prepare('INSERT INTO cc_usage_daily(day,event,dimension,count) VALUES(?,?,?,1) ON CONFLICT(day,event,dimension) DO UPDATE SET count=count+1').bind(today(),o.event,o.dimension).run();
+ // Remove old aggregates on new traffic. No individual event records or identifiers.
+ await db.prepare("DELETE FROM cc_usage_daily WHERE day < date('now','-365 days')").run();
+ return reply({ok:true},200,true);
+}
 const statsSQL='SELECT q.id AS question_id,COALESCE(qc.category,q.category) AS category,v.language,COUNT(*) AS total,SUM(CASE WHEN v.vote=1 THEN 1 ELSE 0 END) AS positive,SUM(CASE WHEN v.vote=-1 THEN 1 ELSE 0 END) AS negative FROM cc_vote v JOIN cc_question q ON q.id=v.question_id LEFT JOIN cc_question_category qc ON qc.question_id=q.id WHERE v.vote IS NOT NULL GROUP BY q.id,COALESCE(qc.category,q.category),v.language ORDER BY q.id,v.language';
 const suggestionsSQL='SELECT receipt_hash AS id,text,language,status,submitted_day,reviewed_day FROM cc_suggestion ORDER BY submitted_day DESC,receipt_hash LIMIT 500';
 const csvCell=v=>'"'+String(v??'').replace(/^[\s\uFEFF]*[=+\-@\t\r]/,m=>"'"+m).replace(/"/g,'""')+'"';
@@ -86,7 +98,7 @@ async function handle(request,env){
  const url=new URL(request.url),path=url.pathname,method=request.method,origin=request.headers.get('Origin'),cors=origin===ORIGIN;
  if(path==='/health'&&method==='GET'){
   const row=await env.DB.prepare('SELECT COUNT(*) AS n FROM cc_question').first();
-  return reply({ok:true,feedback_enabled:feedbackOpen(env),catalogue_count:row.n},200,cors);
+  return reply({ok:true,feedback_enabled:feedbackOpen(env),catalogue_count:row.n,analytics_enabled:feedbackOpen(env)},200,cors);
  }
  if(path==='/admin'&&method==='GET'){
   const nonce=hex(crypto.getRandomValues(new Uint8Array(16)));
@@ -110,11 +122,11 @@ async function handle(request,env){
   }
   return fail('not_found',404);
  }
- if(!['/v1/vote','/v1/suggestion','/v1/feedback'].includes(path))return fail('not_found',404,cors);
+ if(!['/v1/vote','/v1/suggestion','/v1/feedback','/v1/usage'].includes(path))return fail('not_found',404,cors);
  if(!cors)return fail('forbidden',403);
  if(method==='OPTIONS')return new Response(null,{status:204,headers:{...headers,'Access-Control-Allow-Origin':ORIGIN,'Access-Control-Allow-Methods':'POST, OPTIONS','Access-Control-Allow-Headers':'Content-Type','Access-Control-Max-Age':'600','Vary':'Origin'}});
  if(method!=='POST')return fail('method',405,true);
  if(!feedbackOpen(env))return fail('feedback_disabled',503,true);
- return path==='/v1/vote'?vote(request,env):path==='/v1/suggestion'?suggest(request,env):feedback(request,env);
+ return path==='/v1/vote'?vote(request,env):path==='/v1/suggestion'?suggest(request,env):path==='/v1/feedback'?feedback(request,env):usage(request,env);
 }
 export default {async fetch(request,env){try{return await handle(request,env)}catch{return fail('temporarily_unavailable',503,request.headers.get('Origin')===ORIGIN)}}};

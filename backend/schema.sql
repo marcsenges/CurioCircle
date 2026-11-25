@@ -40,3 +40,12 @@ CREATE TABLE IF NOT EXISTS cc_question_category (
   question_id INTEGER PRIMARY KEY REFERENCES cc_question(id),
   category INTEGER NOT NULL CHECK(category BETWEEN 0 AND 7)
 );
+
+-- Voluntary usage counts, one row per UTC day, event and approved dimension.
+CREATE TABLE IF NOT EXISTS cc_usage_daily (
+ day TEXT NOT NULL CHECK(length(day)=10),
+ event TEXT NOT NULL CHECK(event IN ('app_open','round_start','answer','skip','qr_open','whatsapp_open','link_open','share_open','whatsapp_click','link_copy','share_success','install','language','category')),
+ dimension TEXT NOT NULL CHECK(dimension IN ('','de','en','es','fr','pt','it','0','1','2','3','4','5','6','7')),
+ count INTEGER NOT NULL CHECK(count>=0),
+ PRIMARY KEY(day,event,dimension)
+);

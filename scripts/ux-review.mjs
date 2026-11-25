@@ -190,6 +190,11 @@ await page.locator('#importFile').setInputFiles({name:'achievements.json',mimeTy
 await page.locator('#dialogOK').click();await page.waitForFunction(n=>state.achievements.shares===n,backed.state.achievements.shares);
 assert.equal(await page.evaluate(()=>state.achievements.effects),false);
 assert.equal(usage().length,usageBeforeAchievements);
+// Existing explicit opt-in survives an update without a new prompt.
+await page.evaluate(()=>localStorage.setItem('curiocircle-usage-choice-v1','yes'));
+await page.reload();await page.locator('.cc-thumb').first().waitFor({state:'visible'});
+assert.equal(await page.evaluate(()=>CCUsage.decided()&&CCUsage.enabled()),true);
+assert.equal(await page.locator('#appDialog').isVisible(),false);
 assert.deepEqual(dialogs,[]);assert.deepEqual(errors,[]);
 console.log('OK: six languages, four viewport widths, thumbs and withdrawal, proposal, favourite removal, feedback sending, no dialogs or page errors');
 await context.close();

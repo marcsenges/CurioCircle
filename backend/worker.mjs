@@ -78,7 +78,7 @@ async function usage(request,env){
  if(!await allow(db,'usage',3000))return fail('rate_limited',429,true);
  await db.prepare('INSERT INTO cc_usage_daily(day,event,dimension,count) VALUES(?,?,?,1) ON CONFLICT(day,event,dimension) DO UPDATE SET count=count+1').bind(today(),o.event,o.dimension).run();
  // Remove old aggregates on new traffic. No individual event records or identifiers.
- await db.prepare("DELETE FROM cc_usage_daily WHERE day < date('now','-365 days')").run();
+ await db.prepare("DELETE FROM cc_usage_daily WHERE day < date(?,'-365 days')").bind(today()).run();
  return reply({ok:true},200,true);
 }
 const statsSQL='SELECT q.id AS question_id,COALESCE(qc.category,q.category) AS category,v.language,COUNT(*) AS total,SUM(CASE WHEN v.vote=1 THEN 1 ELSE 0 END) AS positive,SUM(CASE WHEN v.vote=-1 THEN 1 ELSE 0 END) AS negative FROM cc_vote v JOIN cc_question q ON q.id=v.question_id LEFT JOIN cc_question_category qc ON qc.question_id=q.id WHERE v.vote IS NOT NULL GROUP BY q.id,COALESCE(qc.category,q.category),v.language ORDER BY q.id,v.language';

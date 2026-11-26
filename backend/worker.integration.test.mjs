@@ -2,7 +2,7 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {DatabaseSync} from 'node:sqlite';
-import worker from './worker.mjs';
+import worker,{previewRetention,purgeRetention} from './worker.mjs';
 const db=new DatabaseSync(':memory:');
 db.exec(readFileSync(new URL('./schema.sql',import.meta.url),'utf8'));
 db.exec('PRAGMA foreign_keys=ON; INSERT INTO cc_question(id,category) VALUES(0,0),(1,2);');
@@ -77,5 +77,40 @@ assert.equal(db.prepare("SELECT count FROM cc_usage_daily WHERE event='app_open'
 assert.equal(db.prepare("SELECT COUNT(*) AS n FROM cc_usage_daily").get().n,4);
 assert.deepEqual(db.prepare("PRAGMA table_info(cc_usage_daily)").all().map(x=>x.name),['day','event','dimension','count']);
 assert.equal((await send('/admin/api/usage')).status,401);
+// Test the agreed policies using only isolated synthetic data.
+assert.equal((await send('/admin/api/retention-preview')).status,401);
+assert.equal((await send('/admin/api/feedback')).status,401);
+const feedbackRows=(await send('/admin/api/feedback',undefined,true)).json().rows;
+assert.equal(feedbackRows.length,1);
+assert.equal(feedbackRows[0].resolved_day,null);
+assert.equal((await send('/admin/api/resolve-feedback',{id:feedbackRows[0].id,resolved:true},true)).status,200);
+assert.equal((await send('/admin/api/feedback',undefined,true)).json().rows[0].resolved_day,new Date().toISOString().slice(0,10));
+assert.equal((await send('/admin/api/resolve-feedback',{id:feedbackRows[0].id,resolved:false},true)).status,200);
+assert.equal((await send('/admin/api/feedback',undefined,true)).json().rows[0].resolved_day,null);
+const fixed='2026-11-26';
+db.exec("DELETE FROM cc_vote; DELETE FROM cc_suggestion; DELETE FROM cc_feedback; DELETE FROM cc_usage_daily;");
+for(const [receipt,day,vote] of [['1','2025-11-25',1],['2','2025-11-26',null],['3','2026-11-25',-1]]){
+ db.prepare('INSERT INTO cc_vote VALUES(?,?,?,?,?,?,?)').run(0,receipt.repeat(64),1,vote,'en','0.9.8.5 (Beta)',day);
+}
+for(const [receipt,status,day] of [['4','rejected','2026-08-27'],['5','rejected','2026-08-28'],['6','pending','2025-01-01'],['7','approved','2025-01-01']]){
+ db.prepare('INSERT INTO cc_suggestion(receipt_hash,text,language,text_hash,status,submitted_day,reviewed_day) VALUES(?,?,?,?,?,?,?)').run(receipt.repeat(64),'Synthetic suggestion '+receipt,'en',receipt.repeat(64),status,day,day);
+}
+for(const [receipt,resolved] of [['8','2026-05-29'],['9','2026-05-30'],['a',null]]){
+ db.prepare('INSERT INTO cc_feedback VALUES(?,?,?,?,?)').run(receipt.repeat(64),'Synthetic feedback '+receipt,'en','0.9.8.5 (Beta)','2025-01-01');
+ if(resolved)db.prepare('INSERT INTO cc_feedback_resolution VALUES(?,?)').run(receipt.repeat(64),resolved);
+}
+db.exec("INSERT INTO cc_usage_daily VALUES('2025-11-25','answer','',1),('2025-11-26','answer','',2);");
+const expected={ratings:1,rejected_suggestions:1,resolved_feedback:1,usage:1};
+assert.deepEqual(await previewRetention(DB,fixed),expected);
+await worker.scheduled({},env);
+assert.deepEqual(await previewRetention(DB,fixed),expected,'no deletion without explicit enablement');
+DB.batch=async statements=>{db.exec('BEGIN');try{const results=[];for(const statement of statements)results.push(await statement.run());db.exec('COMMIT');return results}catch(e){db.exec('ROLLBACK');throw e}};
+await purgeRetention(DB,fixed);
+assert.deepEqual(await previewRetention(DB,fixed),{ratings:0,rejected_suggestions:0,resolved_feedback:0,usage:0});
+assert.equal(db.prepare('SELECT COUNT(*) AS n FROM cc_vote').get().n,2);
+assert.equal(db.prepare("SELECT COUNT(*) AS n FROM cc_suggestion WHERE status IN ('pending','approved')").get().n,2);
+assert.equal(db.prepare('SELECT COUNT(*) AS n FROM cc_feedback').get().n,2);
+assert.equal(db.prepare('SELECT COUNT(*) AS n FROM cc_feedback_resolution').get().n,1);
+assert.equal(db.prepare('SELECT COUNT(*) AS n FROM cc_usage_daily').get().n,1);
 db.close();
 console.log('OK: isolated SQL, Worker validation, vote lifecycle, idempotency, aggregation, moderation, CSV and auth');

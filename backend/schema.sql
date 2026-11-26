@@ -49,3 +49,9 @@ CREATE TABLE IF NOT EXISTS cc_usage_daily (
  count INTEGER NOT NULL CHECK(count>=0),
  PRIMARY KEY(day,event,dimension)
 );
+
+-- Explicit resolution marker; old feedback is not automatically treated as resolved.
+CREATE TABLE IF NOT EXISTS cc_feedback_resolution (
+  receipt_hash TEXT PRIMARY KEY REFERENCES cc_feedback(receipt_hash) ON DELETE CASCADE,
+  resolved_day TEXT NOT NULL CHECK(length(resolved_day)=10)
+);

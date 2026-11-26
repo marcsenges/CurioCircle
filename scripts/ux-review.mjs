@@ -10,12 +10,14 @@ const browser=await chromium.launch({headless:true, args:['--no-sandbox']});
 try{
 const context=await browser.newContext({viewport:{width:375,height:812},serviceWorkers:'block',isMobile:true,hasTouch:true});
 const page=await context.newPage(),errors=[],sent=[],dialogs=[];
+let holdVote=false,releaseVote=null,notifyHeld=null;
 page.on('pageerror',e=>errors.push(e.message));page.on('dialog',d=>{dialogs.push(d.message());void d.dismiss()});
 await context.route('https://curiocircle-api.*.workers.dev/**',async route=>{
 const req=route.request(),url=new URL(req.url()),headers={'Access-Control-Allow-Origin':base,'Access-Control-Allow-Headers':'Content-Type','Access-Control-Allow-Methods':'GET, POST, OPTIONS'};
 if(req.method()==='OPTIONS')return route.fulfill({status:204,headers});
 if(url.pathname==='/health')return route.fulfill({json:{ok:true,feedback_enabled:true,catalogue_count:307},headers});
 const p=req.postDataJSON();sent.push({path:url.pathname,payload:p});
+if(holdVote&&url.pathname==='/v1/vote'){holdVote=false;await new Promise(resolve=>{releaseVote=resolve;notifyHeld?.()})}
 return route.fulfill({json:{ok:true,status:'received',vote:p.vote,revision:p.revision},headers});
 });
 async function openSettings(group){const settings=page.locator('details.settings');if(!await settings.evaluate(e=>e.open))await page.locator('#settingsJump').click();const panel=page.locator('#'+group+'Group');if(!await panel.evaluate(e=>e.open))await panel.locator(':scope > summary').click();await page.waitForFunction(g=>document.querySelectorAll('.settingsModule[open]').length===1&&document.getElementById(g+'Group').open,group)}
@@ -100,12 +102,12 @@ await page.locator('#allCategories').check();
 await page.locator('#applyCategories').click();
 assert.deepEqual(await page.evaluate(()=>selectedCategories()),[0,1,2,3,4,5,6,7]);
 assert.equal(await page.evaluate(()=>deck.length),307);
-// Confirmed ratings survive a complete local game reset, including reload.
+// Confirmed ratings survive reset in the retained receipt store, but not the visible statistics.
 await page.locator('.cc-thumb').first().click();
 await page.waitForFunction(()=>CCCommunity.summary().positive>=1&&CCCommunity.summary().pending===0);
 await page.evaluate(()=>{state.players=['Test A','Test B'];state.fav=[0,1];state.counts={0:2};state.custom=[{id:100000,en:'Test local question',es:'Pregunta de prueba'}];state.mode='rotate';state.turn=1;save();render()});
 await openSettings('app');
-await page.locator('#dataTitle').click();
+if(!await page.locator('#dataTitle').evaluate(e=>e.parentElement.open))await page.locator('#dataTitle').click();
 for(const lang of ['en','de','es','fr','pt','it']){
  await page.locator('#lang').selectOption(lang);
  await page.locator('#resetData').click();
@@ -117,24 +119,63 @@ for(const lang of ['en','de','es','fr','pt','it']){
 }
 await page.locator('#lang').selectOption('es');
 const oldCommunity=await page.evaluate(()=>localStorage.getItem('curiocircle-community-v1'));
+const oldRated=Object.entries(JSON.parse(oldCommunity).votes).find(([id,r])=>r.confirmed?.vote===1);
+assert.ok(oldRated);
+function retainedCommunity(raw){const x=JSON.parse(raw);for(const r of Object.values(x.votes))delete r.hidden;return x}
+async function readCommunity(){return page.evaluate(()=>localStorage.getItem('curiocircle-community-v1'))}
+async function showQuestion(id){await page.evaluate(id=>{const index=deck.indexOf(Number(id));if(index<0)throw Error('Question missing');pos=index;save();render()},id)}
+async function assertNoVisibleRating(){assert.equal(await page.locator('.cc-thumb[aria-pressed=true]').count(),0);assert.equal(await page.evaluate(()=>CCCommunity.summary().rated),0)}
+
 const sentBeforeReset=sent.length;
 await page.locator('#resetData').click();await page.locator('#dialogOK').click();
 await page.waitForFunction(()=>state.players.length===0&&state.custom.length===0);
-assert.equal(await page.evaluate(()=>localStorage.getItem('curiocircle-community-v1')),oldCommunity);
+const resetCommunity=await readCommunity();
+assert.deepEqual(retainedCommunity(resetCommunity),retainedCommunity(oldCommunity));
+assert.ok(Object.values(JSON.parse(resetCommunity).votes).every(r=>r.hidden===true));
 assert.equal(sent.length,sentBeforeReset);
+await assertNoVisibleRating();
 assert.deepEqual(await page.evaluate(()=>({players:state.players,custom:state.custom,fav:state.fav,counts:state.counts,mode:state.mode,pos})),{players:[],custom:[],fav:[],counts:{},mode:'free',pos:0});
 assert.equal(await page.locator('#players').inputValue(),'');
 await page.reload();await page.locator('.cc-thumb').first().waitFor({state:'visible'});
-assert.equal(await page.evaluate(()=>localStorage.getItem('curiocircle-community-v1')),oldCommunity);
+assert.equal(await readCommunity(),resetCommunity);await showQuestion(oldRated[0]);await assertNoVisibleRating();
 assert.equal(await page.evaluate(()=>state.players.length),0);
+assert.ok(await page.evaluate(()=>Object.keys(state.counts).length===0&&state.fav.length===0&&state.achievements.unlocked.length===0));
+assert.equal(await page.locator('#count').textContent(),await page.evaluate(()=>quickText[state.lang][6]));
+// Same thumb after a display reset must keep the vote, not withdraw it or issue a new receipt.
+await page.locator('.cc-thumb').first().click();
+await page.waitForFunction(()=>CCCommunity.summary().positive===1&&CCCommunity.summary().pending===0);
+let repeat=sent.filter(x=>x.path==='/v1/vote').at(-1).payload;
+assert.equal(repeat.question_id,Number(oldRated[0]));assert.equal(repeat.receipt,oldRated[1].receipt);assert.equal(repeat.revision,oldRated[1].revision+1);assert.equal(repeat.vote,1);
+await page.locator('.cc-thumb').last().click();await page.waitForFunction(()=>CCCommunity.summary().negative===1&&CCCommunity.summary().pending===0);
+let changed=sent.filter(x=>x.path==='/v1/vote').at(-1).payload;assert.equal(changed.receipt,repeat.receipt);assert.equal(changed.revision,repeat.revision+1);assert.equal(changed.vote,-1);
+await openSettings('app');if(!await page.locator('#dataTitle').evaluate(e=>e.parentElement.open))await page.locator('#dataTitle').click();await page.locator('#resetData').click();await page.locator('#dialogOK').click();await page.waitForFunction(()=>CCCommunity.summary().rated===0);
+await openSettings('privacy');await page.locator('#showPreviousRatings').click();await page.waitForFunction(()=>CCCommunity.summary().negative===1);
+await showQuestion(oldRated[0]);assert.equal(await page.locator('.cc-thumb').last().getAttribute('aria-pressed'),'true');
+await page.locator('.cc-thumb').last().click();await page.waitForFunction(()=>CCCommunity.summary().rated===0&&CCCommunity.summary().pending===0);
+const withdrawn=sent.filter(x=>x.path==='/v1/vote').at(-1).payload;assert.equal(withdrawn.receipt,repeat.receipt);assert.equal(withdrawn.vote,null);
+// A response arriving after reset must not restore a hidden thumb or visible count.
+const held=new Promise(resolve=>{notifyHeld=resolve});holdVote=true;
+await page.locator('.cc-thumb').first().click();await held;
+try{
+ await openSettings('app');if(!await page.locator('#dataTitle').evaluate(e=>e.parentElement.open))await page.locator('#dataTitle').click();
+ await page.locator('#resetData').click();await page.locator('#dialogOK').click();
+ await page.waitForFunction(()=>Object.values(JSON.parse(localStorage.getItem('curiocircle-community-v1')).votes).every(r=>r.hidden===true));
+ await showQuestion(oldRated[0]);await assertNoVisibleRating();
+}finally{releaseVote?.();notifyHeld=null}
+await page.waitForFunction(()=>CCCommunity.summary().pending===0);
+await assertNoVisibleRating();
+assert.equal(await page.locator('#communityRating [role=status]').textContent(),'');
+const finalRecord=JSON.parse(await readCommunity()).votes[oldRated[0]];
+assert.equal(finalRecord.confirmed.vote,1);assert.equal(finalRecord.receipt,repeat.receipt);assert.equal(finalRecord.hidden,true);
+const afterWithdraw=await readCommunity();
 // Import cancellation and confirmed import preserve community data.
-await openSettings('app');await page.locator('#dataTitle').click();
+await openSettings('app');if(!await page.locator('#dataTitle').evaluate(e=>e.parentElement.open))await page.locator('#dataTitle').click();
 const backup={format:1,state:{lang:'es',fav:[2],counts:{2:1},players:['Uno','Dos'],mode:'free',custom:[]}};
 await page.locator('#importFile').setInputFiles({name:'test.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(backup))});
 await page.locator('#dialogCancel').click();await page.waitForFunction(()=>!document.querySelector('#appDialog').open&&dialogResolver===null&&document.querySelector('#importFile').value==='');assert.equal(await page.evaluate(()=>state.fav.length),0);
 await page.locator('#importFile').setInputFiles({name:'test.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(backup))});
 await page.locator('#dialogOK').click();await page.waitForFunction(()=>state.fav.includes(2));
-assert.equal(await page.evaluate(()=>localStorage.getItem('curiocircle-community-v1')),oldCommunity);
+assert.equal(await readCommunity(),afterWithdraw);
 // Clipboard failure uses a selectable text box in the app, not window.prompt.
 await page.evaluate(()=>{Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:async()=>{throw Error('clipboard unavailable')}}});Object.defineProperty(navigator,'share',{configurable:true,value:undefined})});
 await page.locator('#shareJump').click();
@@ -198,7 +239,7 @@ for(const lang of ['de','en','es','fr','pt','it']){
 await page.setViewportSize({width:375,height:812});await page.locator('#achievementEffects').uncheck();
 assert.equal(await page.evaluate(()=>state.achievements.effects),false);
 const backed=await page.evaluate(()=>JSON.parse(JSON.stringify({format:1,state})));
-await openSettings('app');await page.locator('#dataTitle').click();
+await openSettings('app');if(!await page.locator('#dataTitle').evaluate(e=>e.parentElement.open))await page.locator('#dataTitle').click();
 const communityBeforeAchievementReset=await page.evaluate(()=>localStorage.getItem('curiocircle-community-v1'));
 await page.locator('#resetData').click();await page.locator('#appDialog').waitFor({state:'visible'});
 assert.equal(await page.locator('#dialogOK').textContent(),await page.evaluate(()=>CCUsage.consentCopy(state.lang)[2]));
@@ -208,7 +249,7 @@ assert.equal(await page.evaluate(()=>state.achievements.shares),backed.state.ach
 await page.locator('#resetData').click();await page.locator('#dialogOK').click();
 await page.waitForFunction(()=>state.achievements.unlocked.length===0&&state.achievements.shares===0);
 assert.equal(await page.evaluate(()=>localStorage.getItem('curiocircle-usage-choice-v1')),'no');
-assert.equal(await page.evaluate(()=>localStorage.getItem('curiocircle-community-v1')),communityBeforeAchievementReset);
+assert.deepEqual(retainedCommunity(await readCommunity()),retainedCommunity(communityBeforeAchievementReset));assert.ok(Object.values(JSON.parse(await readCommunity()).votes).every(r=>r.hidden===true));
 await page.locator('#importFile').setInputFiles({name:'achievements.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(backed))});
 await page.locator('#dialogOK').click();await page.waitForFunction(n=>state.achievements.shares===n,backed.state.achievements.shares);
 assert.equal(await page.evaluate(()=>state.achievements.effects),false);

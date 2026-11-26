@@ -3,7 +3,7 @@ on:
   pull_request:
     branches: [main]
   push:
-    branches: [alignment-09841]
+    branches: [reset-09842]
 permissions:
   contents: read
 jobs:

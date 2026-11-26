@@ -3,7 +3,7 @@ on:
   pull_request:
     branches: [main]
   push:
-    branches: [consent-0982]
+    branches: [catalogue-quality-0983]
 permissions:
   contents: read
 jobs:

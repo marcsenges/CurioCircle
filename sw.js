@@ -1,6 +1,6 @@
 // A coherent, bounded app shell. Catalogue/version checks bypass the service worker.
-const CACHE='curiocircle-0985-draft-2';
-const assets=['./','./index.html','./legal.html','./questions.json','./localisation.js','./usage.js?v=0984','./achievements.js','./diversity.js','./mix.js','./storage.js?v=0985','./backend/community-client.js?v=0985','./app.css?v=0985','./design.css?v=09841','./design.js?v=0984','./icon.svg','./icon-maskable.svg','./icon-maskable-512.png','./icon-192.png','./icon-512.png','./icon-1024.png','./qr.svg','./manifest.webmanifest'];
+const CACHE='curiocircle-0985-draft-3';
+const assets=['./','./index.html','./legal.html','./questions.json','./localisation.js','./usage.js?v=0984','./achievements.js','./diversity.js','./mix.js','./storage.js?v=0985','./backend/community-client.js?v=0985','./app.css?v=0985','./app.js?v=0985','./design.css?v=09841','./design.js?v=0984','./icon.svg','./icon-maskable.svg','./icon-maskable-512.png','./icon-192.png','./icon-512.png','./icon-1024.png','./qr.svg','./manifest.webmanifest'];
 const absolute=path=>new URL(path,self.registration.scope).href;
 const allowed=new Set(assets.map(absolute));
 const app=absolute('./'),index=absolute('./index.html'),legal=absolute('./legal.html');

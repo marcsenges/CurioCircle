@@ -9,6 +9,6 @@ Six languages: German, British English, Spanish (Spain), French, Brazilian Portu
 ## Development
 Read [SPECIFICATION.md](SPECIFICATION.md) before changing this project. It records the approved scope, roadmap, release gates and permanent requirements. [Backend notes](backend/README.md) document deployment and privacy safeguards. [Catalogue review](CATALOGUE-REVIEW.md) describes editorial checks.
 
-Core validation: node scripts/check-catalogue.mjs, node scripts/check-mix.mjs, node scripts/check-achievements.mjs, node scripts/check-storage.mjs. Backend integration tests require Node 22 with --experimental-sqlite. The GitHub Actions browser suite uses Chromium. Physical Android/iOS and independent live verification remain separate release gates.
+Core validation: node scripts/check-catalogue.mjs, node scripts/check-mix.mjs, node scripts/check-achievements.mjs, node scripts/check-storage.mjs. Backend integration tests require Node 22 with --experimental-sqlite. The GitHub Actions browser suite uses Chromium for full regressions and Firefox/WebKit for cross-engine smoke tests; the release check verifies the version marker and offline asset list. Physical Android/iOS and independent live verification remain separate release gates.
 
 This draft is not a production release; do not claim store approval or legal compliance.

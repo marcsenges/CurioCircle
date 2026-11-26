@@ -1,0 +1,90 @@
+/* 0.9.8.4: approved minimal cream game surface, forest green and muted gold.
+   Independent presentation layer; existing game and storage logic remain unchanged. */
+:root{--forest:#203d36;--cream:#fff8e9;--paper:#f1eadb;--gold:#e8c886;--ink:#203d36;--line:#d8cbb0}
+body{background:var(--forest)}
+main{padding-top:env(safe-area-inset-top,0px)}
+.smart{top:env(safe-area-inset-top,0px)}
+header .brand img{width:44px;height:44px}
+header h1{font:600 clamp(26px,7vw,34px)/1.15 Georgia,serif;letter-spacing:-.03em}
+header small{font-size:10px;letter-spacing:.08em}
+#shareJump{background:var(--gold);color:var(--forest);border-radius:16px}
+#settingsJump{border:1px solid #e8c88655;border-radius:16px}
+.gameSurface{background:var(--paper);color:var(--ink);padding:14px;border-radius:32px;box-shadow:0 8px 24px #0002;margin:14px 0 0}
+.gameSurface .modeRow{font-size:12px}
+.gameSurface #filter{background:var(--cream);border-color:var(--line);font-size:13px;min-height:44px}
+.gameSurface #activeFilterText,.gameSurface #turn{color:var(--ink)}
+.gameSurface #clearFilters{background:var(--cream);color:var(--ink)}
+.gameSurface .card{background:var(--cream);border:1px solid #fff;border-radius:26px;box-shadow:0 4px 15px #203d3610;padding:12px 16px 18px;min-height:248px;margin:10px 0 8px;gap:10px}
+.gameSurface .card .top{justify-content:space-between}
+.cardTopBalance{width:48px;flex:none}
+.gameSurface .question{font-family:Georgia,'Times New Roman',serif;font-size:clamp(24px,6.5vw,30px);font-weight:600;line-height:1.3;letter-spacing:-.015em;padding:8px 0}
+.gameSurface #categoryTag{color:var(--cream);background:var(--forest);box-shadow:none;font-size:12px;padding:7px 14px}
+.gameSurface #count{font-size:12px;color:#536b60}
+.cardTools{display:flex;align-items:flex-end;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.cardTools #heart{background:var(--cream);color:var(--forest);border:1px solid var(--line);min-width:48px;border-radius:16px;font-size:26px}
+.cardTools #heart[aria-pressed=true]{color:#a53347}
+.cardTools #communityRating{flex:1;min-width:0;text-align:right;padding:0}
+.cardTools .cc-rating-label{font-size:10px;margin:0 0 2px auto!important;text-align:right}
+.cardTools .cc-rating-actions{justify-content:flex-end;gap:8px}
+.cardTools .cc-rating-actions .cc-thumb{background:var(--cream);border:1px solid var(--line);border-radius:14px}
+.cardTools .cc-rating-actions .cc-thumb[aria-pressed=true]{background:#dce7df}
+.cardTools #communityRating .cc-remove-rating{min-height:44px}
+.reportRow{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;margin:0}
+#reportQuestion{border:0;background:transparent;color:#536b60;font-size:11px;text-decoration:underline;padding:6px 4px;min-height:44px}
+#reportStatus{font-size:12px;margin:0;width:100%}
+#reportStatus:empty{display:none}
+.gameSurface .actions button{border-radius:999px;min-height:52px;font-weight:650}
+.gameSurface #answer{background:var(--forest);color:var(--cream);border:1px solid var(--forest);font-size:18px}
+.gameSurface .secondary{background:var(--cream);color:var(--forest);border:1px solid var(--line)}
+.gameSurface button:focus-visible,.gameSurface select:focus-visible{outline-color:var(--forest)}
+.settings[open]{border:1px solid #ffffff25;border-radius:24px;padding:14px;margin:14px 0}
+.settings[open]>summary{font:600 24px/1.2 Georgia,serif;margin:0;padding:10px 0;min-height:44px}
+#settingsIntro{margin:0 0 12px;color:var(--cream);font-size:13px}
+#extrasPanel{display:grid;gap:10px;padding:0}
+.settingsModule{border:1px solid #e8c88644;border-radius:18px;min-width:0;overflow:hidden}
+.settingsModule>summary{display:flex!important;align-items:center;gap:12px;list-style:none;background:var(--cream);color:var(--forest);padding:12px!important;min-height:72px;cursor:pointer}
+.settingsModule>summary::-webkit-details-marker{display:none}
+.settingsModule>summary:focus-visible{outline:3px solid var(--gold);outline-offset:-4px}
+.moduleIcon{display:grid;place-items:center;width:44px;height:44px;flex:none;border-radius:12px;background:#e8e5d7}
+.moduleIcon svg{width:24px;height:24px;fill:none;stroke:var(--forest);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.moduleCopy{display:grid;gap:4px;min-width:0;flex:1}
+.moduleCopy strong{font-size:15px;line-height:1.25}
+.moduleCopy small{font-size:12px;line-height:1.35;color:#52665c}
+.moduleChevron{font-size:24px;line-height:1;flex:none}
+.settingsModule[open]>summary .moduleChevron{transform:rotate(180deg)}
+.moduleBody{padding:12px;min-width:0}
+.moduleBody>label:not(.achievementChoice){display:block;min-height:44px;margin:4px 0 8px;line-height:1.5}
+.moduleBody>select,.moduleBody>button{width:100%;min-height:48px}
+.moduleBody .optionGroup>summary,#communitySettings>details>summary{border-radius:10px;background:#ffffff0b;padding:12px!important;list-style-position:inside;line-height:1.45}
+.moduleBody #privacyPanel{margin:0 0 8px}
+.moduleBody #usagePanel{margin:8px 0}
+.moduleBody #communitySettings{border-top:0}
+.moduleBody #contactHint{font-size:12px;line-height:1.5;color:#e0ded3}
+.appUpdateActions{display:grid;gap:8px;margin:10px 0}
+#achievementPanel h3{font-size:17px;margin:0 0 8px}
+#achievementOverview{gap:10px}
+.achievementMetric{background:var(--cream);color:var(--forest);text-align:center;justify-items:center;border:0;padding:12px 8px}
+.achievementMetric strong{color:var(--forest);font-size:22px}
+.achievementMetric .metricIcon{color:#8e6b32;font-size:23px}
+.achievementOverall{margin:14px 0}
+.achievementOverall p{margin:4px 0;color:var(--gold)}
+progress{width:100%;height:10px;accent-color:var(--gold)}
+.achievementGroup{border:1px solid #e8c88633;border-radius:12px;margin:8px 0;padding:4px 10px}
+.achievementMedals span{font-size:13px;padding:8px 10px}
+.sharePanel{background:#29483d;border:1px solid #e8c88666;border-radius:24px;padding:12px 16px;margin:18px 0}
+.sharePanel>summary{font-size:18px;font-weight:650;min-height:48px}
+.sharePanel h2{font:600 26px/1.2 Georgia,serif;color:var(--gold);margin:12px 0}
+.sharePanel #shareIntro{margin:8px 0 16px}
+.qrCard{background:var(--cream);color:var(--forest);border-radius:18px;padding:16px;display:grid;justify-items:center;gap:8px}
+.sharePanel .qrCard img{width:min(220px,100%);height:auto;margin:0;border-radius:4px}
+.sharePanel .qrCard a{color:var(--forest);min-height:44px;display:grid;place-items:center;font-size:13px}
+.shareActions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.shareActions button{font-size:14px;min-height:48px}
+.shareActions #nativeShare{grid-column:1/-1;background:var(--gold);font-weight:650}
+.shareActions #shareQuestion,.shareActions #install{grid-column:1/-1}
+.shareMilestone{text-align:left;background:#203d36;padding:14px;border-radius:14px;color:var(--gold)}
+.shareMilestone p{margin:6px 0;color:var(--cream)}
+#shareBenefits,#installHelp{font-size:12px}
+#benefits{margin-top:14px}
+@media(max-width:360px){.gameSurface{padding:10px}.gameSurface .card{padding:10px 12px 15px;min-height:225px}.settings[open]{padding:10px}.moduleBody{padding:10px}.settingsModule>summary{gap:8px}.moduleIcon{width:38px;height:38px}.moduleCopy strong{font-size:14px}.moduleCopy small{font-size:11px}.sharePanel{padding:10px 12px}}
+@media(prefers-reduced-motion:no-preference){header .brand{animation:brandAppear .2s ease-out}@keyframes brandAppear{from{opacity:.7}to{opacity:1}}}

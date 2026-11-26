@@ -106,6 +106,14 @@ This sequence supersedes the remaining beta release numbering above. Keep Classi
 - **0.9.9 — Release candidate:** complete real Android/iPhone device QA, installation, offline, update/rollback, QR/share, accessibility, six-language and privacy review; resolve remaining release blockers.
 - **1.0 — CurioCircle Classic:** release only after explicit owner approval.
 
+## Owner-approved design and store preparation — 26 November 2026
+
+- Preserve forest green, cream and muted gold. Refined two-bubble icon B and minimal game concept C, question as focal point, compact rating and favourite controls, completed-action label (“Answered”), no bottom navigation. Retain all functions and local data.
+- Five clear settings modules (Game, My questions, My achievements, App, Privacy & community); full-width labelled tappable summaries with icons and descriptions, at most one expanded. Share remains separate, prominent and directly accessible.
+- Four achievement overview metrics: answers, distinct questions, favourites, sharing actions; overall progress, existing milestones, voluntary celebration and no pressure. Sharing goal uses local sharing actions only, never confirmed recipients; large QR, native share if available, WhatsApp, copy link, question sharing and installation.
+- Preserve prior consent choices and equally styled Yes/No consent/reset. Provide explicit confirmed question reporting via existing feedback endpoint with fixed question-ID text, language, app version and random submission receipt; no free text or tracking added. Reports are private and require editorial review. Project-team feedback is available; formal operator identity, privacy contact and complete public privacy policy require owner confirmation before store submission.
+- Prepare one shared codebase, offline assets, scalable and opaque raster icon sizes, maskable icon, accessible touch controls, safe-area layout and separation of content/code. In 0.9.8.5 audit modularity, persistence, update and platform boundaries; plan native Capacitor integration only after stable Web Classic 1.0. Store policy, data declarations, content/age ratings, SDK/API targets, Android/iOS signing and physical-device tests, distribution identity and native splash assets must be checked at submission time. No claim of store approval or full legal compliance. Native builds and store submission remain uncommitted post-1.0 work.
+
 ## Long-term idea collection — after Classic 1.0 (uncommitted concepts only)
 These ideas are explicitly outside the current 0.9.x/1.0 roadmap. Do not schedule, implement or add dependencies for them now. Revisit only after the original CurioCircle game is released, stable, tested and its planned voluntary feedback/community backend is connected.
 - Potential future collection of social games under CurioCircle, with original game named CurioCircle Classic. Preserve instant access to Classic and simple offline play.

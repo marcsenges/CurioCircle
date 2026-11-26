@@ -8,7 +8,7 @@ const fail=(code,status,cors=false)=>reply({ok:false,error:code},status,cors);
 const hex=bytes=>Array.from(new Uint8Array(bytes),x=>x.toString(16).padStart(2,'0')).join('');
 const hash=async s=>hex(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s)));
 const validReceipt=s=>typeof s==='string'&&/^[0-9a-f]{64}$/.test(s);
-const validVersion=s=>typeof s==='string'&&/^\d+\.\d+\.\d+(?:\.\d+)?(?: \(Beta\))?$/.test(s)&&s.length<=32;
+const validVersion=s=>typeof s==='string'&&/^\d+(?:\.\d+){2,4}(?: \(Beta\))?$/.test(s)&&s.length<=32;
 function fields(o,allowed){return o&&typeof o==='object'&&!Array.isArray(o)&&Object.keys(o).every(k=>allowed.includes(k))&&allowed.every(k=>Object.hasOwn(o,k))}
 async function body(request,limit=2048){
  if(!/^application\/json(?:;|$)/i.test(request.headers.get('content-type')||''))throw new Error('body');
@@ -81,6 +81,23 @@ async function usage(request,env){
  await db.prepare("DELETE FROM cc_usage_daily WHERE day < date(?,'-365 days')").bind(today()).run();
  return reply({ok:true},200,true);
 }
+// Retention rules agreed by the owner; scheduling remains opt-in after legal and replay review.
+// Dates are UTC days; a row becomes eligible after the full period has elapsed.
+const retentionRules=[
+ ['ratings','cc_vote',"updated_day < date(?,'-12 months')"],
+ ['rejected_suggestions','cc_suggestion',"status='rejected' AND reviewed_day < date(?,'-90 days')"],
+ ['resolved_feedback','cc_feedback',"receipt_hash IN (SELECT receipt_hash FROM cc_feedback_resolution WHERE resolved_day < date(?,'-180 days'))"],
+ ['usage','cc_usage_daily',"day < date(?,'-365 days')"]
+];
+export async function previewRetention(db,day=today()){
+ const counts={};
+ for(const [name,table,where] of retentionRules)counts[name]=(await db.prepare('SELECT COUNT(*) AS n FROM '+table+' WHERE '+where).bind(day).first()).n;
+ return counts;
+}
+export async function purgeRetention(db,day=today()){
+ // D1 batch is transactional; foreign-key cascade removes the matching resolution marker.
+ return db.batch(retentionRules.map(([,table,where])=>db.prepare('DELETE FROM '+table+' WHERE '+where).bind(day)));
+}
 const statsSQL='SELECT q.id AS question_id,COALESCE(qc.category,q.category) AS category,v.language,COUNT(*) AS total,SUM(CASE WHEN v.vote=1 THEN 1 ELSE 0 END) AS positive,SUM(CASE WHEN v.vote=-1 THEN 1 ELSE 0 END) AS negative FROM cc_vote v JOIN cc_question q ON q.id=v.question_id LEFT JOIN cc_question_category qc ON qc.question_id=q.id WHERE v.vote IS NOT NULL GROUP BY q.id,COALESCE(qc.category,q.category),v.language ORDER BY q.id,v.language';
 const suggestionsSQL='SELECT receipt_hash AS id,text,language,status,submitted_day,reviewed_day FROM cc_suggestion ORDER BY submitted_day DESC,receipt_hash LIMIT 500';
 const csvCell=v=>'"'+String(v??'').replace(/^[\s\uFEFF]*[=+\-@\t\r]/,m=>"'"+m).replace(/"/g,'""')+'"';
@@ -108,6 +125,19 @@ async function handle(request,env){
   if(!await authorized(request,env))return fail('unauthorized',401);
   if(origin&&origin!==url.origin)return fail('forbidden',403);
   const route=path.slice('/admin/api/'.length);
+  if(method==='GET'&&route==='retention-preview')return reply({ok:true,counts:await previewRetention(env.DB)});
+  if(method==='GET'&&route==='feedback'){
+   const rows=(await env.DB.prepare('SELECT f.receipt_hash AS id,f.text,f.language,f.app_version,f.submitted_day,r.resolved_day FROM cc_feedback f LEFT JOIN cc_feedback_resolution r USING(receipt_hash) ORDER BY r.resolved_day IS NOT NULL,f.submitted_day DESC,f.receipt_hash LIMIT 500').all()).results;
+   return reply({ok:true,rows});
+  }
+  if(method==='POST'&&route==='resolve-feedback'){
+   let o;try{o=await body(request)}catch{return fail('invalid_body',400)}
+   if(!fields(o,['id','resolved'])||!validReceipt(o.id)||typeof o.resolved!=='boolean')return fail('invalid_status',400);
+   if(!await env.DB.prepare('SELECT receipt_hash FROM cc_feedback WHERE receipt_hash=?').bind(o.id).first())return fail('not_found',404);
+   if(o.resolved)await env.DB.prepare('INSERT OR IGNORE INTO cc_feedback_resolution(receipt_hash,resolved_day) VALUES(?,?)').bind(o.id,today()).run();
+   else await env.DB.prepare('DELETE FROM cc_feedback_resolution WHERE receipt_hash=?').bind(o.id).run();
+   return reply({ok:true});
+  }
   if(method==='GET'&&['votes','suggestions','votes.csv','suggestions.csv'].includes(route)){
    const isVotes=route.startsWith('votes');
    const rows=(await env.DB.prepare(isVotes?statsSQL:suggestionsSQL).all()).results;
@@ -129,4 +159,4 @@ async function handle(request,env){
  if(!feedbackOpen(env))return fail('feedback_disabled',503,true);
  return path==='/v1/vote'?vote(request,env):path==='/v1/suggestion'?suggest(request,env):path==='/v1/feedback'?feedback(request,env):usage(request,env);
 }
-export default {async fetch(request,env){try{return await handle(request,env)}catch{return fail('temporarily_unavailable',503,request.headers.get('Origin')===ORIGIN)}}};
+export default {async fetch(request,env){try{return await handle(request,env)}catch{return fail('temporarily_unavailable',503,request.headers.get('Origin')===ORIGIN)}},async scheduled(_event,env){if(env.RETENTION_ENABLED!=='true')return;await purgeRetention(env.DB)}};

@@ -9,7 +9,7 @@ permissions:
 jobs:
   ux:
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
@@ -23,12 +23,17 @@ jobs:
           node scripts/check-mix.mjs
           node --check usage.js
           node --check design.js
+          node --check app.js
+          node scripts/check-release.mjs
           node scripts/check-achievements.mjs
+          node scripts/check-storage.mjs
           node --experimental-sqlite backend/worker.integration.test.mjs
           python3 -m py_compile backend/deploy.py
       - name: Install pinned browser test tooling
         run: |
           npm install --no-save --ignore-scripts playwright@1.51.1
-          npx playwright install chromium
+          npx playwright install --with-deps chromium firefox webkit
       - name: Test real browser at mobile and landscape sizes
         run: node scripts/ux-review.mjs
+      - name: Cross-engine smoke tests (Firefox and WebKit)
+        run: node scripts/cross-browser.mjs

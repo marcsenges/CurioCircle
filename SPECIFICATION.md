@@ -95,6 +95,17 @@ Keep the primary game card, favourite heart, answer and skip unchanged; feedback
 - Keep UI architecture simple: compact top language/share/settings controls; question screen as today; settings groups for play, favourites/custom questions, achievements and data/privacy; sharing benefits and optional community forms readily discoverable without crowding. No new mandatory steps. Use shared UI components/strings and reusable validation.
 - Could-have / later: swipe gestures only if they do not trigger accidental skips, optional haptics, thematic packs via existing category/catalogue mechanism (not separate engines), extra languages, own domain and app stores. Avoid building these before core QA unless clearly beneficial. No separate dashboard per metric, separate backends or elaborate animations.
 
+## Final beta roadmap — owner approved 2026-11-26
+
+This sequence supersedes the remaining beta release numbering above. Keep Classic simple and preserve existing functionality, data and privacy choices.
+
+- **0.9.8.2 — Consent and reset dialogs:** delivered and live verified on 26 November; once-only voluntary analytics consent, equal Yes/No choices, explicit reset confirmation.
+- **0.9.8.3 — Question quality and community:** review all 305 questions across six languages for originality, natural wording, humour, conversation potential, near-duplicates and category fit. Review submitted suggestions and feedback; avoid deleting or changing questions based on sparse ratings. Preserve stable IDs and meanings, improve semantic shuffle where evidence supports it, and validate catalogue and offline snapshot.
+- **0.9.8.4 — Design and usability:** review mobile layout, accessibility, settings hierarchy, achievements, sharing, privacy notices, branding and install icons; simplify rather than add unnecessary UI.
+- **0.9.8.5 — General code review and maintainability:** audit the complete frontend, PWA/service worker, data storage and migration, Cloudflare Worker/D1 and private admin tooling, build/release process and tests. Prioritise correctness, security/privacy, lean code, removal of duplication/dead code, performance, coherent module boundaries, shared localisation and reusable game/catalogue logic. Keep future games, categories, audiences, conversation styles, languages and updates extensible without implementing them now. Avoid speculative abstraction, framework migration or new dependencies without clear benefit. Document material findings, fix prioritised defects, test regressions, backwards compatibility, offline behaviour and data preservation, and verify live publication.
+- **0.9.9 — Release candidate:** complete real Android/iPhone device QA, installation, offline, update/rollback, QR/share, accessibility, six-language and privacy review; resolve remaining release blockers.
+- **1.0 — CurioCircle Classic:** release only after explicit owner approval.
+
 ## Long-term idea collection — after Classic 1.0 (uncommitted concepts only)
 These ideas are explicitly outside the current 0.9.x/1.0 roadmap. Do not schedule, implement or add dependencies for them now. Revisit only after the original CurioCircle game is released, stable, tested and its planned voluntary feedback/community backend is connected.
 - Potential future collection of social games under CurioCircle, with original game named CurioCircle Classic. Preserve instant access to Classic and simple offline play.

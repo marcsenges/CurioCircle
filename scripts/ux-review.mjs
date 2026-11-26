@@ -47,6 +47,11 @@ for(const lang of ['en','de','es','fr','pt','it']){
   const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1);
   assert.equal(overflow,false,'horizontal overflow '+lang+' '+width);
   assert.ok((await page.locator('.cc-thumb').first().boundingBox()).width>=44);
+  const alignment=await page.evaluate(()=>{const boxes=[...document.querySelectorAll('#heart,.cc-thumb')].map(e=>e.getBoundingClientRect()),tools=document.querySelector('.cardTools').getBoundingClientRect(),share=document.querySelector('#shareTitle'),panel=document.querySelector('#sharePanel').getBoundingClientRect(),title=share.getBoundingClientRect(),range=document.createRange();range.selectNodeContents(share);const label=range.getBoundingClientRect();return {sizes:boxes.map(b=>[b.width,b.height]),tops:boxes.map(b=>b.top),gaps:[boxes[1].left-boxes[0].right,boxes[2].left-boxes[1].right],centerDelta:Math.abs((boxes[0].left+boxes[2].right)/2-(tools.left+tools.right)/2),sharePanelDelta:Math.abs((panel.top+panel.bottom-title.top-title.bottom)/2),shareTextDelta:Math.abs((title.top+title.bottom-label.top-label.bottom)/2),shareDisplay:getComputedStyle(share).display}});
+  assert.deepEqual(alignment.sizes,[[44,44],[44,44],[44,44]],'equal touch targets '+lang+' '+width);
+  assert.ok(Math.max(...alignment.tops)-Math.min(...alignment.tops)<=1,'same icon row '+lang+' '+width);
+  assert.ok(alignment.gaps.every(n=>Math.abs(n-8)<=1)&&alignment.centerDelta<=1,'compact centred controls '+lang+' '+width);
+  assert.equal(alignment.shareDisplay,'flex');assert.ok(alignment.sharePanelDelta<=1&&alignment.shareTextDelta<=2,'vertically centred share heading '+lang+' '+width);
  }
 }
 await page.setViewportSize({width:375,height:812});await page.locator('#lang').selectOption('es');

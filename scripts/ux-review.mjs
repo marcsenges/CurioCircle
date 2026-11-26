@@ -14,7 +14,7 @@ page.on('pageerror',e=>errors.push(e.message));page.on('dialog',d=>{dialogs.push
 await context.route('https://curiocircle-api.*.workers.dev/**',async route=>{
 const req=route.request(),url=new URL(req.url()),headers={'Access-Control-Allow-Origin':base,'Access-Control-Allow-Headers':'Content-Type','Access-Control-Allow-Methods':'GET, POST, OPTIONS'};
 if(req.method()==='OPTIONS')return route.fulfill({status:204,headers});
-if(url.pathname==='/health')return route.fulfill({json:{ok:true,feedback_enabled:true,catalogue_count:305},headers});
+if(url.pathname==='/health')return route.fulfill({json:{ok:true,feedback_enabled:true,catalogue_count:307},headers});
 const p=req.postDataJSON();sent.push({path:url.pathname,payload:p});
 return route.fulfill({json:{ok:true,status:'received',vote:p.vote,revision:p.revision},headers});
 });
@@ -76,7 +76,7 @@ assert.equal(await page.locator('#categoryChoices input:checked').count(),3);
 await page.locator('#allCategories').check();
 await page.locator('#applyCategories').click();
 assert.deepEqual(await page.evaluate(()=>selectedCategories()),[0,1,2,3,4,5,6,7]);
-assert.equal(await page.evaluate(()=>deck.length),305);
+assert.equal(await page.evaluate(()=>deck.length),307);
 // Confirmed ratings survive a complete local game reset, including reload.
 await page.locator('.cc-thumb').first().click();
 await page.waitForFunction(()=>CCCommunity.summary().positive>=1&&CCCommunity.summary().pending===0);

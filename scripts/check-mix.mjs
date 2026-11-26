@@ -7,13 +7,13 @@ const state={counts:{}};
 const {mixQuestions,diversityFamilies,diversityRelated}=new Function('categoryOf','state',readFileSync('diversity.js','utf8')+'\n'+readFileSync('mix.js','utf8')+'\nreturn {mixQuestions,diversityFamilies,diversityRelated}')(categoryOf,state);
 let seed=314159265;const random=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296};
 const ids=catalogue.questions.map(q=>q.id),starts=new Set(),related=diversityRelated.map(x=>new Set(x));
-assert.equal(ids.length,305);assert.equal(diversityFamilies.length,305);assert.equal(diversityRelated.length,305);
+assert.ok(ids.length>=307);assert.equal(diversityFamilies.length,ids.length);assert.equal(diversityRelated.length,ids.length);
 assert.ok(diversityFamilies.every(x=>Number.isInteger(x)&&x>=0&&x<11));
 for(let id=0;id<ids.length;id++)for(const peer of related[id]){assert.notEqual(id,peer);assert.ok(related[peer]?.has(id))}
 let near=0,close=0,total=0,category5=0;
 for(let i=0;i<32;i++){
  const deck=mixQuestions(ids,[],random);
- assert.equal(deck.length,305);assert.equal(new Set(deck).size,305);
+ assert.equal(deck.length,ids.length);assert.equal(new Set(deck).size,ids.length);
  for(let j=1;j<deck.length;j++){
   assert.notEqual(categoryOf(deck[j]),categoryOf(deck[j-1]));
   for(let k=Math.max(0,j-10);k<j;k++){if(related[deck[j]].has(deck[k])){near++;if(j-k<5)close++}}

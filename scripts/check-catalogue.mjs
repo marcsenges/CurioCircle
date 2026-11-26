@@ -10,7 +10,7 @@ const assert=(ok,msg)=>{if(!ok)throw new Error(msg)};
 assert(split>=0,'Missing offline snapshot marker');
 assert(Number.isInteger(catalogue.version)&&catalogue.version>0,'Invalid catalogue version');
 assert(/^\d{4}-\d{2}-\d{2}$/.test(catalogue.published)&&Number.isFinite(Date.parse(catalogue.published+'T00:00:00Z')),'Invalid publication date');
-assert(Array.isArray(catalogue.questions)&&catalogue.questions.length>=305,'Catalogue must preserve existing questions');
+assert(Array.isArray(catalogue.questions)&&catalogue.questions.length>=307,'Catalogue must preserve existing questions');
 const previous=JSON.parse(loc.slice(split+marker.length).trim().replace(/;$/,''));
 assert(catalogue.version>=previous.version,'Catalogue version regressed');
 assert(catalogue.questions.length>=previous.questions.length,'Questions removed');

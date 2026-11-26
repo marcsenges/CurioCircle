@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-const h=readFileSync('index.html','utf8'),catalogue=JSON.parse(readFileSync('questions.json','utf8'));
+const h=readFileSync('app.js','utf8'),catalogue=JSON.parse(readFileSync('questions.json','utf8'));
 const groups=JSON.parse(h.match(/const groups=(\[\[.*?\]\]);/)[1]);
 const categoryOf=id=>catalogue.questions[id]?.category??groups.findIndex(g=>g.includes(id));
 const state={counts:{}};

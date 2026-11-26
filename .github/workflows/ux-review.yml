@@ -24,6 +24,7 @@ jobs:
           node --check usage.js
           node --check design.js
           node scripts/check-achievements.mjs
+          node scripts/check-storage.mjs
           node --experimental-sqlite backend/worker.integration.test.mjs
           python3 -m py_compile backend/deploy.py
       - name: Install pinned browser test tooling

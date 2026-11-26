@@ -50,7 +50,7 @@ const CCCommunity=(()=>{
    }
    root.append(actions);const label=el('p',ux[lang][0]);label.className='cc-rating-label';root.append(label);
    
-   notice=el('p',r?.pending?t[9]:(statusIndex===null?'':t[statusIndex]));notice.setAttribute('role','status');root.append(notice);
+   notice=el('p',r?.pending?t[r.blocked?12:9]:(statusIndex===null?'':t[statusIndex]));notice.setAttribute('role','status');root.append(notice);
   }
   if(!formRoot.hidden){
    formSection=el('details');formSection.open=open;formSection.append(el('summary',t[4]));
@@ -60,7 +60,7 @@ const CCCommunity=(()=>{
    const hint=el('p',ux[lang][1]);hint.id='cc-suggestion-hint';hint.className='cc-community-note';area.setAttribute('aria-describedby',hint.id);
    const submit=btn(t[6],()=>suggest(area.value));submit.className='cc-submit';submit.disabled=busy;
    formSection.append(label,hint,submit);const privacy=el('details');privacy.className='cc-privacy';const privacyText=el('p',ux[lang][2]);privacyText.className='cc-community-note';privacy.append(el('summary',ux[lang][10]),privacyText);formSection.append(privacy);
-   const pending=el('div');pending.className='cc-pending-actions';pending.hidden=!Object.values(data.votes).some(r=>r.pending);pending.append(btn(t[17],()=>flush()),btn(x[0],discardPending));formSection.append(pending);
+   const pending=el('div');pending.className='cc-pending-actions';pending.hidden=!Object.values(data.votes).some(r=>r.pending);pending.append(btn(t[17],()=>flush(true)),btn(x[0],discardPending));formSection.append(pending);
    formNotice=el('p',formStatusIndex===null?'':t[formStatusIndex]);formNotice.setAttribute('role','status');formSection.append(formNotice);formRoot.append(formSection);
    const previous=el('div');previous.className='cc-previous-ratings';previous.hidden=!Object.values(data.votes).some(r=>r.hidden&&r.vote!==null);const message=el('p',(resetCopy[lang]||resetCopy.en)[1]);message.className='cc-community-note';const restore=btn((resetCopy[lang]||resetCopy.en)[0],()=>{if(!setDisplayHidden(false)){formNotice.textContent=(resetCopy[lang]||resetCopy.en)[3]}});restore.className='secondary';restore.id='showPreviousRatings';previous.append(message,restore);formRoot.append(previous);
   }
@@ -68,7 +68,7 @@ const CCCommunity=(()=>{
  async function send(path,payload){
   const controller=new AbortController();const timeout=setTimeout(()=>controller.abort(),12000);
   try{const response=await fetch(endpoint+path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),cache:'no-store',credentials:'omit',referrerPolicy:'no-referrer',signal:controller.signal});
-   if(!response.ok)throw Error(String(response.status));const out=await response.json();if(!out.ok)throw Error('response');return out
+   if(!response.ok){const error=Error(String(response.status));error.httpStatus=response.status;throw error}const out=await response.json();if(!out.ok)throw Error('response');return out
   }finally{clearTimeout(timeout)}
  }
  async function check(){
@@ -97,26 +97,33 @@ const CCCommunity=(()=>{
   if(!ready){if(!await enable()){say(11,true);return}}
   await submitSuggestion(text)
  }
- async function flush(){
+ async function flush(retryBlocked=false){
   if(!ready||!navigator.onLine||!Object.values(data.votes).some(r=>r.pending))return;if(busy){retryRequested=true;return}busy=true;
+  if(retryBlocked){for(const r of Object.values(data.votes))if(r.pending)r.blocked=false;persist()}
   try{
    for(const id of Object.keys(data.votes)){
-    const r=data.votes[id];if(!r?.pending)continue;
+    const r=data.votes[id];if(!r?.pending||r.blocked)continue;
     if(!r.attempted){r.attempted=true;if(!persist()){r.attempted=false;if(Number(id)===question&&!r.hidden)say(12);break}}
     const payload={question_id:Number(id),receipt:r.receipt,revision:r.revision,vote:r.vote,language:r.language,app_version:r.app_version};
     try{
      const response=await send('/v1/vote',payload);
      if(data.votes[id]?.revision===payload.revision){
-      if(response.revision===payload.revision&&response.vote===payload.vote){data.votes[id]={...data.votes[id],pending:false,confirmed:{vote:r.vote,revision:r.revision,language:r.language,app_version:r.app_version}};persist();if(Number(id)===question&&!data.votes[id].hidden)say(payload.vote===null?14:10)}
-      else if(response.revision>payload.revision){data.votes[id]={...data.votes[id],revision:response.revision,vote:response.vote,pending:false,confirmed:{vote:response.vote,revision:response.revision,language:r.language,app_version:r.app_version}};persist()}
+      if(response.revision===payload.revision&&response.vote===payload.vote){data.votes[id]={...data.votes[id],pending:false,blocked:false,confirmed:{vote:r.vote,revision:r.revision,language:r.language,app_version:r.app_version}};persist();if(Number(id)===question&&!data.votes[id].hidden)say(payload.vote===null?14:10)}
+      else if(response.revision>payload.revision){data.votes[id]={...data.votes[id],revision:response.revision,vote:response.vote,pending:false,blocked:false,confirmed:{vote:response.vote,revision:response.revision,language:r.language,app_version:r.app_version}};persist()}
      }else retryRequested=true
-    }catch{if(Number(id)===question&&!data.votes[id]?.hidden)say(12);break}
+    }catch(error){
+     if(Number(id)===question&&!data.votes[id]?.hidden)say(12);
+     // A rejected individual payload must not block subsequent valid ratings.
+     if([400,413,422].includes(error.httpStatus)){if(data.votes[id]?.revision===payload.revision){data.votes[id].blocked=true;persist()}else retryRequested=true;continue}
+     // Transient/global failure: preserve the queue, do not flood the service.
+     break
+    }
    }
   }finally{busy=false;const pending=formSection?.querySelector?.('.cc-pending-actions');if(pending)pending.hidden=!Object.values(data.votes).some(r=>r.pending);if(retryRequested){retryRequested=false;void flush()}}
  }
  function setVote(v){
   if(!ready||!Number.isInteger(question)||question<0||question>=100000)return;
-  const old=data.votes[question];if(old?.vote===v&&!old.hidden){if(old.pending){flush();return}v=null;}
+  const old=data.votes[question];if(old?.vote===v&&!old.hidden){if(old.pending){flush(true);return}v=null;}
   const next={receipt:old?.receipt||receipt(),revision:(old?.revision||0)+1,vote:v,language:lang,app_version:version,pending:true,attempted:!!(old?.pending&&old?.attempted),confirmed:old?.confirmed||null,hidden:false};
   data.votes[question]=next;if(!persist()){if(old)data.votes[question]=old;else delete data.votes[question];say(12);return}
   statusIndex=9;render();flush()

@@ -8,7 +8,7 @@ const fail=(code,status,cors=false)=>reply({ok:false,error:code},status,cors);
 const hex=bytes=>Array.from(new Uint8Array(bytes),x=>x.toString(16).padStart(2,'0')).join('');
 const hash=async s=>hex(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s)));
 const validReceipt=s=>typeof s==='string'&&/^[0-9a-f]{64}$/.test(s);
-const validVersion=s=>typeof s==='string'&&/^\d+\.\d+\.\d+(?:\.\d+)?(?: \(Beta\))?$/.test(s)&&s.length<=32;
+const validVersion=s=>typeof s==='string'&&/^\d+(?:\.\d+){2,4}(?: \(Beta\))?$/.test(s)&&s.length<=32;
 function fields(o,allowed){return o&&typeof o==='object'&&!Array.isArray(o)&&Object.keys(o).every(k=>allowed.includes(k))&&allowed.every(k=>Object.hasOwn(o,k))}
 async function body(request,limit=2048){
  if(!/^application\/json(?:;|$)/i.test(request.headers.get('content-type')||''))throw new Error('body');

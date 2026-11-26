@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import vm from 'node:vm';
+const validate=vm.runInThisContext(readFileSync(new URL('../storage.js',import.meta.url),'utf8')+'\nCCStorage.validateBackup');
+const state={lang:'es',fav:[2],counts:{2:1},custom:[],players:['Uno','Dos'],mode:'free'};
+const good=validate({format:1,state});
+assert.deepEqual(good.fav,[2]);assert.deepEqual(good.players,['Uno','Dos']);assert.equal(good.counts[2],1);
+assert.deepEqual(validate({format:1,state:{lang:'en',fav:[],counts:{}}}).custom,[]);
+assert.equal(validate({format:1,state:{...state,community:{receipts:['private']},usageConsent:true}}).community,undefined);
+for(const bad of [{players:42},{custom:[null]},{custom:[{id:100000,en:'Question'},{id:100000,en:'Other'}]},{fav:[-1]},{fav:[100001]},{counts:[]},{counts:{abc:1}},{counts:{2:1.5}},{mode:'invalid'},{turn:-1},{categories:[9]},{lang:'__proto__'}])assert.throws(()=>validate({format:1,state:{...state,...bad}}));
+console.log('OK: valid legacy backups, malformed state rejection, community isolation');

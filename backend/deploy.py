@@ -189,7 +189,7 @@ if os.environ.get("COMMUNITY_BETA")=="true":
     feedback_receipt=secrets.token_hex(32)
     feedback_hash=digest("feedback:"+feedback_receipt)
     proposal={"receipt":proposal_receipt,"language":"de","text":"Synthetische CurioCircle Beta-Testfrage "+proposal_hash[:16].translate(str.maketrans("0123456789","ghijklmnop"))+"?"}
-    payload={"question_id":0,"receipt":vote_receipt,"revision":1,"vote":1,"language":"de","app_version":"0.9.6 (Beta)"}
+    payload={"question_id":0,"receipt":vote_receipt,"revision":1,"vote":1,"language":"de","app_version":"0.9.8.4.2 (Beta)"}
     def post(path,data):
         return get(path,"https://marcsenges.github.io",json.dumps(data).encode())
     passed=False
@@ -213,7 +213,7 @@ if os.environ.get("COMMUNITY_BETA")=="true":
         status,result=post("/v1/suggestion",proposal)
         assert status==200 and result.get("status")=="received","Live suggestion failed: HTTP "+str(status)+" ("+str(result.get("error","unexpected response"))+")"
         assert scalar("SELECT status FROM cc_suggestion WHERE receipt_hash=?",[proposal_hash])["status"]=="pending"
-        fb={"receipt":feedback_receipt,"language":"es","text":"Prueba sintetica de comentarios de CurioCircle","app_version":"0.9.6.4 (Beta)"}
+        fb={"receipt":feedback_receipt,"language":"es","text":"Prueba sintetica de comentarios de CurioCircle","app_version":"0.9.8.4.2 (Beta)"}
         status,result=post("/v1/feedback",fb)
         assert status==200 and result.get("status")=="received","Live app feedback failed"
         assert scalar("SELECT COUNT(*) AS n FROM cc_feedback WHERE receipt_hash=?",[feedback_hash])["n"]==1

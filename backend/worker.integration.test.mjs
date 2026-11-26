@@ -16,7 +16,14 @@ async function send(path,payload,admin=false,environment=env,origin=ORIGIN){
  const text=await response.text();
  return {status:response.status,headers:response.headers,text,json:()=>JSON.parse(text)};
 }
-const base={question_id:0,receipt:'a'.repeat(64),revision:1,vote:1,language:'de',app_version:'0.9.6 (Beta)'};
+const appVersion=readFileSync(new URL('../index.html',import.meta.url),'utf8').match(/const APP_VERSION="([^"]+)";/)?.[1];
+assert.ok(appVersion,'Read actual app version from entry point');
+const base={question_id:0,receipt:'a'.repeat(64),revision:1,vote:1,language:'de',app_version:appVersion};
+for(const version of ['0.9.6 (Beta)','0.9.8.4.2 (Beta)','0.9.8.5 (Beta)','1.0.3','0.9.8.4.2.1 (Beta)','bad']){
+ const result=await send('/v1/vote',{...base,question_id:1,receipt:'e'.repeat(64),app_version:version});
+ assert.equal(result.status,['0.9.8.4.2.1 (Beta)','bad'].includes(version)?400:200,version);
+}
+db.prepare('DELETE FROM cc_vote WHERE question_id=1').run();
 assert.equal((await send('/v1/vote',base,false,{...env,FEEDBACK_ENABLED:'false'})).status,503);
 assert.equal((await send('/v1/vote',base,false,env,'https://other.example')).status,403);
 assert.equal((await send('/v1/vote',{...base,question_id:99})).status,400);
@@ -46,7 +53,7 @@ assert.match((await send('/admin/api/suggestions.csv',undefined,true)).text,/"'=
 assert.equal((await send('/admin/api/moderate',{id:row.id,status:'rejected'},true)).status,200);
 assert.equal((await send('/admin/api/suggestions',undefined,true)).json().rows[0].status,'rejected');
 
-const fb={receipt:'d'.repeat(64),language:'es',text:'El formulario resulta sencillo.',app_version:'0.9.6.4 (Beta)'};
+const fb={receipt:'d'.repeat(64),language:'es',text:'El formulario resulta sencillo.',app_version:appVersion};
 assert.equal((await send('/v1/feedback',fb,false,{...env,FEEDBACK_ENABLED:'false'})).status,503);
 assert.equal((await send('/v1/feedback',fb,false,env,'https://other.example')).status,403);
 assert.equal((await send('/v1/feedback',{...fb,email:'test@example.invalid'})).status,400);

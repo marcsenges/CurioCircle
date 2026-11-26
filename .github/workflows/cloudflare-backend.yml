@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/cloudflare-backend.yml'
+      - 'questions.json'
       - 'backend/deploy.py'
       - 'backend/schema.sql'
       - 'backend/worker.mjs'

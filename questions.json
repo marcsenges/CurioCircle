@@ -1,6 +1,6 @@
 {
-  "version": 6,
-  "published": "2026-11-24",
+  "version": 7,
+  "published": "2026-11-26",
   "questions": [
     {
       "id": 0,
@@ -69,7 +69,7 @@
       "id": 7,
       "en": "Which household chore would you gladly never do again?",
       "de": "Welche Hausarbeit würdest du am liebsten nie wieder machen?",
-      "es": "¿Qué tarea de casa no volverías a hacer encantado?",
+      "es": "¿Qué tarea de casa no te importaría dejar de hacer para siempre?",
       "fr": "De quelle tâche ménagère te passerais-tu volontiers pour toujours ?",
       "pt": "Qual tarefa doméstica você adoraria nunca mais fazer?",
       "it": "Quale faccenda domestica non vorresti mai più fare?"
@@ -87,9 +87,9 @@
       "id": 9,
       "en": "Which fashion trend did you once follow and now regret?",
       "de": "Welchen Modetrend hast du früher mitgemacht und bereust es heute?",
-      "es": "¿Qué moda seguiste en su día y ahora te arrepientes?",
-      "fr": "Quelle mode as-tu suivie à l'époque et regrettes-tu aujourd'hui ?",
-      "pt": "Que moda você já seguiu e hoje se arrepende?",
+      "es": "¿De qué moda que seguiste en su día te arrepientes ahora?",
+      "fr": "Quelle mode as-tu suivie autrefois et regrettes-tu aujourd’hui ?",
+      "pt": "Qual moda você seguiu no passado e hoje se arrepende de ter seguido?",
       "it": "Quale moda hai seguito in passato e oggi rimpiangi di aver seguito?"
     },
     {
@@ -196,9 +196,9 @@
       "en": "What would your signature sandwich contain?",
       "de": "Was käme auf dein persönliches Lieblingssandwich?",
       "es": "¿Qué llevaría tu bocadillo estrella?",
-      "fr": "Qu'y aurait-il dans ton sandwich signature ?",
+      "fr": "Qu’est-ce qu’il y aurait dans ton sandwich idéal ?",
       "pt": "O que teria no seu sanduíche especial?",
-      "it": "Cosa ci sarebbe nel tuo panino della casa?"
+      "it": "Che cosa metteresti nel tuo panino ideale?"
     },
     {
       "id": 22,
@@ -242,7 +242,7 @@
       "de": "Welchen Film hast du am häufigsten gesehen?",
       "es": "¿Qué película has visto más veces?",
       "fr": "Quel film as-tu vu le plus de fois ?",
-      "pt": "Qual filme você mais vezes assistiu?",
+      "pt": "Qual filme você já viu mais vezes?",
       "it": "Qual è il film che hai visto più volte?"
     },
     {
@@ -267,7 +267,7 @@
       "id": 29,
       "en": "What would you choose as a mascot for this group?",
       "de": "Welches Maskottchen würdest du für diese Runde wählen?",
-      "es": "¿Qué mascota elegirías para este grupo?",
+      "es": "¿Qué elegirías como mascota de este grupo?",
       "fr": "Quelle mascotte choisirais-tu pour notre groupe ?",
       "pt": "Que mascote você escolheria para este grupo?",
       "it": "Quale mascotte sceglieresti per questo gruppo?"
@@ -278,7 +278,7 @@
       "de": "Welches Spiel hast du als Kind ständig gespielt?",
       "es": "¿A qué juego no parabas de jugar de pequeño?",
       "fr": "À quel jeu jouais-tu sans arrêt quand tu étais enfant ?",
-      "pt": "Que brincadeira você não cansava de brincar na infância?",
+      "pt": "Que brincadeira você não cansava de repetir na infância?",
       "it": "A quale gioco giocavi in continuazione da bambino?"
     },
     {
@@ -319,7 +319,7 @@
     },
     {
       "id": 35,
-      "en": "What is the funniest thing you have misunderstood?",
+      "en": "What’s the funniest misunderstanding you’ve ever had?",
       "de": "Was war dein lustigstes Missverständnis?",
       "es": "¿Cuál ha sido tu malentendido más divertido?",
       "fr": "Quel est le malentendu le plus drôle que tu aies vécu ?",
@@ -339,7 +339,7 @@
       "id": 37,
       "en": "What would you serve at your own food truck?",
       "de": "Was würdest du in deinem eigenen Foodtruck anbieten?",
-      "es": "¿Qué servirías en tu propia furgoneta de comida?",
+      "es": "¿Qué servirías en tu propio food truck?",
       "fr": "Que proposerais-tu dans ton food truck ?",
       "pt": "O que você venderia no seu food truck?",
       "it": "Cosa serviresti nel tuo food truck?"
@@ -428,7 +428,7 @@
     {
       "id": 47,
       "en": "What is the nicest surprise you have found in a pocket?",
-      "de": "Was war die schönste Überraschung, die du in einer Tasche gefunden hast?",
+      "de": "Was war die schönste Überraschung, die du je in einer Kleidertasche gefunden hast?",
       "es": "¿Cuál ha sido la mejor sorpresa que has encontrado en un bolsillo?",
       "fr": "Quelle est la plus belle surprise que tu aies trouvée dans une poche ?",
       "pt": "Qual foi a melhor surpresa que você encontrou num bolso?",
@@ -555,7 +555,7 @@
       "id": 61,
       "en": "What is the most memorable meal you have had on holiday?",
       "de": "Welches Essen im Urlaub ist dir besonders in Erinnerung geblieben?",
-      "es": "¿Qué comida de vacaciones recuerdas especialmente?",
+      "es": "¿Qué comida recuerdas especialmente de tus vacaciones?",
       "fr": "Quel repas de vacances t'a particulièrement marqué ?",
       "pt": "Qual refeição de uma viagem ficou mais na sua memória?",
       "it": "Quale pasto in vacanza ti è rimasto più impresso?"
@@ -575,7 +575,7 @@
       "de": "Was fällt dir in einem Hotelzimmer immer zuerst auf?",
       "es": "¿En qué te fijas primero al entrar en una habitación de hotel?",
       "fr": "Qu'est-ce que tu remarques en premier dans une chambre d'hôtel ?",
-      "pt": "Qual é a primeira coisa que você repara num quarto de hotel?",
+      "pt": "Qual é a primeira coisa em que você repara num quarto de hotel?",
       "it": "Qual è la prima cosa che noti in una camera d'albergo?"
     },
     {
@@ -697,10 +697,10 @@
     },
     {
       "id": 77,
-      "en": "What would you choose as your personal ice cream flavour?",
+      "en": "What ice cream flavour would you invent for yourself?",
       "de": "Welche persönliche Eissorte würdest du erfinden?",
       "es": "¿Qué sabor de helado inventarías?",
-      "fr": "Quel serait ton parfum de glace signature ?",
+      "fr": "Quel parfum de glace inventerais-tu pour toi-même ?",
       "pt": "Que sabor de sorvete você inventaria para chamar de seu?",
       "it": "Quale gusto di gelato inventeresti?"
     },
@@ -745,7 +745,7 @@
       "en": "Which board game brings out your competitive side?",
       "de": "Bei welchem Brettspiel kommt dein Ehrgeiz zum Vorschein?",
       "es": "¿Qué juego de mesa despierta tu lado competitivo?",
-      "fr": "À quel jeu de société devient-on ton adversaire redoutable ?",
+      "fr": "Quel jeu de société réveille ton esprit de compétition ?",
       "pt": "Que jogo de tabuleiro desperta seu lado competitivo?",
       "it": "Quale gioco da tavolo tira fuori il tuo lato competitivo?"
     },
@@ -948,9 +948,9 @@
       "de": "Welche Kleinigkeit macht jemanden sofort sympathisch?",
       "en": "What little thing makes someone instantly likeable?",
       "es": "¿Qué pequeño detalle hace que alguien te caiga bien enseguida?",
-      "fr": "Quel petit détail te rend quelqu'un immédiatement sympathique ?",
+      "fr": "Quel petit détail fait que quelqu’un te paraît tout de suite sympathique ?",
       "pt": "Que pequeno gesto faz você gostar de alguém de cara?",
-      "it": "Quale piccolo dettaglio ti rende subito simpatica una persona?"
+      "it": "Quale piccolo dettaglio ti fa trovare subito simpatica una persona?"
     },
     {
       "id": 105,
@@ -1157,7 +1157,7 @@
       "category": 0,
       "de": "Bei welcher Tätigkeit würdest du lieber nicht gefilmt werden, weil sie so unbeholfen aussieht?",
       "en": "What activity would you rather not be filmed doing because you look so clumsy?",
-      "es": "¿Qué actividad preferirías que no te grabaran haciendo porque pareces muy torpe?",
+      "es": "¿Qué actividad preferirías que no te grabaran haciendo porque se te ve muy torpe?",
       "fr": "En faisant quelle activité préférerais-tu ne pas être filmé, tellement tu manques d'adresse ?",
       "pt": "Que atividade você preferiria não fazer na frente de uma câmera por ser tão desajeitado?",
       "it": "Durante quale attività preferiresti non essere ripreso, tanto sei impacciato?"
@@ -1275,8 +1275,8 @@
     {
       "id": 137,
       "category": 0,
-      "de": "Was wäre dein peinlichster Künstlername, wenn er aus deinem Frühstück bestünde?",
-      "en": "What would your most embarrassing stage name be if it came from your breakfast?",
+      "de": "Wie würde dein peinlichster Künstlername lauten, wenn dein Frühstück ihn inspirieren würde?",
+      "en": "If your breakfast inspired an embarrassing stage name for you, what would it be?",
       "es": "¿Cuál sería tu nombre artístico más ridículo si saliera de tu desayuno?",
       "fr": "Si ton petit-déjeuner t'inspirait un nom de scène ridicule, quel serait-il ?",
       "pt": "Se seu café da manhã inspirasse um nome artístico ridículo, qual seria?",
@@ -1467,7 +1467,7 @@
       "category": 1,
       "de": "Welche Sache hast du früher heimlich für besonders erwachsen gehalten?",
       "en": "What did you secretly consider particularly grown-up when you were younger?",
-      "es": "¿Qué cosa te parecía de mayores cuando eras pequeño?",
+      "es": "¿Qué te parecía en secreto muy de mayores cuando eras pequeño?",
       "fr": "Qu'est-ce qui te semblait être un vrai truc d'adulte quand tu étais enfant ?",
       "pt": "Que coisa você achava que era muito de adulto quando era criança?",
       "it": "Cosa ti sembrava proprio una cosa da grandi quando eri piccolo?"
@@ -1575,11 +1575,11 @@
     {
       "id": 167,
       "category": 0,
-      "de": "Welches Haushaltsgerät hat deiner Meinung nach die größte Diva-Energie?",
-      "en": "Which household appliance has the biggest diva energy?",
+      "de": "Welches Haushaltsgerät benimmt sich deiner Meinung nach am ehesten wie eine Diva?",
+      "en": "Which household appliance behaves most like a diva?",
       "es": "¿Qué electrodoméstico tiene más aires de diva?",
       "fr": "Quel appareil électroménager fait le plus sa diva ?",
-      "pt": "Qual eletrodoméstico tem mais pose de diva?",
+      "pt": "Qual eletrodoméstico mais se comporta como uma diva?",
       "it": "Quale elettrodomestico ha più atteggiamenti da diva?"
     },
     {
@@ -1655,9 +1655,9 @@
     {
       "id": 175,
       "category": 3,
-      "de": "Was ist das Erste, das du bei einem neuen Stift ausprobierst?",
-      "en": "What's the first thing you try with a new pen?",
-      "es": "¿Qué es lo primero que pruebas con un bolígrafo nuevo?",
+      "de": "Was schreibst oder zeichnest du zuerst, wenn du einen neuen Stift ausprobierst?",
+      "en": "What’s the first thing you write or draw to try out a new pen?",
+      "es": "¿Qué es lo primero que escribes o dibujas para probar un bolígrafo nuevo?",
       "fr": "Qu'est-ce que tu écris ou dessines en premier pour tester un nouveau stylo ?",
       "pt": "Qual é a primeira coisa que você escreve ou desenha para testar uma caneta nova?",
       "it": "Cosa scrivi o disegni per prima cosa per provare una penna nuova?"
@@ -1715,9 +1715,9 @@
     {
       "id": 181,
       "category": 3,
-      "de": "Was ist deine bevorzugte Strategie beim Öffnen einer neuen Packung Kekse?",
-      "en": "What's your preferred strategy for opening a new packet of biscuits?",
-      "es": "¿Cuál es tu estrategia para estrenar un paquete de galletas?",
+      "de": "Wie gehst du vor, wenn du eine neue Packung Kekse öffnest?",
+      "en": "How do you usually go about opening a new packet of biscuits?",
+      "es": "¿Cómo sueles abrir un paquete nuevo de galletas?",
       "fr": "Quelle est ta technique pour ouvrir un paquet de biscuits tout neuf ?",
       "pt": "Qual é sua técnica para abrir um pacote novo de biscoitos?",
       "it": "Qual è la tua tecnica per aprire un pacchetto nuovo di biscotti?"
@@ -1919,7 +1919,7 @@
       "en": "If you could travel back in time for one hour, when and where would you go?",
       "es": "Si pudieras viajar al pasado durante una hora, ¿a qué época y lugar irías?",
       "fr": "Si tu pouvais remonter le temps pendant une heure, à quelle époque et à quel endroit irais-tu ?",
-      "pt": "Se você pudesse viajar ao passado por uma hora, para que época e lugar iria?",
+      "pt": "Se você pudesse voltar no tempo por uma hora, para que época e lugar iria?",
       "it": "Se potessi tornare indietro nel tempo per un'ora, in quale epoca e luogo andresti?"
     },
     {
@@ -2118,7 +2118,7 @@
       "de": "Wann hast du zuletzt etwas zum allerersten Mal gemacht, und was war es?",
       "en": "When did you last do something for the very first time, and what was it?",
       "es": "¿Cuándo fue la última vez que hiciste algo por primera vez y qué fue?",
-      "fr": "Quand as-tu fait quelque chose pour la toute première fois, et de quoi s'agissait-il ?",
+      "fr": "C’était quand, la dernière fois que tu as fait quelque chose pour la toute première fois, et de quoi s’agissait-il ?",
       "pt": "Quando foi a última vez que você fez algo pela primeira vez, e o que foi?",
       "it": "Quand'è stata l'ultima volta che hai fatto qualcosa per la prima volta, e di cosa si trattava?"
     },
@@ -2140,7 +2140,7 @@
       "es": "¿Qué descubriste que te gustaba ya de mayor?",
       "fr": "Qu'as-tu découvert que tu aimais seulement à l'âge adulte ?",
       "pt": "O que você só descobriu que gostava depois de adulto?",
-      "it": "Cosa hai scoperto che ti piace solo in età adulta?"
+      "it": "Che cosa hai scoperto di apprezzare soltanto da adulto?"
     },
     {
       "id": 224,
@@ -2206,7 +2206,7 @@
       "id": 230,
       "category": 0,
       "de": "Was ist das Merkwürdigste, das du je in einem Kühlschrank gesehen hast?",
-      "en": "What's the strangest thing you've ever seen in a fridge?",
+      "en": "What’s the strangest thing you’ve ever seen in a fridge?",
       "es": "¿Qué es lo más raro que has visto en una nevera?",
       "fr": "Quelle est la chose la plus étrange que tu aies vue dans un frigo ?",
       "pt": "Qual foi a coisa mais estranha que você já viu numa geladeira?",
@@ -2508,8 +2508,8 @@
       "de": "Würdest du lieber jeden Tag dasselbe Frühstück essen oder jeden Tag etwas Überraschendes zum Frühstück bekommen?",
       "en": "Would you rather have the same breakfast every day or be surprised with a different one each morning?",
       "es": "¿Preferirías desayunar lo mismo todos los días o que cada mañana te sorprendieran con un desayuno distinto?",
-      "fr": "Tu préférerais manger le même petit-déjeuner tous les jours ou avoir une surprise chaque matin ?",
-      "pt": "Você preferiria tomar o mesmo café da manhã todos os dias ou receber uma surpresa a cada manhã?",
+      "fr": "Tu préférerais manger le même petit-déjeuner tous les jours ou découvrir un petit-déjeuner différent chaque matin ?",
+      "pt": "Você preferiria tomar o mesmo café da manhã todos os dias ou ter um café da manhã diferente de surpresa a cada dia?",
       "it": "Preferiresti fare sempre la stessa colazione o riceverne una diversa a sorpresa ogni mattina?"
     },
     {
@@ -2607,7 +2607,7 @@
       "category": 5,
       "de": "Woran merkst du, dass du bei etwas richtig gut geworden bist?",
       "en": "How do you know when you've become really good at something?",
-      "es": "¿Cómo te das cuenta de que se te empieza a dar muy bien algo?",
+      "es": "¿Cómo te das cuenta de que ya se te da muy bien algo?",
       "fr": "Comment sais-tu que tu es vraiment devenu bon dans quelque chose ?",
       "pt": "Como você percebe que ficou muito bom em alguma coisa?",
       "it": "Come ti accorgi di essere diventato davvero bravo in qualcosa?"
@@ -2697,7 +2697,7 @@
       "category": 6,
       "de": "An welchem ungewöhnlichen Ort hast du schon einmal einen Freund kennengelernt?",
       "en": "What's the most unusual place you've made a friend?",
-      "es": "¿En qué lugar poco habitual has hecho alguna vez un amigo?",
+      "es": "¿En qué lugar poco habitual has conocido a alguien que acabó siendo tu amigo?",
       "fr": "Dans quel endroit insolite t'es-tu déjà fait un ami ?",
       "pt": "Em que lugar inusitado você já fez uma amizade?",
       "it": "In quale posto insolito ti è capitato di fare amicizia?"
@@ -2817,7 +2817,7 @@
       "category": 6,
       "de": "Was wäre ein guter Name für eine Quizmannschaft aus den Leuten in dieser Runde?",
       "en": "What would be a good quiz team name for the people playing right now?",
-      "es": "¿Qué nombre le pondrías a un equipo de concurso formado por los que estáis aquí?",
+      "es": "¿Qué nombre le pondrías a un equipo de concurso de preguntas formado por los que estáis aquí?",
       "fr": "Quel nom donnerais-tu à une équipe de quiz composée des personnes présentes ?",
       "pt": "Que nome você daria a uma equipe de quiz formada pelas pessoas desta roda?",
       "it": "Quale nome daresti a una squadra di quiz formata dalle persone qui presenti?"

@@ -2951,6 +2951,26 @@
       "fr": "Tu préférerais passer une journée dans les coulisses d'un zoo ou d'un studio de cinéma ?",
       "pt": "Você preferiria passar um dia nos bastidores de um zoológico ou de um estúdio de cinema?",
       "it": "Preferiresti passare una giornata dietro le quinte di uno zoo o di uno studio cinematografico?"
+    },
+    {
+      "id": 305,
+      "category": 5,
+      "de": "Was würdest du deinem jugendlichen Ich sagen?",
+      "en": "What would you tell your teenage self?",
+      "es": "¿Qué le dirías a tu yo adolescente?",
+      "fr": "Que dirais-tu à la personne que tu étais à l’adolescence ?",
+      "pt": "O que você diria a si mesmo na adolescência?",
+      "it": "Che cosa diresti al tuo io adolescente?"
+    },
+    {
+      "id": 306,
+      "category": 5,
+      "de": "Welche Frage würdest du deinem 90-jährigen Ich stellen?",
+      "en": "What question would you ask your 90-year-old self?",
+      "es": "¿Qué pregunta le harías a tu yo de 90 años?",
+      "fr": "Quelle question poserais-tu à ton futur toi de 90 ans ?",
+      "pt": "Que pergunta você faria a si mesmo aos 90 anos?",
+      "it": "Quale domanda faresti al tuo io di 90 anni?"
     }
   ]
 }

@@ -10,12 +10,14 @@ const browser=await chromium.launch({headless:true, args:['--no-sandbox']});
 try{
 const context=await browser.newContext({viewport:{width:375,height:812},serviceWorkers:'block',isMobile:true,hasTouch:true});
 const page=await context.newPage(),errors=[],sent=[],dialogs=[];
+let holdVote=false,releaseVote=null,notifyHeld=null;
 page.on('pageerror',e=>errors.push(e.message));page.on('dialog',d=>{dialogs.push(d.message());void d.dismiss()});
 await context.route('https://curiocircle-api.*.workers.dev/**',async route=>{
 const req=route.request(),url=new URL(req.url()),headers={'Access-Control-Allow-Origin':base,'Access-Control-Allow-Headers':'Content-Type','Access-Control-Allow-Methods':'GET, POST, OPTIONS'};
 if(req.method()==='OPTIONS')return route.fulfill({status:204,headers});
 if(url.pathname==='/health')return route.fulfill({json:{ok:true,feedback_enabled:true,catalogue_count:307},headers});
 const p=req.postDataJSON();sent.push({path:url.pathname,payload:p});
+if(holdVote&&url.pathname==='/v1/vote'){holdVote=false;await new Promise(resolve=>{releaseVote=resolve;notifyHeld?.()})}
 return route.fulfill({json:{ok:true,status:'received',vote:p.vote,revision:p.revision},headers});
 });
 async function openSettings(group){const settings=page.locator('details.settings');if(!await settings.evaluate(e=>e.open))await page.locator('#settingsJump').click();const panel=page.locator('#'+group+'Group');if(!await panel.evaluate(e=>e.open))await panel.locator(':scope > summary').click();await page.waitForFunction(g=>document.querySelectorAll('.settingsModule[open]').length===1&&document.getElementById(g+'Group').open,group)}
@@ -151,6 +153,20 @@ await openSettings('privacy');await page.locator('#showPreviousRatings').click()
 await showQuestion(oldRated[0]);assert.equal(await page.locator('.cc-thumb').last().getAttribute('aria-pressed'),'true');
 await page.locator('.cc-thumb').last().click();await page.waitForFunction(()=>CCCommunity.summary().rated===0&&CCCommunity.summary().pending===0);
 const withdrawn=sent.filter(x=>x.path==='/v1/vote').at(-1).payload;assert.equal(withdrawn.receipt,repeat.receipt);assert.equal(withdrawn.vote,null);
+// A response arriving after reset must not restore a hidden thumb or visible count.
+const held=new Promise(resolve=>{notifyHeld=resolve});holdVote=true;
+await page.locator('.cc-thumb').first().click();await held;
+try{
+ await openSettings('app');if(!await page.locator('#dataTitle').evaluate(e=>e.parentElement.open))await page.locator('#dataTitle').click();
+ await page.locator('#resetData').click();await page.locator('#dialogOK').click();
+ await page.waitForFunction(()=>Object.values(JSON.parse(localStorage.getItem('curiocircle-community-v1')).votes).every(r=>r.hidden===true));
+ await showQuestion(oldRated[0]);await assertNoVisibleRating();
+}finally{releaseVote?.();notifyHeld=null}
+await page.waitForFunction(()=>CCCommunity.summary().pending===0);
+await assertNoVisibleRating();
+assert.equal(await page.locator('#communityRating [role=status]').textContent(),'');
+const finalRecord=JSON.parse(await readCommunity()).votes[oldRated[0]];
+assert.equal(finalRecord.confirmed.vote,1);assert.equal(finalRecord.receipt,repeat.receipt);assert.equal(finalRecord.hidden,true);
 const afterWithdraw=await readCommunity();
 // Import cancellation and confirmed import preserve community data.
 await openSettings('app');if(!await page.locator('#dataTitle').evaluate(e=>e.parentElement.open))await page.locator('#dataTitle').click();

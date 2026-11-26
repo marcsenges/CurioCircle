@@ -10,13 +10,14 @@ const browser=await chromium.launch({headless:true, args:['--no-sandbox']});
 try{
 const context=await browser.newContext({viewport:{width:375,height:812},serviceWorkers:'block',isMobile:true,hasTouch:true});
 const page=await context.newPage(),errors=[],sent=[],dialogs=[];
-let holdVote=false,releaseVote=null,notifyHeld=null;
+let holdVote=false,releaseVote=null,notifyHeld=null,failVoteId=null;
 page.on('pageerror',e=>errors.push(e.message));page.on('dialog',d=>{dialogs.push(d.message());void d.dismiss()});
 await context.route('https://curiocircle-api.*.workers.dev/**',async route=>{
 const req=route.request(),url=new URL(req.url()),headers={'Access-Control-Allow-Origin':base,'Access-Control-Allow-Headers':'Content-Type','Access-Control-Allow-Methods':'GET, POST, OPTIONS'};
 if(req.method()==='OPTIONS')return route.fulfill({status:204,headers});
 if(url.pathname==='/health')return route.fulfill({json:{ok:true,feedback_enabled:true,catalogue_count:307},headers});
 const p=req.postDataJSON();sent.push({path:url.pathname,payload:p});
+if(url.pathname==='/v1/vote'&&p.question_id===failVoteId)return route.fulfill({status:400,json:{ok:false,error:'invalid_vote'},headers});
 if(holdVote&&url.pathname==='/v1/vote'){holdVote=false;await new Promise(resolve=>{releaseVote=resolve;notifyHeld?.()})}
 return route.fulfill({json:{ok:true,status:'received',vote:p.vote,revision:p.revision},headers});
 });
@@ -259,7 +260,36 @@ await page.evaluate(()=>localStorage.setItem('curiocircle-usage-choice-v1','yes'
 await page.reload();await page.locator('.cc-thumb').first().waitFor({state:'visible'});
 assert.equal(await page.evaluate(()=>CCUsage.decided()&&CCUsage.enabled()),true);
 assert.equal(await page.locator('#appDialog').isVisible(),false);
+// A permanent error on one record must not block the next valid rating.
+const queueIds=await page.evaluate(()=>{const votes=JSON.parse(localStorage.getItem('curiocircle-community-v1')||'{"votes":{}}').votes;const ids=qs.map((_,i)=>i).filter(i=>!votes[i]).slice(0,2);deck=ids;pos=0;save();render();return ids});
+assert.equal(queueIds.length,2);failVoteId=queueIds[0];
+await page.locator('.cc-thumb').first().click();
+await page.waitForFunction(id=>JSON.parse(localStorage.getItem('curiocircle-community-v1')).votes[id]?.blocked===true,queueIds[0]);
+await page.evaluate(()=>{pos=1;render()});
+await page.locator('.cc-thumb').first().click();
+await page.waitForFunction(id=>JSON.parse(localStorage.getItem('curiocircle-community-v1')).votes[id]?.pending===false,queueIds[1]);
+assert.equal(await page.evaluate(id=>JSON.parse(localStorage.getItem('curiocircle-community-v1')).votes[id].pending,queueIds[0]),true);
+failVoteId=null;await page.evaluate(()=>{pos=0;render()});await page.locator('.cc-thumb').first().click();
+await page.waitForFunction(id=>JSON.parse(localStorage.getItem('curiocircle-community-v1')).votes[id]?.pending===false,queueIds[0]);
 assert.deepEqual(dialogs,[]);assert.deepEqual(errors,[]);
 console.log('OK: six languages, four viewport widths, thumbs and withdrawal, proposal, favourite removal, feedback sending, no dialogs or page errors');
 await context.close();
+// Independent service-worker context: real cached app shell, not mocked offline.
+const offlineContext=await browser.newContext({serviceWorkers:'allow',viewport:{width:375,height:812}});
+const offlinePage=await offlineContext.newPage();
+await offlinePage.goto(base);
+await offlinePage.locator('#dialogCancel').click();
+await offlinePage.waitForFunction(()=>navigator.serviceWorker.controller!==null);
+const original=await offlinePage.evaluate(()=>APP_VERSION);
+await offlineContext.setOffline(true);
+await offlinePage.goto(base+'/?src=link');
+await offlinePage.locator('#answer').waitFor({state:'visible'});
+assert.equal(await offlinePage.evaluate(()=>APP_VERSION),original);
+assert.equal(await offlinePage.evaluate(()=>qs.length),307);
+await offlinePage.goto(base+'/legal.html#de-privacy');
+assert.equal(await offlinePage.locator('#de-privacy').textContent(),'Datenschutz');
+const cached=await offlinePage.evaluate(async()=>{const keys=await caches.keys(),out=[];for(const k of keys)for(const r of await (await caches.open(k)).keys())out.push(r.url);return out});
+assert.ok(cached.every(url=>!url.includes('?src=')));
+await offlineContext.close();
+console.log('OK: permanent vote rejection isolation and real offline app/legal cache');
 }finally{await browser.close();server.close()}
